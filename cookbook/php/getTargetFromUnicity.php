@@ -3,22 +3,32 @@
 //Ici, renseignez l'email dont vous voulez obtenir les valeurs des champs
 $unicity = 'test@test.com';
 
-//Utilisation de cURL pour remplir la requ�te
+//Utilisation de cURL pour remplir la requete
 $req = curl_init();
-curl_setopt($req,CURLOPT_URL,'http://v8.mailperformance.com/targets?unicity='.$unicity);
+curl_setopt($req,CURLOPT_URL,'http://v8.mailperformance.com/targets?unicity='. $unicity);
 curl_setopt($req,CURLOPT_CUSTOMREQUEST,'GET');
 curl_setopt($req, CURLOPT_RETURNTRANSFER, true);
 
 //Mise en place du xKey et des options
 curl_setopt($req, CURLOPT_HTTPHEADER, array(
-'Content-Type: application/json',
-'X-Key: ABCD1234ABCDEFGHIJKLMNOPQRSTUV'));
+'X-Key: ABCDEFJHIJKLMNOPQRSTUVWXYZ0123456789',
+'Content-Type: application/json'));
 
-//Execution de la requ�te
+//Execution de la requete
 $result = curl_exec($req);
 
-//On ecrit le resultat dans la fenetre
-echo $result;
-
+//Verification des reponses
+if ($result == false)
+{
+	//Affichage de l'erreur
+	$info = curl_getinfo($req);
+	echo 'Error : ' . $info['http_code'];
+}
+else
+{
+	//Affichage des donnees
+	echo $result;
+}
 curl_close($req);
 
+?>
