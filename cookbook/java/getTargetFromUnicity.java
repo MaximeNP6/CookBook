@@ -1,5 +1,3 @@
-package getTargetFromUnicity;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,12 +21,11 @@ public class getTargetFromUnicity
 		con.setRequestProperty("Content-Type", "application/json");
 		
 		//Verification des reponses
-		String responseMessage = con.getResponseMessage();
 		int responseCode = con.getResponseCode();
-		if (responseCode != 200 && responseCode != 201)
+		if (responseCode != 200)
 		{
 			//Affichage de l'erreur
-			System.out.print("Error : " + Integer.toString(responseCode) + ' ' + responseMessage);
+			System.out.print("Error : " + Integer.toString(responseCode) + ' ' + con.getResponseMessage());
 		}
 		else
 		{
