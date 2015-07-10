@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class getTargetFromUnicity {
-
+public class getTargetFromUnicity
+{
 	public static void main(String[] args) throws IOException
 	{
 		//Ici, renseignez l'email dont vous voulez obtenir les valeurs des champs
@@ -17,8 +17,6 @@ public class getTargetFromUnicity {
 		String url = "http://v8.mailperformance.com/targets?unicity=" + unicity;
 		HttpURLConnection con = (HttpURLConnection)new URL(url).openConnection();
 		con.setRequestMethod("GET");
-		con.setDoInput(true);
-        con.setDoOutput(true);
 		
 		//Mise en place du xKey et des options
 		con.setRequestProperty("X-Key", "ABCDEFJHIJKLMNOPQRSTUVWXYZ0123456789");
@@ -36,18 +34,13 @@ public class getTargetFromUnicity {
         {
         	//Lecture des donnees ligne par lignes
         	BufferedReader buffRead = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        	StringBuilder reply = new StringBuilder();
-            String line;
-            while ((line = buffRead.readLine()) != null)
-            {
-            	reply.append(line + "\n");
-            }
+        	String reply = buffRead.readLine();
             buffRead.close();
             
             //Affichage des donnees
         	System.out.print(reply);
         }
-        
         con.disconnect();
 	}
 }
+
