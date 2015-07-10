@@ -15,13 +15,7 @@ getTargetAndSendMessage
 
 This code takes the id of a target (with the getTargetFromUnicity's informations) and send it a pre-created message (the idMessage) in your account.
 To use this code you must import the Java JSON library : http://www.java2s.com/Code/JarDownload/java/java-json.jar.zip
-How install Java JSON library on Eclipse :
--Right click the Project
--Build Path
--Configure build path
--Select Libraries tab
--Click Add External Libraries/JARs
--Select the Jar file Download
+How install Java JSON library on Eclipse : -> Right click the Project -> Build Path -> Configure build path -> Select Libraries tab -> Click Add External Libraries/JARs -> Select the Jar file Download
 
 Webhooks to listen clicks and openings.
 
