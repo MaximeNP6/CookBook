@@ -23,24 +23,24 @@ public class getTargetFromUnicity
 		con.setRequestProperty("Content-Type", "application/json");
 		
 		//Verification des reponses
-        String responseMessage = con.getResponseMessage();
-        int responseCode = con.getResponseCode();
-        if (responseCode != 200 && responseCode != 201)
-        {
-        	//Affichage de l'erreur
-        	System.out.print("Error : " + Integer.toString(responseCode) + ' ' + responseMessage);
-        }
-        else
-        {
-        	//Lecture des donnees ligne par lignes
-        	BufferedReader buffRead = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        	String reply = buffRead.readLine();
-            buffRead.close();
+		String responseMessage = con.getResponseMessage();
+		int responseCode = con.getResponseCode();
+		if (responseCode != 200 && responseCode != 201)
+		{
+			//Affichage de l'erreur
+			System.out.print("Error : " + Integer.toString(responseCode) + ' ' + responseMessage);
+		}
+		else
+		{
+			//Lecture des donnees ligne par lignes
+			BufferedReader buffRead = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			String reply = buffRead.readLine();
+			buffRead.close();
             
-            //Affichage des donnees
-        	System.out.print(reply);
-        }
-        con.disconnect();
+			//Affichage des donnees
+			System.out.print(reply);
+		}
+		con.disconnect();
 	}
 }
 

@@ -11,6 +11,11 @@ getTargetFromUnicity
 
 This code example allows you to get the informations of a target (Guid, fields....following the model you can find on API documentation : https://v8.mailperformance.com/doc) giving his unicity criteria.
 
+getTargetAndSendMessage
+--
+
+This code takes the id of a target (with the getTargetFromUnicity's informations) and send it a pre-created message (the idMessage) in your account.
+
 Coming soon 
 --
 
