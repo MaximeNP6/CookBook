@@ -11,7 +11,7 @@ getTargetAndSendMessage
 --
 
 This code takes the id of a target (with the getTargetFromUnicity's informations) and send it a pre-created message (the idMessage) in your account.
-To use this code you must import the JSON.Net library : How install Java JSON.Net library on Visual Studio : -> Right click the Project -> Manage NuGet Packages... -> Configure build path -> Search Online (Ctrl + E) "Json.NET" ->  -> Install "Json.NET" -> Close
+To use this code you must import the JSON.Net library : How install Java JSON.Net library on Visual Studio : -> Right click the Project -> Manage NuGet Packages... -> Search Online (Ctrl + E) "Json.NET" ->  -> Install "Json.NET" -> Close
 
 Coming soon
 --
