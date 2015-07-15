@@ -16,7 +16,12 @@ getTargetAndSendMessage
 
 This code takes the id of a target (with the getTargetFromUnicity's informations) and send it a pre-created message (the idMessage) in your account.
 
-Coming soon 
+postTarget
+--
+
+This code check if the target exist. If it is, the code will update the target with the new informations; or else the code will creat the new target with these informations.
+
+Coming soon
 --
 
 Webhooks to listen clicks and openings.
