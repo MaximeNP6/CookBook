@@ -22,8 +22,7 @@ To use this code you must import the Java JSON library.
 JSON librairy
 --
 
-extract : http://www.java2s.com/Code/JarDownload/java/java-json.jar.zip
-How install Java JSON library on Eclipse : -> Right click the Project -> Build Path -> Configure build path -> Select Libraries tab -> Click Add External Libraries/JARs -> Select the Jar file Download
+How install Java JSON library on Eclipse : extract : http://www.java2s.com/Code/JarDownload/java/java-json.jar.zip > Open Eclipse > Right click your Project > Build Path > Configure build path > Select Libraries tab > Click Add External Libraries/JARs > Select the Jar file Download
 
 Coming soon
 --
