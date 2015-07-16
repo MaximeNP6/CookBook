@@ -27,7 +27,7 @@ $dataJson = json_encode($data);
 
 
 //On trouve l'adresse pour la requete
-$url = 'http://backoffice.mailperformance.dev/targets?unicity=' . $unicity;
+$url = 'http://v8.mailperformance.com/targets?unicity=' . $unicity;
 
 //On remplit la requete 'GET'
 $req = startCurlInit($url);
