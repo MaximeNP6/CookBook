@@ -10,8 +10,19 @@ This code example allows you to get the informations of a target (Guid, fields..
 getTargetAndSendMessage
 --
 
-This code takes the id of a target (with the getTargetFromUnicity's informations) and send it a pre-created message (the idMessage) in your account.
-To use this code you must import the Java JSON library : http://www.java2s.com/Code/JarDownload/java/java-json.jar.zip
+This code takes the id of a target (with the getTargetFromUnicity's informations) and send it a pre-created message (the idMessage) in your account. 
+To use this code you must import the Java JSON library.
+
+postTarget
+--
+
+This code check if the target exist. If it is, the code will update the target with the new informations; or else the code will creat the new target with these informations. 
+To use this code you must import the Java JSON library.
+
+JSON librairy
+--
+
+extract : http://www.java2s.com/Code/JarDownload/java/java-json.jar.zip
 How install Java JSON library on Eclipse : -> Right click the Project -> Build Path -> Configure build path -> Select Libraries tab -> Click Add External Libraries/JARs -> Select the Jar file Download
 
 Coming soon
