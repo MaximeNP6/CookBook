@@ -80,7 +80,7 @@ function startCurlInit($url)
 function postOrPutOnTarget($req, $request, $dataJson, $xKey)
 {
 	//Nouvelle url
-	$url = 'http://backoffice.mailperformance.dev/targets/';
+	$url = 'http://v8.mailperformance.com/targets/';
 
 	//On remplit la requete avec le bon verbe ($request) : GET / PUSH / PUT
 	$req = startCurlInit($url);
