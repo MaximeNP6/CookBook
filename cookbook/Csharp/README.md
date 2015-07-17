@@ -23,7 +23,7 @@ creatTargetAndAddToSegment
 --
 
 This code check if the target exist. If it is not, it will create the target. Then the code will add the target to a segment (using the id-segment).
-To use this code you must import the Java JSON library.
+To use this code you must import the JSON.NET library.
 
 JSON.NET librairy
 --
