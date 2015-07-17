@@ -19,6 +19,12 @@ postTarget
 This code check if the target exist. If it is, the code will update the target with the new informations; or else the code will creat the new target with these informations. 
 To use this code you must import the JSON.NET library.
 
+creatTargetAndAddToSegment
+--
+
+This code check if the target exist. If it is not, it will create the target. Then the code will add the target to a segment (using the id-segment).
+To use this code you must import the Java JSON library.
+
 JSON.NET librairy
 --
 
