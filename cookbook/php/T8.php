@@ -16,10 +16,10 @@ function createT8($url)
 	//les differentes variables
 	$urlT8 = 'http://t8.mailperformance.com/';	//adresse du catcher
 	$redirectUrl = 'redirectUrl';	//nom de l'api de redirection
-	$GV1 = findGV1();		//identifie la demande ( utilisation de la fonction "findGV1()" )
-	$linkId = 'nameOfTheLink';		//Nom du lien
+	$GV1 = findGV1();	//identifie la demande ( utilisation de la fonction "findGV1()" )
+	$linkId = 'nameOfTheLink';	//Nom du lien
 	$targetUrl = $url;	//l'url de redirection souhaitee
-	$h = findH($keyMd5, $url);		//valeur de hachage base sur l'url de redirection et un code specifique au client ( utilisation de la fonction "findH()" )
+	$h = findH($keyMd5, $url);	//valeur de hachage base sur l'url de redirection et un code specifique au client ( utilisation de la fonction "findH()" )
 	
 	//Creation du lien avec toutes les valeurs
 	$data = array('GV1' => $GV1, 'linkId' => $linkId, 'targetUrl' => $targetUrl, 'h' => $h);
@@ -34,7 +34,7 @@ function findGV1()
 {
 	$agenceId = 'ABCD';	//Id de l'agence
 	$clientId = '0AB';	//Id du client
-	$actionId = '000ABC';		//Id de l'action
+	$actionId = '000ABC';	//Id de l'action
 	$targetId = '000ABCDE';	//Id de la cible
 	
 	//Creation du GV1

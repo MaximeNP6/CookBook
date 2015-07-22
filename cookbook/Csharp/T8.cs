@@ -31,11 +31,11 @@ namespace T8
 
             //les differentes variables
             String urlT8 = "http://t8.mailperformance.com/";	//adresse du catcher
-            String redirectUrl = "redirectUrl"; //nom de l'api de redirection
+            String redirectUrl = "redirectUrl";	//nom de l'api de redirection
             String GV1 = findGV1();	//identifie la demande ( utilisation de la fonction "findGV1()" )
             String linkId = "nameOfTheLink";	//Nom du lien
             String targetUrl = WebUtility.UrlEncode(url.Value);	//l'url de redirection souhaitee
-            String h = findH(keyMd5, url.Value);		//valeur de hachage base sur l'url de redirection et un code specifique au client ( utilisation de la fonction "findH()" )
+            String h = findH(keyMd5, url.Value);	//valeur de hachage base sur l'url de redirection et un code specifique au client ( utilisation de la fonction "findH()" )
 
             //Creation du lien avec toutes les valeurs
             String finalUrl = urlT8 + redirectUrl + "?GV1=" + GV1 + "&linkId=" + linkId + "&targetUrl=" + targetUrl + "&h=" + h;
