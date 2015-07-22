@@ -1,0 +1,80 @@
+﻿using System;
+using System.Net;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.RegularExpressions;
+
+namespace T8
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Texte dans lequel il y a les liens a transformer
+            String text = "This is the exemple : first link : https://www.google.com / second link : https://www.youtube.com/";
+
+            //Fonction qui copie le texte avec des liens T8
+            Regex rgx = new Regex("\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
+            string result = rgx.Replace(text, createT8);
+
+            //Attente de lecture (optionnel)
+            Console.Write(result);
+            Console.ReadLine();
+        }
+
+
+        //Fonction qui cree les liens T8
+        static String createT8(Match url)
+        {
+            //La clef du code md5 (peut etre changer)
+            String keyMd5 = "012345678";
+
+            //les differentes variables
+            String urlT8 = "http://t8.mailperformance.com/";	//adresse du catcher
+            String redirectUrl = "redirectUrl"; //nom de l'api de redirection
+            String GV1 = findGV1();	//identifie la demande ( utilisation de la fonction "findGV1()" )
+            String linkId = "nameOfTheLink";	//Nom du lien
+            String targetUrl = WebUtility.UrlEncode(url.Value);	//l'url de redirection souhaitee
+            String h = findH(keyMd5, url.Value);		//valeur de hachage base sur l'url de redirection et un code specifique au client ( utilisation de la fonction "findH()" )
+
+            //Creation du lien avec toutes les valeurs
+            String finalUrl = urlT8 + redirectUrl + "?GV1=" + GV1 + "&linkId=" + linkId + "&targetUrl=" + targetUrl + "&h=" + h;
+
+            //Retourne le nouveau lien
+            return (finalUrl);
+        }
+
+        //Fonction pour trouver le GV1
+        static String findGV1()
+        {
+            String agenceId = "ABCD";	//Id de l'agence
+            String clientId = "0AB";	//Id du client
+            String actionId = "000ABC";	//Id de l'action
+            String targetId = "000ABCDE";	//Id de la cible
+
+            //Creation du GV1
+            String GV1 = agenceId + clientId + actionId + targetId + '0';
+            return (GV1);
+        }
+
+        //Fonction qui cree la valeur de hachage
+        static String findH(String keyMd5, String url)
+        {
+            //Calcul du MD5 hash depuis l'input
+            MD5 md5 = System.Security.Cryptography.MD5.Create();
+            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(keyMd5 + url);
+            byte[] hash = md5.ComputeHash(inputBytes);
+
+            //Converti les bits en String
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("X2"));
+            }
+
+            //Envoie des donnees
+            String h = sb.ToString();
+            return (h);
+        }
+    }
+}

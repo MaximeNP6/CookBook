@@ -25,6 +25,17 @@ creatTargetAndAddToSegment
 This code check if the target exist. If it is not, it will create the target. Then the code will add the target to a segment (using the id-segment).
 To use this code you must import the Java JSON library.
 
+sendHTML
+--
+
+This code send a message like getTargetAndSendMessage. But you can customize the "html message", the "text message", the "subject of the message", the mail "from address" and the "reply to" address.
+To use this code you must import the Java JSON library.
+
+T8
+--
+
+This code converted the html links in a text into T8 links.
+
 JSON librairy
 --
 
