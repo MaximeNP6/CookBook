@@ -91,7 +91,7 @@ namespace sendHTML
                 Console.ReadLine();
 
 
-                //Lancement de la connection pour remplir la requete
+                //Lancement de la connexion pour remplir la requete
                 con = Connect(url, xKey, "POST");
                 con.ContentLength = jsonMessage.ToString().Length;
                 var streamWriter = new StreamWriter(con.GetRequestStream());
@@ -142,7 +142,7 @@ namespace sendHTML
 		//Fonction de connection
         static HttpWebRequest Connect(string url, string xKey, string method)
         {
-            //Lancement de la connection pour remplir la requete
+            //Lancement de la connexion pour remplir la requete
             HttpWebRequest con = (HttpWebRequest)WebRequest.Create(url);
             con.Method = method;
 

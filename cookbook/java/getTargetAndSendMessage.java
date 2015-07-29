@@ -27,7 +27,7 @@ public class getTargetAndSendMessage
 		String unicity = "test@test.com";
 		String idMessage = "000ABC";
 		
-		//Lancement de la connection pour remplir la requete
+		//Lancement de la connexion pour remplir la requete
 		String url = "http://v8.mailperformance.com/targets?unicity=" + unicity;
 		HttpURLConnection con = openConn(url);
 		con.setRequestMethod("GET");
@@ -54,7 +54,7 @@ public class getTargetAndSendMessage
 			//Nouvelle url en fonction de l'id du message et de la cible
 			url = "http://v8.mailperformance.com/actions/" + idMessage + "/targets/" + idTarget;
 
-			//Lancement de la connection pour remplir la requete
+			//Lancement de la connexion pour remplir la requete
 			con = openConn(url);
 			con.setRequestProperty("Content-Length", "");
 			con.setRequestMethod("POST");

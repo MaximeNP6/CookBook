@@ -78,7 +78,7 @@ namespace createMailCampaignAction
             Console.Write(jsonMessage + "\n");
 
 
-            //Lancement de la connection pour remplir la requete
+            //Lancement de la connexion pour remplir la requete
             Object[] connection = allConnection(url, xKey, jsonMessage);
             int response = (int)connection[0];
             HttpWebRequest con = (HttpWebRequest)connection[1];
@@ -117,7 +117,7 @@ namespace createMailCampaignAction
                 //On affiche le json
                 Console.Write(jsonTest + "\n");
 
-                //Lancement de la connection
+                //Lancement de la connexion
                 connection = allConnection(url, xKey, jsonTest);
                 response = (int)connection[0];
                 con = (HttpWebRequest)connection[1];
@@ -151,7 +151,7 @@ namespace createMailCampaignAction
                     //On affiche le json
                     Console.Write(jsonValid + "\n");
 
-                    //Lancement de la connection
+                    //Lancement de la connexion
                     connection = allConnection(url, xKey, jsonValid);
                     response = (int)connection[0];
                     con = (HttpWebRequest)connection[1];
@@ -251,7 +251,7 @@ namespace createMailCampaignAction
                 //Nouvelle addresse
                 String url = "http://v8.mailperformance.com/actions/" + idAction;
 
-                //Lancement de la connection pour remplir la requete
+                //Lancement de la connexion pour remplir la requete
                 HttpWebRequest con = Connect(url, xKey, "GET");
 
                 //Teste de l'envoie

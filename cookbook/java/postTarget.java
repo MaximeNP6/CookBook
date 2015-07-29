@@ -41,7 +41,7 @@ public class postTarget
 		data.put("5456", listMultipleValues);
 		
 		
-		//Lancement de la connection pour remplir la requete 'GET'
+		//Lancement de la connexion pour remplir la requete 'GET'
 		String url = "http://v8.mailperformance.com/targets?unicity=" + unicity;
 		HttpURLConnection con = openConn(url, xKey);
 		con.setRequestMethod("GET");

@@ -101,7 +101,7 @@ namespace postTarget
 
         static HttpWebRequest Connect(string url, string xKey, string method)
         {
-            //Lancement de la connection pour remplir la requete
+            //Lancement de la connexion pour remplir la requete
             HttpWebRequest con = (HttpWebRequest)WebRequest.Create(url);
             con.Method = method;
 
@@ -117,7 +117,7 @@ namespace postTarget
             //Nouvelle url en fonction de l'id du message et de la cible
             String url = "http://v8.mailperformance.com/targets/";
 
-            //Lancement de la connection pour remplir la requete
+            //Lancement de la connexion pour remplir la requete
             con = Connect(url, xKey, request);
             con.ContentLength = data.ToString().Length;
             var streamWriter = new StreamWriter(con.GetRequestStream());

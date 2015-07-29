@@ -1,5 +1,3 @@
-package creatTargetAndAddToSegment;
-
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -42,7 +40,7 @@ public class CreatTargetAndAddToSegment
 		data.put("5456", listMultipleValues);
 		
 		
-		//Lancement de la connection pour remplir la requete 'GET'
+		//Lancement de la connexion pour remplir la requete 'GET'
 		String url = "http://v8.mailperformance.com/targets?unicity=" + unicity;
 		HttpURLConnection con = openConn(url, xKey);
 		con.setRequestMethod("GET");
@@ -91,7 +89,7 @@ public class CreatTargetAndAddToSegment
 	
 	public static HttpURLConnection openConn(String url, String xKey) throws MalformedURLException, IOException
 	{
-		//Lancement de la connection
+		//Lancement de la connexion
 		HttpURLConnection con = (HttpURLConnection)new URL(url).openConnection();
 		
 		//Mise en place du xKey et des options
@@ -103,12 +101,12 @@ public class CreatTargetAndAddToSegment
 	public static HttpURLConnection postOrPutOnTarget(HttpURLConnection con, String request, JSONObject data, String xKey, String url) throws MalformedURLException, IOException
 	{
 		con.disconnect();
-		//Lancement de la connection pour remplir la requete
+		//Lancement de la connexion pour remplir la requete
 		con = openConn(url, xKey);
 		con.setRequestProperty("Content-Length", Integer.toString(data.toString().length()));
 		con.setRequestMethod(request);
 		con.setDoOutput(true);
-		// Envoie des informations dans la connection
+		// Envoie des informations dans la connexion
 	    DataOutputStream payload = new DataOutputStream(con.getOutputStream());
 	    payload.write(data.toString().getBytes());
 	    payload.flush();

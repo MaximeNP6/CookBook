@@ -139,7 +139,7 @@ namespace createMailAction
                     //On affiche le json
                     Console.Write(jsonValid + "\n");
 
-                    //Lancement de la connection
+                    //Lancement de la connexion
                     connection = allConnection(url, xKey, jsonValid);
                     response = (int)connection[0];
                     con = (HttpWebRequest)connection[1];

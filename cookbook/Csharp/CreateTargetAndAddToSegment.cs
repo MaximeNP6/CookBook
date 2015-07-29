@@ -37,7 +37,7 @@ namespace createTargetAndAddToSegment
             data.Add(listMultipleValues);   //Liste de valeurs multiples : particulier, la premiere valeur est l'id-champ, les autres sont les valeur de ce champ.
 
 
-            //Lancement de la connection pour remplir la requete 'GET'
+            //Lancement de la connexion pour remplir la requete 'GET'
             string url = "http://v8.mailperformance.com/targets?unicity=" + unicity;
             HttpWebRequest con = Connect(url, xKey, "GET");
 
@@ -110,7 +110,7 @@ namespace createTargetAndAddToSegment
 
         static HttpWebRequest Connect(string url, string xKey, string method)
         {
-            //Lancement de la connection pour remplir la requete
+            //Lancement de la connexion pour remplir la requete
             HttpWebRequest con = (HttpWebRequest)WebRequest.Create(url);
             con.Method = method;
 
@@ -123,7 +123,7 @@ namespace createTargetAndAddToSegment
 
         static HttpWebRequest postOrPutOnTarget(HttpWebRequest con, String request, JObject data, String xKey, String url)
         {
-            //Lancement de la connection pour remplir la requete
+            //Lancement de la connexion pour remplir la requete
             con = Connect(url, xKey, request);
             con.ContentLength = data.ToString().Length;
             var streamWriter = new StreamWriter(con.GetRequestStream());

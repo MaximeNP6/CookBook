@@ -191,7 +191,7 @@ public class createMailCampaignAction
 	//Fonction de connexion et envoie des informations
 	public static HttpURLConnection connection(String url, String xKey, JSONObject jsonMessage) throws IOException
 	{
-		//Lancement de la connection pour remplir la requete
+		//Lancement de la connexion pour remplir la requete
 		HttpURLConnection con = openConn(url, xKey);
 		con.setRequestProperty("Content-Length", Integer.toString(jsonMessage.length()));
 		con.setRequestMethod("POST");

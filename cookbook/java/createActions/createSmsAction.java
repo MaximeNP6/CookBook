@@ -44,7 +44,7 @@ public class createSmsAction
 		//On affiche le message
 		System.out.print(jsonMessage + "\n");
 		
-		//Lancement de la connection pour remplir la requete
+		//Lancement de la connexion pour remplir la requete
 		HttpURLConnection con = openConn(url, xKey);
 		con.setRequestProperty("Content-Length", Integer.toString(jsonMessage.length()));
 		con.setRequestMethod("POST");

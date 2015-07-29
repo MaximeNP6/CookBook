@@ -12,7 +12,7 @@ namespace getTargetFromUnicity
             string unicity = "test@test.com";
             string xKey = "ABCDEFJHIJKLMNOPQRSTUVWXYZ0123456789";
             
-            //Lancement de la connection pour remplir la requete
+            //Lancement de la connexion pour remplir la requete
             string url = "http://v8.mailperformance.com/targets?unicity=" + unicity;
             HttpWebRequest con = (HttpWebRequest)WebRequest.Create(url);
             con.Method = "GET";

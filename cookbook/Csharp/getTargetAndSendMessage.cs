@@ -9,7 +9,7 @@ namespace getTargetAndSendMessage
     {
         static HttpWebRequest Connect(string url, string xKey, string method)
         {
-            //Lancement de la connection pour remplir la requete
+            //Lancement de la connexion pour remplir la requete
             HttpWebRequest con = (HttpWebRequest)WebRequest.Create(url);
             con.Method = method;
 
@@ -53,7 +53,7 @@ namespace getTargetAndSendMessage
                 //Nouvelle url en fonction de l'id du message et de la cible
                 url = "http://v8.mailperformance.com/actions/" + idMessage + "/targets/" + idTarget;
 
-                //Lancement de la connection pour remplir la requete
+                //Lancement de la connexion pour remplir la requete
                 con = Connect(url, xKey, "POST");
                 con.ContentLength = 0;
 

@@ -26,7 +26,7 @@ public class sendHTML
 		String mailFrom = "mail@address.com";
 		String replyTo = "mail@return.com";
 		
-		//Lancement de la connection pour remplir la requete
+		//Lancement de la connexion pour remplir la requete
 		String url = "http://v8.mailperformance.com/targets?unicity=" + unicity;
 		HttpURLConnection con = openConn(url, xKey);
 		con.setRequestMethod("GET");
@@ -70,7 +70,7 @@ public class sendHTML
 			jsonMessage.put("content", content);
 			jsonMessage.put("header", header);
 
-			//Lancement de la connection pour remplir la requete
+			//Lancement de la connexion pour remplir la requete
 			con = openConn(url, xKey);
 			con.setRequestProperty("Content-Length", Integer.toString(jsonMessage.length()));
 			con.setRequestMethod("POST");

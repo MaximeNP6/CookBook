@@ -11,7 +11,7 @@ public class getTargetFromUnicity
 		//Ici, renseignez l'email dont vous voulez obtenir les valeurs des champs
 		String unicity = "test@test.com";
 		
-		//Lancement de la connection pour remplir la requete
+		//Lancement de la connexion pour remplir la requete
 		String url = "http://v8.mailperformance.com/targets?unicity=" + unicity;
 		HttpURLConnection con = (HttpURLConnection)new URL(url).openConnection();
 		con.setRequestMethod("GET");
