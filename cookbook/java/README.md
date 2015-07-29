@@ -36,6 +36,18 @@ T8
 
 This code converted the html links in a text into T8 links.
 
+createField
+--
+
+This code can create a new field or update an existing.
+To use this code you must import the Java JSON library.
+
+createValueList
+--
+
+This code can create a new value list or update an existing.
+To use this code you must import the Java JSON library.
+
 JSON librairy
 --
 

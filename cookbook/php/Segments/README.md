@@ -1,4 +1,4 @@
-Cook Book for php Actions
+Cook Book for php Segments
 ==
 
 createSegmentStatic
