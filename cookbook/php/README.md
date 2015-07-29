@@ -32,6 +32,16 @@ T8
 
 This code converted the html links in a text into T8 links.
 
+createField
+--
+
+This code can create a new field or update an existing.
+
+createValueList
+--
+
+This code can create a new value list or update an existing.
+
 Coming soon
 --
 
