@@ -15,7 +15,7 @@ public class createSegmentDynamic
 		String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		String segmentId = "0123";	//Id du segment a modifier ('null' si le segment est a creer)
 		
-		String type = "dynamic";	//Code pour creer un segment Statique
+		String type = "dynamic";	//Code pour creer un segment Dynamique
 		String name = "SegmentDynamic (java)";	//Nom du segment
 		String description = "SegmentDynamic (java)";	//Description du segment
 		String expiration = "2016-01-08T12:11:00Z";	//Date d'expiration du segment

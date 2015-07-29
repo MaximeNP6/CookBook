@@ -6,7 +6,7 @@ createSegmentStatic
 
 This code can create or update a static segment. If you update a static segment, you can add a target to this segment.
 
-createSmsAction
+createSegmentDynamic
 --
 
 This code update a dynamic segment.
