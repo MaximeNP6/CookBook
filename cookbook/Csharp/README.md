@@ -36,6 +36,24 @@ T8
 
 This code converted the html links in a text into T8 links.
 
+createField
+--
+
+This code can create a new field or update an existing.
+To use this code you must import the JSON.NET library.
+
+createValueList
+--
+
+This code can create a new value list or update an existing.
+To use this code you must import the JSON.NET library.
+
+createCategory
+--
+
+This code create or update a category for a campaign.
+To use this code you must import the JSON.NET library.
+
 JSON.NET librairy
 --
 

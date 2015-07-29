@@ -48,6 +48,12 @@ createValueList
 This code can create a new value list or update an existing.
 To use this code you must import the Java JSON library.
 
+createCategory
+--
+
+This code create or update a category for a campaign.
+To use this code you must import the Java JSON library.
+
 JSON librairy
 --
 

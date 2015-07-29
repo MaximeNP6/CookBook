@@ -42,6 +42,11 @@ createValueList
 
 This code can create a new value list or update an existing.
 
+createCategory
+--
+
+This code create or update a category for a campaign.
+
 Coming soon
 --
 
