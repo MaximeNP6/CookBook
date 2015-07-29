@@ -13,8 +13,8 @@ public class createValueList
 	public static void main(String[] args) throws IOException, JSONException, InterruptedException
 	{
 		//Ici, renseignez la xKey et les parametres personnalises du message
-		String xKey = "KPYN0N97FE6C4B49DA1D66D6D89D617D061AB27F98E4BD0672EEEA87429CBD6450474AE50EB81DA2DBFAD0FA0B6A5B17F4ABC571D375A7E3225E8BD";
-		String valueListsId = "706";	//Id de la liste a modifier ('null' si la liste est a creer)
+		String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		String valueListsId = "012";	//Id de la liste a modifier ('null' si la liste est a creer)
 
 		String name = "createValueList (java)";	//Nom de la liste
 		Boolean ordered = false;	//Ordonnee : oui = 'true' / non = 'false'
