@@ -1,11 +1,11 @@
-Cook Book for php Request
+Cook Book for php Request cURL
 ==
 
 
 Example
 --
 
-This codes are example to create a good json or a good url for the APIs.
+This codes are examples to create a good json or a good url for the APIs.
 
 Version
 --
