@@ -54,6 +54,12 @@ createCategory
 This code create or update a category for a campaign.
 To use this code you must import the Java JSON library.
 
+duplicateAndValidate
+--
+
+This code add a target to a segment, then it duplicates an action, update the new action with the segment modified and finally test and validates the action.
+To use this code you must import the Java JSON library.
+
 JSON librairy
 --
 
