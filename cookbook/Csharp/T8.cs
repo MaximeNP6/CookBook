@@ -27,7 +27,7 @@ namespace T8
         static String createT8(Match url)
         {
             //La clef du code md5 (peut etre changer)
-            String keyMd5 = "012345678";
+            String keyMd5 = "ABCD";
 
             //les differentes variables
             String urlT8 = "http://t8.mailperformance.com/";	//adresse du catcher

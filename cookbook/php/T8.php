@@ -11,7 +11,7 @@ echo $newText;
 function createT8($url)
 {
 	//La clef du code md5 (peut etre changer)
-	$keyMd5 = '012345678';
+	$keyMd5 = 'ABCD';
 	
 	//les differentes variables
 	$urlT8 = 'http://t8.mailperformance.com/';	//adresse du catcher
