@@ -60,6 +60,12 @@ duplicateAndValidate
 This code add a target to a segment, then it duplicates an action, update the new action with the segment modified and finally test and validates the action.
 To use this code you must import the Java JSON library.
 
+duplicateAndAddNewSegment
+--
+
+With this code you can create/modify a target, create/modify a segment, place target in segment, duplicate an action, make segment as new sending segment to the duplicated action and finally launch a test phase.
+To use this code you must import the Java JSON library.
+
 JSON librairy
 --
 
