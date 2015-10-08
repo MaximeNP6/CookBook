@@ -57,11 +57,6 @@ duplicateAndAddNewSegment
 
 With this code you can create/modify a target, create/modify a segment, place target in segment, duplicate an action, make segment as new sending segment to the duplicated action and finally launch a test phase.
 
-Coming soon
---
-
-Webhooks to listen clicks and openings.
-
 
 Version
 --

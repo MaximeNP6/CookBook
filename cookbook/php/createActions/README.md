@@ -21,11 +21,6 @@ createSmsCampaignAction
 
 This code create a Sms campaign action.
 
-Coming soon
---
-
-Webhooks to listen clicks and openings.
-
 
 Version
 --

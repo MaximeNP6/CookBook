@@ -31,10 +31,6 @@ JSON librairy
 
 How install Java JSON library on Eclipse : extract : http://www.java2s.com/Code/JarDownload/java/java-json.jar.zip > Open Eclipse > Right click your Project > Build Path > Configure build path > Select Libraries tab > Click Add External Libraries/JARs > Select the Jar file Download > OK
 
-Coming soon
---
-Webhooks to listen clicks and openings.
-
 
 Version
 --

@@ -11,11 +11,6 @@ createSegmentDynamic
 
 This code update a dynamic segment.
 
-Coming soon
---
-
-Webhooks to listen clicks and openings.
-
 
 Version
 --

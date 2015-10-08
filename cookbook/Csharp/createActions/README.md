@@ -31,10 +31,6 @@ JSON.NET librairy
 
 How install JSON.Net library on Visual Studio : > Right click the Project > Manage NuGet Packages... > Search Online (Ctrl + E) "Json.NET" > Install "Json.NET" > Close
 
-Coming soon
---
-Webhooks to listen clicks and openings.
-
 
 Version
 --
