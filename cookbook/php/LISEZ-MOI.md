@@ -1,4 +1,4 @@
-Exemples de codes en php
+Exemples de code en php
 ==
 
 
@@ -20,7 +20,7 @@ Ce code verifie que la cible existe. Si ce n'est pas le cas on cree la cible; si
 creatTargetAndAddToSegment
 --
 
-Ce code verifie que la cible existe. Si ce n'est pas le cas, on cree la cible. Puis ce code va ajouter la cible a un segment (en utilisant l'Id du segment).
+Ce code verifie que la cible existe. Si ce n'est pas le cas, on cree la cible. Puis ce code va ajouter la cible e un segment (en utilisant l'Id du segment).
 
 sendHTML
 --
@@ -55,10 +55,10 @@ Ce code ajoute une cible a un segment, duplique une action, modifie la nouvelle 
 duplicateAndAddNewSegment
 --
 
-Ce code cree/modifie une cible, cree/modifie un segment, place la cible dans le segment, duplique une action, fait du segment le nouveau segment d'envoie de l'action duplique et enfin lance une phase de test.
+Ce code cree/modifie une cible, cree/modifie un segment, place la cible dans le segment, duplique une action, fait du segment le nouveau segment d'envoi de l'action duplique et enfin lance une phase de test.
 
 
 Version
 --
 
-1.0 
+1.0

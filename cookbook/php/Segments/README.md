@@ -9,10 +9,10 @@ This code can create or update a static segment. If you update a static segment,
 createSegmentDynamic
 --
 
-This code update a dynamic segment.
+This code updates a dynamic segment.
 
 
 Version
 --
 
-1.0 
+1.0

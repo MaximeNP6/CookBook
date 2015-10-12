@@ -63,13 +63,13 @@ Pour utiliser ce code vous devez importer la librairie JSON pour java.
 duplicateAndAddNewSegment
 --
 
-Ce code cree/modifie une cible, cree/modifie un segment, place la cible dans le segment, duplique une action, fait du segment le nouveau segment d'envoie de l'action duplique et enfin lance une phase de test.
+Ce code cree/modifie une cible, cree/modifie un segment, place la cible dans le segment, duplique une action, fait du segment le nouveau segment d'envoi de l'action duplique et enfin lance une phase de test.
 Pour utiliser ce code vous devez importer la librairie JSON pour java.
 
 JSON librairie
 --
 
-Comment installer la librairie JSON pour Java : extraire : http://www.java2s.com/Code/JarDownload/java/java-json.jar.zip > Ouvrir Eclipse > Clique droit sur votre projet > Build Path > Configure build path > Selectionnez Libraries tab > cliquez sur Add External Libraries/JARs > Selectionner la librairie > OK
+Comment installer la librairie JSON pour Java : extraire : http://www.java2s.com/Code/JarDownload/java/java-json.jar.zip > Ouvrir Eclipse > Clic droit sur votre projet > Build Path > Configure build path > Selectionnez Libraries tab > cliquez sur Add External Libraries/JARs > Selectionner la librairie > OK
 
 
 Version

@@ -4,12 +4,12 @@ Exemples de codes en php pour les Actions
 createMailAction
 --
 
-Ce code cree une action "mail message" (un message pre-cree). Le code teste le message et finit par le valider.
+Ce code cree une action "mail message" (un message deje cree). Le code teste le message et finit par le valider.
 
 createSmsAction
 --
 
-Ce code cree une action "sms message" (un message pre-cree).
+Ce code cree une action "sms message" (un message deje cree).
 
 createMailCampaignActionAction
 --
@@ -25,4 +25,4 @@ Ce code cree une action "campaign sms".
 Version
 --
 
-1.0 
+1.0

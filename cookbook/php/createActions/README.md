@@ -4,25 +4,25 @@ Cook Book for php Actions
 createMailAction
 --
 
-This code create a mail action (a pre-created message). It test the message and finaly valid it.
+This code creates a mail action (a pre-created message). It test the message and finally valid it.
 
 createSmsAction
 --
 
-This code create a Sms action (a pre-created message).
+This code creates a Sms action (a pre-created message).
 
 createMailCampaignActionAction
 --
 
-This code create a mail campaign action. It test the campagn and finaly valid it.
+This code creates a mail campaign action. It test the campaign and finally valid it.
 
 createSmsCampaignAction
 --
 
-This code create a Sms campaign action.
+This code creates a Sms campaign action.
 
 
 Version
 --
 
-1.0 
+1.0

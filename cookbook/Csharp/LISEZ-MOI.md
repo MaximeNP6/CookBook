@@ -1,4 +1,4 @@
-Exemples de codes en Csharp
+Exemples de code en Csharp
 ==
 
 
@@ -10,7 +10,7 @@ Cet exemple de code permet d'obtenir les informations d'une cible avec uniquemen
 getTargetAndSendMessage
 --
 
-Ce code prend l'Id d'une cible (avec les informations de getTargetFromUnicity) et lui envoie un message deja cree dans votre compte (le 'idMessage').
+Ce code prend l'Id d'une cible (avec les informations de getTargetFromUnicity) et lui envoie un message deje cree dans votre compte (le 'idMessage').
 Pour utiliser ce code vous devez importer la librairie JSON.Net .
 
 postTarget
@@ -28,7 +28,7 @@ Pour utiliser ce code vous devez importer la librairie JSON.Net .
 sendHTML
 --
 
-Ce code envoie un message comme getTargetAndSendMessage. Mais vous pouvez changer le "html message", le "text message", le "subject of the mesasge", le mail "from address" et le "reply to".
+Ce code envoie un message comme getTargetAndSendMessage. Mais vous pouvez changer le "html message", le "text message", le "subject of the mesage", le mail "from address" et le "reply to".
 Pour utiliser ce code vous devez importer la librairie JSON.Net .
 
 T8
@@ -63,7 +63,7 @@ Pour utiliser ce code vous devez importer la librairie JSON.Net .
 duplicateAndAddNewSegment
 --
 
-Ce code cree/modifie une cible, cree/modifie un segment, place la cible dans le segment, duplique une action, fait du segment le nouveau segment d'envoie de l'action duplique et enfin lance une phase de test.
+Ce code cree/modifie une cible, cree/modifie un segment, place la cible dans le segment, duplique une action, fait du segment le nouveau segment d'envoi de l'action duplique et enfin lance une phase de test.
 Pour utiliser ce code vous devez importer la librairie JSON.Net .
 
 JSON.NET Librairie
@@ -75,4 +75,4 @@ Comment installer la librairie JSON.Net sur Visual Studio : > Clique droit sur l
 Version
 --
 
-1.0 
+1.0

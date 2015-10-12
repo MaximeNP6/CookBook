@@ -5,13 +5,13 @@ Exemples de codes en java pour les Actions
 createMailAction
 --
 
-Ce code cree une action "mail message" (un message pre-cree). Le code teste le message et finit par le valider.
+Ce code cree une action "mail message" (un message deja cree). Le code teste le message et finit par le valider.
 Pour utiliser ce code vous devez importer la librairie JSON pour java.
 
 createSmsAction
 --
 
-Ce code cree une action "sms message" (un message pre-cree).
+Ce code cree une action "sms message" (un message deja cree).
 Pour utiliser ce code vous devez importer la librairie JSON pour java.
 
 createMailCampaignActionAction
@@ -29,10 +29,10 @@ Pour utiliser ce code vous devez importer la librairie JSON pour java.
 JSON librairie
 --
 
-Comment installer la librairie JSON pour Java : extraire : http://www.java2s.com/Code/JarDownload/java/java-json.jar.zip > Ouvrir Eclipse > Clique droit sur votre projet > Build Path > Configure build path > Selectionnez Libraries tab > cliquez sur Add External Libraries/JARs > Selectionner la librairie > OK
+Comment installer la librairie JSON pour Java : extraire : http://www.java2s.com/Code/JarDownload/java/java-json.jar.zip > Ouvrir Eclipse > Clic droit sur votre projet > Build Path > Configure build path > Selectionnez Libraries tab > cliquez sur Add External Libraries/JARs > Selectionner la librairie > OK
 
 
 Version
 --
 
-1.0 
+1.0

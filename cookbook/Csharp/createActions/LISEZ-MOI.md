@@ -5,13 +5,13 @@ Exemples de codes en Csharp pour les Actions
 createMailAction
 --
 
-Ce code cree une action "mail message" (un message pre-cree). Le code teste le message et finit par le valider.
+Ce code cree une action "mail message" (un message deja cree). Le code teste le message et finit par le valider.
 Pour utiliser ce code vous devez importer la librairie JSON.Net .
 
 createSmsAction
 --
 
-Ce code cree une action "sms message" (un message pre-cree).
+Ce code cree une action "sms message" (un message deja cree).
 Pour utiliser ce code vous devez importer la librairie JSON.Net .
 
 createMailCampaignActionAction
@@ -35,4 +35,4 @@ Comment installer la librairie JSON.Net sur Visual Studio : > Clique droit sur l
 Version
 --
 
-1.0 
+1.0

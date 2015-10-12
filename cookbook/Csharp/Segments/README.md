@@ -11,7 +11,7 @@ To use this code you must import the JSON.NET library.
 createSegmentDynamic
 --
 
-This code update a dynamic segment.
+This code updates a dynamic segment.
 To use this code you must import the JSON.NET library.
 
 JSON.NET librairy
@@ -23,4 +23,4 @@ How install JSON.Net library on Visual Studio : > Right click the Project > Mana
 Version
 --
 
-1.0 
+1.0
