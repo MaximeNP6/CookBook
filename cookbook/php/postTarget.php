@@ -1,6 +1,6 @@
 <?php
 
-//Ici, renseignez l'email dont vous voulez obtenir les valeurs des champs, la X-Key et les informations à changer dans le tableau
+//Ici, renseignez l'email dont vous voulez obtenir les valeurs des champs et la X-Key 
 $unicity = 'test@test.com';
 $xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
@@ -82,7 +82,7 @@ function postOrPutOnTarget($req, $request, $dataJson, $xKey)
 	//Nouvelle url
 	$url = 'http://v8.mailperformance.com/targets/';
 
-	//On remplit la requete avec le bon verbe ($request) : GET / PUSH / PUT
+	//On remplit la requete avec le bon verbe ($request) : GET / POST / PUT
 	$req = startCurlInit($url);
 	curl_setopt($req, CURLOPT_CUSTOMREQUEST, $request);
 	curl_setopt($req, CURLOPT_POSTFIELDS, $dataJson);

@@ -11,14 +11,14 @@ $type = 'numeric';
 	//Normales : email = 'email' / telephone = 'phone' / zone de texte = 'textArena' / chaine de caractere = 'textField' / valeur numerique = 'numeric' / date = 'date'
 	//Listes : liste de valeurs = 'singleSelectList' / Liste de valeurs multiples = 'multipleSelectList'
 	
-$name = 'createField';
-$isUnicity = false;	//Unicité : oui = 'true' / non = 'false'
+$name = 'createField';	//Nom
+$isUnicity = false;	//Unicite : oui = 'true' / non = 'false'
 $isMandatory = true;	//Obligatoire : oui = 'true' / non = 'false'
 
-$constraintOperator = 1;	//Pour les valeurs numeriques et les dates : 1 = '>' / 2 = '<' / 3 = '>=' / 4 = '<=' / 5 = '=' ('null' pour rien)
+$constraintOperator = 1;	//Pour les valeurs numeriques et les dates : 1 = '>' / 2 = '<' / 3 = '>=' / 4 = '<=' / 5 = '==' ('null' pour rien)
 $constraintValue = "42";	//Valeur de la contrainte ex : ["42"] ('null' pour rien)
 
-$valueListId = null;	//Id de la liste dans le cas d'un 'singelSelectList' ou un 'multipleSelectList' ('null' pour rien)
+$valueListId = null;	//Id de la liste dans le cas d'un 'singleSelectList' ou un 'multipleSelectList' ('null' pour rien)
 
 //Creation du Json du message
 if ($constraintOperator != null && $constraintValue != null)
@@ -104,13 +104,13 @@ $type = 'numeric';
 	//Listes : liste de valeurs = 'singleSelectList' / Liste de valeurs multiples = 'multipleSelectList'
 
 $name = 'Field';
-$isUnicity = false;	//Unicité : oui = 'true' / non = 'false'
+$isUnicity = false;	//Unicite : oui = 'true' / non = 'false'
 $isMandatory = false;	//Obligatoire : oui = 'true' / non = 'false'
 
-$constraintOperator = null;	//Pour les valeurs numeriques et les dates : 1 = '>' / 2 = '<' / 3 = '>=' / 4 = '<=' / 5 = '=' ('null' pour rien)
+$constraintOperator = null;	//Pour les valeurs numeriques et les dates : 1 = '>' / 2 = '<' / 3 = '>=' / 4 = '<=' / 5 = '==' ('null' pour rien)
 $constraintValue = null;	//Valeur de la contrainte ex : ["42"] ('null' pour rien)
 
-$valueListId = null;	//Id de la liste dans le cas d'un 'singelSelectList' ou un 'multipleSelectList' ('null' pour rien)
+$valueListId = null;	//Id de la liste dans le cas d'un 'singleSelectList' ou un 'multipleSelectList' ('null' pour rien)
 
 //Creation du Json du message
 if ($constraintOperator != null && $constraintValue != null)

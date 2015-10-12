@@ -1,8 +1,8 @@
 <?php
 
-//Ici, renseignez la xKey et les parametres personnalises du message
+//Ici, renseignez la xKey et les parametres personnalises
 $xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-$segmentId = 0123;	//Id du segment a modifier ('null' si le segment est a creer)
+$segmentId = 0123;	//Id du segment a modifier ('null' si le segment doit etre cree)
 $unicity = 'test@test.com'; //L'adresse mail de la cible a mettre dans le segment ('null' pour ne rien ajouter au segment)
 
 $type = 'static';	//Code pour creer un segment Statique

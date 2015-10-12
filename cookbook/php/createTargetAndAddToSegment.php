@@ -5,13 +5,13 @@ $unicity = 'test@test.com';
 $xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 $idSegment = '7503';
 
-//Syntaxe pour les différents types d'informations :
+//Syntaxe pour les differents types d'informations :
 $string = "name";	//Chaine de caracteres
 $listOfValues = "Mr";	//Liste de valeurs
 $email = "test@test.com";	// E-mail
 $phoneNumber = "0123456789";	// Telephone
 $textZone = "150 caracters max";	//Zone de texte
-$numbers = 123;	//Valeur numérique
+$numbers = 123;	//Valeur numerique
 $date = "01/01/2000";	//Date
 $listMultipleValues = array("valeur 1", "valeur 2");	//Liste de valeurs multiples
 
@@ -99,7 +99,7 @@ function startCurlInit($url)
 
 function request($req, $request, $dataJson, $xKey, $url)
 {
-	//On remplit la requete avec le bon verbe ($request) : GET / PUSH / PUT
+	//On remplit la requete avec le bon verbe ($request) : GET / POST / PUT
 	$req = startCurlInit($url);
 	curl_setopt($req, CURLOPT_CUSTOMREQUEST, $request);
 	if (strlen($dataJson) != 0)

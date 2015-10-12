@@ -1,8 +1,8 @@
 <?php
 
-//Ici, renseignez la xKey et les parametres personnalises du message
+//Ici, renseignez la xKey et les parametres personnalises
 $xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-$fieldId = 0123;	//Id du critere a modifier ('null' si le critere est a creer)
+$fieldId = 0123;	//Id du critere a modifier ('null' si le critere doit etre creer)
 
 $type = 'numeric';	//Code pour creer un critere :
 	//Types : email = 'email' / telephone = 'phone' / zone de texte = 'textArena' / chaine de caractere = 'textField' / valeur numerique = 'numeric' / date = 'date'
@@ -11,12 +11,12 @@ $name = 'createField (php)';	//Nom du critere
 $isUnicity = false;	//Unicite : oui = 'true' / non = 'false'
 $isMandatory = true;	//Obligatoire : oui = 'true' / non = 'false'
 
-$constraintOperator = 1;	//Pour les valeurs numeriques et les dates : 1 = '>' / 2 = '<' / 3 = '>=' / 4 = '<=' / 5 = '=' ('null' pour rien)
+$constraintOperator = 1;	//Pour les valeurs numeriques et les dates : 1 = '>' / 2 = '<' / 3 = '>=' / 4 = '<=' / 5 = '==' ('null' pour rien)
 $constraintValue = "42";	//Valeur de la contrainte ex : ["42"] ('null' pour rien)
 
-$valueListId = null;	//Id de la liste dans le cas d'un 'singelSelectList' ou un 'multipleSelectList' ('null' pour rien)
+$valueListId = null;	//Id de la liste dans le cas d'un 'singleSelectList' ou un 'multipleSelectList' ('null' pour rien)
 
-//On trouve l'addresse pour la requete
+//On trouve l'adresse pour la requete
 $url = 'http://v8.mailperformance.com/fields/' . $fieldId;
 
 //Creation du Json du message

@@ -1,6 +1,6 @@
 <?php
 
-//Ici, renseignez la xKey et les parametres personnalises du message
+//Ici, renseignez la xKey
 $xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
 $type = 'smsCampaign';	//Code pour envoyer une campagne de SMS
@@ -10,9 +10,9 @@ $description = 'SMSCampaignFromApi (php)';	//Description de l'action
 $informationFolder = 0123;	//Id du dossier dans lequel vous voulez mettre l'action ('null' pour aucun dossier)
 $informationCategory = 0123;	//Id de la categorie de campagne (Infos compte > Parametrage > Categories de campagnes)
 
-$textContent = 'Text message';	//Message texte
+$textContent = 'Text message';	//Texte du message
 
-$idTestSegment = 0123;	//Id du segment de teste pour la validation
+$idTestSegment = 0123;	//Id du segment de test pour la validation
 
 
 //On trouve l'addresse pour la requete

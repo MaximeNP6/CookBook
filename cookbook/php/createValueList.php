@@ -1,8 +1,8 @@
 <?php
 
-//Ici, renseignez la xKey et les parametres personnalises du message
+//Ici, renseignez la xKey et les parametres personnalises
 $xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-$valueListsId = 012;	//Id de la liste a modifier ('null' si le critere est a creer)
+$valueListsId = 012;	//Id de la liste a modifier ('null' si le critere doit etre cree)
 
 $name = 'createValueList (php)';	//Nom de la liste
 $ordered = false;	//Ordonnee : oui = 'true' / non = 'false'
@@ -15,7 +15,7 @@ $values = array(	//Valeurs de la liste
 				'value' => "Mme")	//Valeur du champs
 			);
 
-//On trouve l'addresse pour la requete
+//On trouve l'adresse pour la requete
 $url = 'http://v8.mailperformance.com/valueLists/' . $valueListsId;
 
 //Creation du Json du message

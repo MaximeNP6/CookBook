@@ -6,23 +6,24 @@ $urlBase = 'http://v8.mailperformance.com/';
 //Ici, renseignez l'email de la cible, la X-Key
 $xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 $unicity = 'test@test.com';	//L'adresse mail de la cible a mettre dans le segment ('null' pour ne rien ajouter au segment)
+
 $segmentId = 0123;	//Id du segment a modifier ('null' si le segment est a creer)
 $actionId = "000ABC";	//Id de l'action a dupliquer
 
 
 function getTargetJson($unicity)
 {
-	//Syntaxe pour les différents types d'informations de la cible :
+	//Syntaxe pour les differents types d'informations de la cible :
 	$targetString = "name";	//Chaine de caracteres
 	$tagetListOfValues = "Mr";	//Liste de valeurs
-	$targetEmail = $unicity;	// E-mail
-	$tagetPhoneNumber = "0123456789";	// Telephone
+	$targetEmail = $unicity;	//E-mail
+	$tagetPhoneNumber = "0123456789";	//Telephone
 	$targetTextZone = "150 caracters max";	//Zone de texte
-	$targetNumbers = 123;	//Valeur numérique
+	$targetNumbers = 123;	//Valeur numerique
 	$targetDate = "01/01/2000";	//Date
 	$largetListMultipleValues = array("valeur 1", "valeur 2");	//Liste de valeurs multiples
 	
-	//Creation du tableau en fonction de l'id des champs de la fiche cible : "id-champ" => "valeur de l'information"
+	//Creation du json en fonction de l'id des champs de la fiche cible : "id-champ" => "valeur de l'information"
 	$targetData = array("5398" => $targetString,
 			"5399" => $tagetListOfValues,
 			"5400" => $targetEmail,
@@ -42,7 +43,7 @@ function getSegmentJson()
 	$segmentName = 'Nom du segment';	//Nom du segment
 	$segmentDescription = 'Description';	//Description du segment
 	$segmentExpiration = '2016-09-23T11:37:49.686Z';	//Date d'expiration du segment
-	$segmentIsTest = true;	//Le test est un segment de test : oui = 'true' / non = 'false'	
+	$segmentIsTest = true;	//Segment de test : oui = 'true' / non = 'false'	
 		
 	//Creation du Json du message
 	$segmentData = array(
@@ -65,7 +66,7 @@ function getNewActionDuplicateJson($actionDuplicateJson, $segmentId)
 	
 	//Modification de la nouvelle action
 	$actionDuplicateJson['scheduler'] = array(
-		"type" => "asap",	//Envoie : immédiat = 'asap' / Date = 'scheduled'
+		"type" => "asap",	//Envoie : immediat = 'asap' / Date = 'scheduled'
 		//"type" => "2015-07-27T08:15:00Z",	//Si type = 'scheduled' sinon a enlever
 		"segments" => array(
 			"selected" => array($segmentId)));
@@ -81,9 +82,9 @@ function getActionValidation($segmentId)
 {
 	//Creation du Json du message pour le test
 	$actionValidationData = array(
-		'fortest' => true,	//Phase de teste
+		'fortest' => true,	//Phase de test
 		'campaignAnalyser' => false,	//Campaign Analyzer : 'true' = oui / 'false' = non
-		'testSegments' => array($segmentId),	//Les Ids des differents segments de testes
+		'testSegments' => array($segmentId),	//Les Ids des differents segments de tests
 		'mediaForTest' => null,	//Rediriger tous les tests vers une seule adresse ('null' pour aucune adresse)
 		'textandHtml' => true,	//Envoyer la version texte et la version html : 'true' = oui / 'false' = non
 		'comments' => null);	//Commentaire ('null' pour aucuns commentaires)
@@ -188,7 +189,7 @@ function createTarget($result, $req, $urlBase, $xKey, $unicity)
 
 function createSegment($urlBase, $segmentId, $xKey, $req)
 {
-	//On trouve l'addresse pour la requete
+	//On trouve l'adresse pour la requete
 	$url = $urlBase . 'segments/' . $segmentId;
 
 	//Connexion pour le segment

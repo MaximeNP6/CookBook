@@ -1,6 +1,6 @@
 <?php
 
-//Ici, renseignez la xKey et les parametres personnalises du message
+//Ici, renseignez la xKey
 $xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
 $type = 'smsMessage';	//Code pour envoyer un SMS

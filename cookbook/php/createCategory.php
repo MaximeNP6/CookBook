@@ -1,13 +1,13 @@
 <?php
 
-//Ici, renseignez la xKey et les parametres personnalises du message
+//Ici, renseignez la xKey et les parametres personnalises
 $xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-$categorieId = '0123';	//Id de la categorie a modifier ('null' si la categorie est a creer)
+$categorieId = '0123';	//Id de la categorie a modifier ('null' si la categorie doit etre cree)
 
 $name = 'Category php';	//Nom de la categorie
 $description = 'Category (php)';	//Description de la categorie
 
-//On trouve l'addresse pour la requete
+//On trouve l'adresse pour la requete
 $url = 'http://v8.mailperformance.com/categories/' . $categorieId;
 
 //Creation du Json du message

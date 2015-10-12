@@ -25,7 +25,7 @@ $listOfValues = "Mr";	//Liste de valeurs
 $email = "test@test.com";	// E-mail
 $phoneNumber = "0123456789";	// Telephone
 $textZone = "150 caracters max";	//Zone de texte
-$numbers = 123;	//Valeur numérique
+$numbers = 123;	//Valeur numerique
 $date = "2016-07-30T09:01:00Z";	//Date
 $listMultipleValues = array("valeur 1", "valeur 2");	//Liste de valeurs multiples
 
@@ -117,7 +117,7 @@ $listOfValues = "Mr";	//Liste de valeurs
 $email = "test@test.com";	// E-mail
 $phoneNumber = "0123456789";	// Telephone
 $textZone = "150 caracters max";	//Zone de texte
-$numbers = 123;	//Valeur numérique
+$numbers = 123;	//Valeur numerique
 $date = "2016-07-30T09:01:00Z";	//Date
 $listMultipleValues = array("valeur 1", "valeur 2");	//Liste de valeurs multiples
 

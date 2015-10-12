@@ -1,9 +1,9 @@
 <?php
 
-//Ici, renseignez la xKey et les parametres personnalises
+//Ici, renseignez la xKey
 $xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-$unicity = "test@test.com";	//email de la cible
+$unicity = "test@test.com";	//Email de la cible
 $idSegment = array(0123);	//Id du segment
 $idAction = "000ABC";	//Id de l'action a dupliquer
 $idTestSegment = array(0123);	//Id du segment de test
@@ -13,7 +13,7 @@ $idTestSegment = array(0123);	//Id du segment de test
 //Nouvelle url
 $url = "http://v8.mailperformance.com/targets?unicity=" . $unicity;
 
-//Lancement de la connection
+//Lancement de la connexion
 $con = connect($url, $xKey, null, "GET");
 
 $result = $con['result'];
@@ -36,7 +36,7 @@ else
 	//Nouvelle url
 	$url = "http://v8.mailperformance.com/targets/" . $idTarget . "/segments/" . $idSegment[0];
 	
-	//Lancement de la connection
+	//Lancement de la connexion
 	$con = connect($url, $xKey, null, "POST");
 	
 	$result = $con['result'];
@@ -115,9 +115,9 @@ else
 				
 				//Creation du Json du message pour le test
 				$arr = array(
-					'fortest' => true,	//Phase de teste
+					'fortest' => true,	//Phase de test
 					'campaignAnalyser' => false,	//Campaign Analyzer : 'true' = oui / 'false' = non
-					'testSegments' => $idTestSegment,	//Les Ids des differents segments de testes
+					'testSegments' => $idTestSegment,	//Les Ids des differents segments de tests
 					'mediaForTest' => null,	//Rediriger tous les tests vers une seule adresse ('null' pour aucune adresse)
 					'textandHtml' => false,	//Envoyer la version texte et la version html : 'true' = oui / 'false' = non
 					'comments' => null);	//Commentaire ('null' pour aucuns commentaires)
@@ -151,9 +151,9 @@ else
 				
 					//Creation du Json du message pour la validation
 					$arr = array(
-						'fortest' => false,	//Phase de teste
+						'fortest' => false,	//Phase de test
 						'campaignAnalyser' => false,	//Campaign Analyzer : 'true' = oui / 'false' = non
-						'testSegments' => $idTestSegment,	//Les Ids des differents segments de tests       array($idTestSegment)
+						'testSegments' => $idTestSegment,	//Les Ids des differents segments de tests
 						'mediaForTest' => null,	//Rediriger tous les tests vers une seule adresse ('null' pour aucune adresse)
 						'textandHtml' => false,	//Envoyer la version texte et la version html : 'true' = oui / 'false' = non
 						'comments' => null);	//Commentaire ('null' pour aucuns commentaires)

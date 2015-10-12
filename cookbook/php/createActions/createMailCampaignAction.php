@@ -1,6 +1,6 @@
 <?php
 
-//Ici, renseignez la xKey et les parametres personnalises du message
+//Ici, renseignez la xKey
 $xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
 $type = 'mailCampaign';	//Code pour envoyer une campagne de mail
@@ -35,7 +35,7 @@ $arr = array(
 		'category' => $informationCategory),
 	'scheduler' => array(
 		'type' => 'asap',	//Envoie : immediat = 'asap' / Date = 'scheduled'
-		//'startDate' => '2015-07-27T08:15:00Z',	//Si type = 'scheduled' sinon a enlever
+		//'startDate' => '2016-07-27T08:15:00Z',	//Si type = 'scheduled' sinon a enlever
 		'segments' => array(
 			'selected' => $idSelectSegment)),	//Les segments selectionnes
 	'content' => array(
@@ -122,7 +122,7 @@ else
 		'textandHtml' => false,	//Envoyer la version texte et la version html : 'true' = oui / 'false' = non
 		'comments' => null);	//Commentaire ('null' pour aucuns commentaires)
 		
-		//Onaffiche le Json
+		//On affiche le Json
 		$message = json_encode($arr);
 		echo $message . "\n";
 		

@@ -1,8 +1,8 @@
 <?php
 
-//Ici, renseignez la xKey et les parametres personnalises du message
+//Ici, renseignez la xKey et les parametres personnalises
 $xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-$segmentId = 0123;	//Id du segment a modifier ('null' si le segment est a creer)
+$segmentId = 0123;	//Id du segment a modifier ('null' si le segment doit etre creer)
 
 $type = 'dynamic';	//Code pour creer un segment Dynamique
 $name = 'SegmentDynamic (php)';	//Nom du segment
@@ -70,7 +70,7 @@ function connect($url, $xKey, $message, $method)
 	//On remplit la requete
 	$req = startCurlInit($url);
 	curl_setopt($req, CURLOPT_CUSTOMREQUEST, $method);
-		
+
 	//Mise en place du xKey et des options
 	curl_setopt($req, CURLOPT_HTTPHEADER, array(
 	'X-Key: ' . $xKey,

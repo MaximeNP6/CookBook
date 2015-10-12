@@ -1,6 +1,6 @@
 <?php
 
-//Ici, renseignez l'email dont vous voulez obtenir les valeurs des champs
+//Ici, renseignez l'email
 $unicity = 'test@test.com';
 
 //Utilisation de cURL pour remplir la requete

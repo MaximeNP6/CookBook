@@ -1,6 +1,6 @@
 <?php
 
-//Ici, renseignez la xKey et les parametres personnalises du message
+//Ici, renseignez la xKey
 $xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
 $type = 'mailMessage';	//Code pour envoyer un mail
@@ -16,7 +16,7 @@ $contentHeadersReply = 'address@reply.com'; //Adresse de reponse
 
 $contentSubject = 'Subject of the message';	//Objet du mail
 $contentHTML = 'Html message';	//Message HTML
-$contentText = 'Text message';	//Message texte
+$contentText = 'Text message';	//Texte du message
 
 $idTestSegment = 0123;	//Id du segment de test pour la validation
 
