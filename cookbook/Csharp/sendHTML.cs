@@ -99,7 +99,7 @@ namespace sendHTML
                 streamWriter.Flush();
                 streamWriter.Close();
 
-                //Test de l'envoie
+                //Test de l'envoi
                 HttpWebResponse httpResponse = null;
                 response = 0;
                 try
