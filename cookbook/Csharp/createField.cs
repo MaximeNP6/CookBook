@@ -11,7 +11,7 @@ namespace createField
         {
             //Ici, renseignez la xKey et les parametres personnalises du message
             String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            String fieldId = "0123";	//Id du critere a modifier ('null' si le critere doit etre creer)
+            String fieldId = "0123";	//Id du critere a modifier ('null' si le critere doit etre cree)
 
             String type = "numeric";	//Code pour creer un critere :
 				//Normales : email = 'email' / telephone = 'phone' / zone de texte = 'textArena' / chaine de caractere = 'textField' / valeur numerique = 'numeric' / date = 'date'
@@ -123,7 +123,7 @@ namespace createField
                 streamWriter.Close();
             }
 
-            //Test de l'envoie
+            //Test de l'envoi
             HttpWebResponse httpResponse = null;
             int response = 0;
             string responseString = null;
