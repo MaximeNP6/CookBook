@@ -41,7 +41,7 @@ namespace postTarget
             string url = "http://v8.mailperformance.com/targets?unicity=" + unicity;
             HttpWebRequest con = Connect(url, xKey, "GET");
 
-            //Test de l'envoie
+            //Test de l'envoi
             HttpWebResponse httpResponseGet = null;
             int response = 0;
             try
