@@ -6,7 +6,7 @@ CookBook
 
 Ce dossier contient des exemples de code dans differents langages. Ces exemples sont dans des sous-dossiers pour chaque langage. Vous avez juste a telecharger les fichiers et a les essayer.
 
-Vous devez remplacer les xKkey des exemples par votre xKey.
+Vous devez remplacer les xKey des exemples par votre xKey.
 
 Prestashop
 --
