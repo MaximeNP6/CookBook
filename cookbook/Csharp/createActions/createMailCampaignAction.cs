@@ -56,7 +56,7 @@ namespace createMailCampaignAction
             segments.Add("selected", SelectSegment);
 
             JObject scheduler = new JObject();
-            scheduler.Add("type", "asap");	//Envoie : immediat = 'asap' / Date = 'scheduled'
+            scheduler.Add("type", "asap");	//Envoi : immediat = 'asap' / Date = 'scheduled'
             //scheduler.Add("type", "2015-07-27T08:15:00Z");	//Si type = 'scheduled' sinon a enlever
             scheduler.Add("segments", segments);
 
@@ -254,7 +254,7 @@ namespace createMailCampaignAction
                 //Lancement de la connexion pour remplir la requete
                 HttpWebRequest con = Connect(url, xKey, "GET");
 
-                //Test de l'envoie
+                //Test de l'envoi
                 HttpWebResponse httpResponse = null;
                 int response = 0;
                 string responseString = null;
