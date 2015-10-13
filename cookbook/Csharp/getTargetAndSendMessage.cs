@@ -46,7 +46,7 @@ namespace getTargetAndSendMessage
                 httpResponseGet.Close();
                 reader.Close();
 
-                //On prend le idTarget
+                //On prend l'idTarget
                 dynamic responseJson = JsonConvert.DeserializeObject(responseString);
                 string idTarget = responseJson.id;
 
