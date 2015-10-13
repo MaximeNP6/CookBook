@@ -104,7 +104,7 @@ namespace duplicateAndValidate
                         segments.Add("selected", segmentArray);
 
                         JObject scheduler = new JObject();
-                        scheduler.Add("type", "asap");	//Envoie : immediat = 'asap' / Date = 'scheduled'
+                        scheduler.Add("type", "asap");	//Envoi : immediat = 'asap' / Date = 'scheduled'
                         //scheduler.Add("type", "2015-07-27T08:15:00Z");	//Si type = 'scheduled' sinon a enlever
                         scheduler.Add("segments", segments);
 
@@ -143,9 +143,9 @@ namespace duplicateAndValidate
                             testSegments.Add(idTestSegment);
 
                             JObject jsonTest = new JObject();
-                            jsonTest.Add("fortest", true);	//Phase de teste
+                            jsonTest.Add("fortest", true);	//Phase de test
                             jsonTest.Add("campaignAnalyser", false);	//Campaign Analyzer : 'true' = oui / 'false' = non
-                            jsonTest.Add("testSegments", testSegments);	//Les Ids des differents segments de testes
+                            jsonTest.Add("testSegments", testSegments);	//Les Ids des differents segments de test
                             jsonTest.Add("mediaForTest", null);	//Rediriger tous les tests vers une seule adresse ('NULL' pour aucune valeur)
                             jsonTest.Add("textandHtml", false);	//Envoyer la version texte et la version html : 'true' = oui / 'false' = non
                             jsonTest.Add("comments", null);	//Commentaire ('NULL' pour aucuns commentaires)
@@ -182,7 +182,7 @@ namespace duplicateAndValidate
                                 jsonValid.Add("testSegments", null);	//Les Ids des differents segments de tests
                                 jsonValid.Add("mediaForTest", null);	//Rediriger tous les tests vers une seule adresse ('NULL' pour aucune valeur)
                                 jsonValid.Add("textandHtml", false);	//Envoyer la version texte et la version html : 'true' = oui / 'false' = non
-                                jsonValid.Add("comments", null);	//Commentaire ('NULL' pour aucuns commentaires)
+                                jsonValid.Add("comments", null);	//Commentaire ('NULL' pour aucun commentaire)
 
                                 //On affiche le json
                                 Console.Write(jsonValid + "\n");
@@ -249,7 +249,7 @@ namespace duplicateAndValidate
                 streamWriter.Close();
             }
 
-            //Test de l'envoie
+            //Test de l'envoi
             HttpWebResponse httpResponse = null;
             int response = 0;
             string responseString = null;
@@ -293,7 +293,7 @@ namespace duplicateAndValidate
                 //Lancement de la connexion pour remplir la requete
                 HttpWebRequest con = Connect(url, xKey, "GET");
 
-                //Test de l'envoie
+                //Test de l'envoi
                 HttpWebResponse httpResponse = null;
                 int response = 0;
                 string responseString = null;
