@@ -8,7 +8,7 @@ namespace getTargetFromUnicity
     {
         static void Main(string[] args)
         {
-            //Ici, renseignez l'email dont vous voulez obtenir les valeurs des champs et la X-Key
+            //Ici, renseignez l'email et la X-Key
             string unicity = "test@test.com";
             string xKey = "ABCDEFJHIJKLMNOPQRSTUVWXYZ0123456789";
             

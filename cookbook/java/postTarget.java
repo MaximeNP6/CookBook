@@ -1,5 +1,3 @@
-package postTarget;
-
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -15,15 +13,15 @@ public class postTarget
 {
 	public static void main(String[] args) throws IOException, JSONException
 	{
-		//Ici, renseignez l'email dont vous voulez obtenir les valeurs des champs, la X-Key
+		//Ici, renseignez l'email et votre X-Key
 		String unicity = "test@test.com";
 		String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-		//Syntaxe pour les différents types d'informations :
+		//Syntaxe pour les differents types d'informations :
 		String string = "name";	//Chaine de caracteres
 		String listOfValues = "Mr";	//Liste de valeurs
-		String email = "test@test.com";	// E-mail
-		String phoneNumber = "0123456789";	// Telephone
+		String email = "test@test.com";	//E-mail
+		String phoneNumber = "0123456789";	//Telephone
 		String textZone = "150 caracters max";	//Zone de texte
 		int numbers = 123;	//Valeur numerique
 		String date = "01/01/2000";	//Date
@@ -77,7 +75,7 @@ public class postTarget
 	
 	public static HttpURLConnection openConn(String url, String xKey) throws MalformedURLException, IOException
 	{
-		//Lancement de la connection
+		//Lancement de la connexion
 		HttpURLConnection con = (HttpURLConnection)new URL(url).openConnection();
 		
 		//Mise en place du xKey et des options
@@ -91,13 +89,13 @@ public class postTarget
 		//Nouvelle url
 		String url = "http://v8.mailperformance.com/targets/";
 
-		//On remplit la requete avec le bon verbe ($request) : GET / PUSH / PUT
+		//On remplit la requete avec le bon verbe ($request) : GET / POST / PUT
 		con = openConn(url, xKey);
 		con.setRequestProperty("Content-Length", Integer.toString(data.toString().length()));
 		con.setRequestMethod(request);
 		con.setDoOutput(true);
 		
-		//Envoie des informations dans la connection
+		//Envoie des informations dans la connexion
 	    DataOutputStream payload = new DataOutputStream(con.getOutputStream());
 	    payload.write(data.toString().getBytes());
 	    payload.flush();

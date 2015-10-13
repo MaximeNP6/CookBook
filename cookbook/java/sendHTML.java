@@ -1,5 +1,3 @@
-package sendHTML;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,7 +13,7 @@ public class sendHTML
 {
 	public static void main(String[] args) throws IOException, JSONException
 	{
-		//Ici, renseignez l'email de la cible, la xKey, l'id du message et les parametres personnalises
+		//Ici, renseignez l'email de la cible, la xKey et l'id du message
 		String unicity = "test@test.com";
 		String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		String idMessage = "000ABC";
@@ -76,7 +74,7 @@ public class sendHTML
 			con.setRequestMethod("POST");
 			con.setDoOutput(true);
 			        
-			// Envoie des informations dans la connection
+			//Envoie des informations dans la connexion
 			OutputStreamWriter sendMessage = new OutputStreamWriter(con.getOutputStream());
 			sendMessage.write(jsonMessage.toString());
 			sendMessage.flush();
@@ -101,7 +99,7 @@ public class sendHTML
 	
 	public static HttpURLConnection openConn(String url, String xKey) throws MalformedURLException, IOException
 	{
-		//Lancement de la connection
+		//Lancement de la connexion
 		HttpURLConnection con = (HttpURLConnection)new URL(url).openConnection();
 		
 		//Mise en place du xKey et des options

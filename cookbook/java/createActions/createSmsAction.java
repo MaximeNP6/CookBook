@@ -11,7 +11,7 @@ public class createSmsAction
 {
 	public static void main(String[] args) throws IOException, JSONException
 	{
-		//Ici, renseignez la xKey et les parametres personnalises du message
+		//Ici, renseignez la xKey
 		String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		
 		String type = "smsMessage";	//Code pour envoyer un SMS
@@ -21,9 +21,9 @@ public class createSmsAction
 		int informationFolder = 0123;	//Id du dossier dans lequel vous voulez mettre l'action ('null' pour aucun dossier)
 		int informationCategory = 0123;	//Id de la categorie de campagne (Infos compte > Parametrage > Categories de campagnes)
 
-		String textContent = "Text message";	//Message texte
+		String textContent = "Text message";	//Texte du message
 		
-		//On trouve l'addresse pour la requete
+		//On trouve l'adresse pour la requete
 		String url = "http://v8.mailperformance.com/actions";
 		
 		//Creation du Json du message

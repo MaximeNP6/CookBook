@@ -16,15 +16,15 @@ public class CreatTargetAndAddToSegment
 		//Ici, renseignez l'email de la cible, la X-Key et l'id du segment
 		String unicity = "test@test.com";
 		String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		String idSegment ="7502";
+		String idSegment = "7502";
 
-		//Syntaxe pour les différents types d'informations :
+		//Syntaxe pour les differents types d'informations :
 		String string = "name";	//Chaine de caracteres
 		String listOfValues = "Mr";	//Liste de valeurs
-		String email = "test@test.com";	// E-mail
-		String phoneNumber = "0123456789";	// Telephone
+		String email = "test@test.com";	//E-mail
+		String phoneNumber = "0123456789";	//Telephone
 		String textZone = "150 caracters max";	//Zone de texte
-		int numbers = 123;	//Valeur numérique
+		int numbers = 123;	//Valeur numerique
 		String date = "01/01/2000";	//Date
 		String listMultipleValues[] = {"valeur 1", "valeur 2"};	//Liste de valeurs multiples
 
@@ -106,7 +106,7 @@ public class CreatTargetAndAddToSegment
 		con.setRequestProperty("Content-Length", Integer.toString(data.toString().length()));
 		con.setRequestMethod(request);
 		con.setDoOutput(true);
-		// Envoie des informations dans la connexion
+		//Envoie des informations dans la connexion
 	    DataOutputStream payload = new DataOutputStream(con.getOutputStream());
 	    payload.write(data.toString().getBytes());
 	    payload.flush();

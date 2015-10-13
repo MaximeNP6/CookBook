@@ -14,7 +14,7 @@ public class createMailAction
 	public static void main(String[] args) throws IOException, JSONException, InterruptedException
 	{
 		Object NULL = null;
-		//Ici, renseignez la xKey et les parametres personnalises du message
+		//Ici, renseignez la xKey
 		String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		
 		String type = "mailMessage";	//Code pour envoyer un mail
@@ -36,7 +36,7 @@ public class createMailAction
 
 		
 		
-		//On trouve l"addresse pour la requete
+		//On trouve l'adresse pour la requete
 		String url = "http://v8.mailperformance.com/actions";
 		
 		//Creation du Json du message
@@ -187,7 +187,7 @@ public class createMailAction
 		con.setRequestMethod("POST");
 		con.setDoOutput(true);
 				        
-		// Envoie des informations dans la connexion
+		//Envoie des informations dans la connexion
 		OutputStreamWriter sendMessage = new OutputStreamWriter(con.getOutputStream());
 		sendMessage.write(jsonMessage.toString());
 		sendMessage.flush();
@@ -206,7 +206,7 @@ public class createMailAction
 			System.out.print("Wait 20sec...\n");
 			Thread.sleep(20000);
 			
-			//Nouvelle addresse
+			//Nouvelle adresse
 			String url = "http://v8.mailperformance.com/actions/" + idAction;
 			
 			//Lancement de la connexion pour remplir la requete

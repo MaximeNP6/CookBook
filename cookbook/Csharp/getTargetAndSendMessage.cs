@@ -22,7 +22,7 @@ namespace getTargetAndSendMessage
 
         static void Main(string[] args)
         {
-            //Ici, renseignez l'email dont vous voulez obtenir les valeurs des champs, la X-Key et l'id du message a envoyer
+            //Ici, renseignez l'email, la X-Key et l'id du message
             string unicity = "test@test.com";
             string xKey = "ABCDEFJHIJKLMNOPQRSTUVWXYZ0123456789";
             string idMessage = "000ABC";

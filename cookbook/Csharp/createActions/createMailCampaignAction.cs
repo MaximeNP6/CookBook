@@ -10,7 +10,7 @@ namespace createMailCampaignAction
     {
         static void Main(string[] args)
         {
-            //Ici, renseignez la xKey et les parametres personnalises du message
+            //Ici, renseignez la xKey
             String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
             String type = "mailCampaign";	//Code pour envoyer une campagne de mail
@@ -32,7 +32,7 @@ namespace createMailCampaignAction
             int[] idSelectSegment = { 0123 };	//Ids des segments selectionnes
 
 
-            //On trouve l'addresse pour la requete
+            //On trouve l'adresse pour la requete
             String url = "http://v8.mailperformance.com/actions";
 
 
@@ -248,13 +248,13 @@ namespace createMailCampaignAction
                 Console.Write("Wait 20sec...\n");
                 System.Threading.Thread.Sleep(2000);
 
-                //Nouvelle addresse
+                //Nouvelle adresse
                 String url = "http://v8.mailperformance.com/actions/" + idAction;
 
                 //Lancement de la connexion pour remplir la requete
                 HttpWebRequest con = Connect(url, xKey, "GET");
 
-                //Teste de l'envoie
+                //Test de l'envoie
                 HttpWebResponse httpResponse = null;
                 int response = 0;
                 string responseString = null;

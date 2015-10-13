@@ -12,9 +12,9 @@ public class createValueList
 {
 	public static void main(String[] args) throws IOException, JSONException, InterruptedException
 	{
-		//Ici, renseignez la xKey et les parametres personnalises du message
+		//Ici, renseignez la xKey et les parametres personnalises
 		String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		String valueListsId = "012";	//Id de la liste a modifier ('null' si la liste est a creer)
+		String valueListsId = "012";	//Id de la liste a modifier ('null' si la liste doit etre creer)
 
 		String name = "createValueList (java)";	//Nom de la liste
 		Boolean ordered = false;	//Ordonnee : oui = 'true' / non = 'false'
@@ -30,7 +30,7 @@ public class createValueList
 			values.put(value2);
 		
 			
-		//On trouve l'addresse pour la requete
+		//On trouve l'adresse pour la requete
 		String url = "http://v8.mailperformance.com/valueLists/";
 		if (valueListsId != null)
 		{

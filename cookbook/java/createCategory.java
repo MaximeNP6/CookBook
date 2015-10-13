@@ -11,7 +11,7 @@ public class createCategory
 {
 	public static void main(String[] args) throws IOException, JSONException, InterruptedException
 	{
-		//Ici, renseignez la xKey et les parametres personnalises du message
+		//Ici, renseignez la xKey et les parametres personnalises
 		String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		String categoriesId = "0123";	//Id de la categorie a modifier ('null' si la categorie est a creer)
 		
@@ -19,7 +19,7 @@ public class createCategory
 		String description = "Category (java)";	//Description de la categorie
 
 
-		//On trouve l'addresse pour la requete
+		//On trouve l'adresse pour la requete
 		String url = "http://v8.mailperformance.com/categories/";
 		if (categoriesId != null)
 		{

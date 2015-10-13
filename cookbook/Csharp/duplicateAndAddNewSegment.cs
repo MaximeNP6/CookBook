@@ -14,15 +14,15 @@ namespace duplicateAndAddNewSegment
     {
         static JObject getTargetJson(String unicity)
         {
-            //Syntaxe pour les différents types d'informations :
+            //Syntaxe pour les differents types d'informations :
             String targetString = "name";	//Chaine de caracteres
             String tagetListOfValues = "Mr";	//Liste de valeurs
-            String targetEmail = unicity;	// E-mail
-            String tagetPhoneNumber = "0123456789";	// Telephone
+            String targetEmail = unicity;	//E-mail
+            String tagetPhoneNumber = "0123456789";	//Telephone
             String targetTextZone = "150 caracters max";	//Zone de texte
-            int targetNumbers = 123;	//Valeur numérique
+            int targetNumbers = 123;	//Valeur numerique
             String targetDate = "01/01/2000";	//Date
-            JProperty listMultipleValues = new JProperty("5456", "valeur 1", "valeur 2");	//Liste de valeurs multiples : particulier, la premiere valeur est l'id-champ, les autres sont les valeur de ce champ.
+            JProperty listMultipleValues = new JProperty("5456", "valeur 1", "valeur 2");	//Liste de valeurs multiples : particulier, la premiere valeur est l'id-champ, les autres sont les valeurs de ce champ.
 
             //Creation du tableau en fonction de l'id des champs de la fiche cible : "id-champ" => "valeur du champ"
             JObject targetJson = new JObject();
@@ -33,7 +33,7 @@ namespace duplicateAndAddNewSegment
             targetJson.Add("5453", targetTextZone);
             targetJson.Add("5454", targetNumbers);
             targetJson.Add("5455", targetDate);
-            targetJson.Add(listMultipleValues);   //Liste de valeurs multiples : particulier, la premiere valeur est l'id-champ, les autres sont les valeur de ce champ.
+            targetJson.Add(listMultipleValues);   //Liste de valeurs multiples : particulier, la premiere valeur est l'id-champ, les autres sont les valeurs de ce champ.
 
             //On affiche le message
             Console.Write("New Json : " + targetJson + "\n");
@@ -76,7 +76,7 @@ namespace duplicateAndAddNewSegment
             segments.Add("selected", segmentArray);
 
             JObject scheduler = new JObject();
-            scheduler.Add("type", "asap");	//Envoie : immédiat = 'asap' / Date = 'scheduled'
+            scheduler.Add("type", "asap");	//Envoie : immediat = 'asap' / Date = 'scheduled'
             //scheduler.Add("type", "2015-07-27T08:15:00Z");	//Si type = 'scheduled' sinon a enlever
             scheduler.Add("segments", segments);
 
@@ -97,7 +97,7 @@ namespace duplicateAndAddNewSegment
             JObject actionValidationJson = new JObject();
             actionValidationJson.Add("fortest", true);	//Phase de teste
             actionValidationJson.Add("campaignAnalyser", false);	//Campaign Analyzer : 'true' = oui / 'false' = non
-            actionValidationJson.Add("testSegments", segmentList);	//Les Ids des differents segments de testes
+            actionValidationJson.Add("testSegments", segmentList);	//Les Ids des differents segments de tests
             actionValidationJson.Add("mediaForTest", null);	//Rediriger tous les tests vers une seule adresse ('NULL' pour aucune valeur)
             actionValidationJson.Add("textandHtml", false);	//Envoyer la version texte et la version html : 'true' = oui / 'false' = non
             actionValidationJson.Add("comments", null);	//Commentaire ('NULL' pour aucuns commentaires)
@@ -120,11 +120,11 @@ namespace duplicateAndAddNewSegment
             //Url de base
             String urlBase = "http://v8.mailperformance.com/";
 
-            //Ici, renseignez l"email de la cible, la X-Key
+            //Ici, renseignez l'email de la cible, la X-Key
             String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            String unicity = "test@test.com";	//L"adresse mail de la cible a mettre dans le segment ("null" pour ne rien ajouter au segment)
+            String unicity = "test@test.com";	//L'adresse mail de la cible a mettre dans le segment ("null" pour ne rien ajouter au segment)
             String segmentId = "0123";	//Id du segment a modifier ("null" si le segment est a creer)
-            String actionId = "000ABC";	//Id de l"action a dupliquer
+            String actionId = "000ABC";	//Id de l'action a dupliquer
 
             //Ne pas remplir
             String targetId = null;
@@ -134,7 +134,7 @@ namespace duplicateAndAddNewSegment
             HttpWebResponse httpResponse = null;
             String responseString = null;
 
-            //Lancement de la connection pour remplir la requete
+            //Lancement de la connexion pour remplir la requete
             String url = urlBase + "targets?unicity=" + unicity;
 
             result = allConnection(con, url, xKey, null, "GET");
@@ -221,7 +221,7 @@ namespace duplicateAndAddNewSegment
 
         public static Object[] createSegment(String urlBase, String segmentId, HttpWebRequest con, String xKey, Object[] result)
         {
-            //On trouve l"addresse pour la requete
+            //On trouve l'adresse pour la requete
             String url = urlBase + "segments/";
 
             if (segmentId != null)
@@ -338,7 +338,7 @@ namespace duplicateAndAddNewSegment
 
             if (actionState == 20)
             {
-                //Affichage de l"erreur
+                //Affichage de l'erreur
                 Console.Write("Error : the test failed.");
             }
             else
@@ -350,10 +350,10 @@ namespace duplicateAndAddNewSegment
             return (result);
         }
 
-        //Fonction de connection
+        //Fonction de connexion
         static HttpWebRequest Connect(String url, String xKey, String method)
         {
-            //Lancement de la connection pour remplir la requete
+            //Lancement de la connexion pour remplir la requete
             HttpWebRequest con = (HttpWebRequest)WebRequest.Create(url);
             con.Method = method;
 
@@ -416,13 +416,13 @@ namespace duplicateAndAddNewSegment
                 Console.Write("Wait 20sec...\n");
                 System.Threading.Thread.Sleep(20000);
 
-                //Nouvelle addresse
+                //Nouvelle adresse
                 String url = urlBase + "actions/" + idAction;
 
-                //Lancement de la connection pour remplir la requete
+                //Lancement de la connexion pour remplir la requete
                 HttpWebRequest con = Connect(url, xKey, "GET");
 
-                //Teste de l'envoie
+                //Test de l'envoie
                 HttpWebResponse httpResponse = null;
                 int response = 0;
                 String responseString = null;

@@ -14,13 +14,13 @@ namespace sendHTML
     {
         static void Main(string[] args)
         {
-            //Ici, renseignez l'email de la cible, la xKey, l'id du message et les parametres personnalises
+            //Ici, renseignez l'email de la cible, la xKey, l'id du message
             string unicity = "test@test.com";
             string xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             string idMessage = "000ABC";
 
-            string htmlMessage = "html message for Csharp";	//Si vous ne voulez pas de cette option, effacer la ligne de creation du Json 
-            string textMessage = "text message for Csharp";	//Si vous ne voulez pas de cette option, effacer la ligne de creation du Json 
+            string htmlMessage = "html message for Csharp";	//Si vous ne voulez pas de cette option, commentez la ligne de creation du Json 
+            string textMessage = "text message for Csharp";	//Si vous ne voulez pas de cette option, commentez la ligne de creation du Json 
             string subject = "subject for Csharp";
             string mailFrom = "mail@address.com";
             string replyTo = "mail@return.com";
@@ -29,7 +29,7 @@ namespace sendHTML
             string url = "http://v8.mailperformance.com/targets?unicity=" + unicity;
             HttpWebRequest con = Connect(url, xKey, "GET");
 
-            //Teste de l'envoie
+            //Test de l'envoie
             HttpWebResponse httpResponseGet = null;
             int response = 0;
             try
@@ -74,8 +74,8 @@ namespace sendHTML
 
                 //Creation du message en Json
                 JObject content = new JObject();
-                content.Add("html", htmlMessage);	//Si vous ne voulez pas de l'option : htmlMessage, effacer cette ligne
-                content.Add("text", textMessage);	//Si vous ne voulez pas de l'option : textMessage, effacer cette ligne
+                content.Add("html", htmlMessage);	//Si vous ne voulez pas de l'option : htmlMessage, commentez cette ligne
+                content.Add("text", textMessage);	//Si vous ne voulez pas de l'option : textMessage, commentez cette ligne
 
                 JObject header = new JObject();
                 header.Add("subject", subject);
@@ -99,7 +99,7 @@ namespace sendHTML
                 streamWriter.Flush();
                 streamWriter.Close();
 
-                //Teste de l'envoie
+                //Test de l'envoie
                 HttpWebResponse httpResponse = null;
                 response = 0;
                 try
@@ -139,7 +139,7 @@ namespace sendHTML
         //Fonctions ----
 
 		
-		//Fonction de connection
+		//Fonction de connexion
         static HttpWebRequest Connect(string url, string xKey, string method)
         {
             //Lancement de la connexion pour remplir la requete

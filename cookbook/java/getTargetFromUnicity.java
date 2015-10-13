@@ -8,7 +8,7 @@ public class getTargetFromUnicity
 {
 	public static void main(String[] args) throws IOException
 	{
-		//Ici, renseignez l'email dont vous voulez obtenir les valeurs des champs
+		//Ici, renseignez l'email
 		String unicity = "test@test.com";
 		
 		//Lancement de la connexion pour remplir la requete

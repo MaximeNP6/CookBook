@@ -15,15 +15,15 @@ namespace createTargetAndAddToSegment
             String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             String idSegment = "7501";
 
-            //Syntaxe pour les différents types d'informations :
+            //Syntaxe pour les differents types d'informations :
             String chain = "name";	//Chaine de caracteres
             String listOfValues = "Mr";	//Liste de valeurs
-            String email = "test@test.com";	// E-mail
-            String phoneNumber = "0123456789";	// Telephone
+            String email = "test@test.com";	//E-mail
+            String phoneNumber = "0123456789";	//Telephone
             String textZone = "150 caracters max";	//Zone de texte
-            int numbers = 123;	//Valeur numérique
+            int numbers = 123;	//Valeur numerique
             String date = "01/01/2000";	//Date
-            JProperty listMultipleValues = new JProperty("5456", "valeur 1", "valeur 2");	//Liste de valeurs multiples : particulier, la premiere valeur est l'id-champ, les autres sont les valeur de ce champ.
+            JProperty listMultipleValues = new JProperty("5456", "valeur 1", "valeur 2");	//Liste de valeurs multiples : particulier, la premiere valeur est l'id-champ, les autres sont les valeurs de ce champ.
 
             //Creation du tableau en fonction de l'id des champs de la fiche cible : "id-champ" => "valeur du champ"
             JObject data = new JObject();
@@ -34,14 +34,14 @@ namespace createTargetAndAddToSegment
             data.Add("5453", textZone);
             data.Add("5454", numbers);
             data.Add("5455", date);
-            data.Add(listMultipleValues);   //Liste de valeurs multiples : particulier, la premiere valeur est l'id-champ, les autres sont les valeur de ce champ.
+            data.Add(listMultipleValues);   //Liste de valeurs multiples : particulier, la premiere valeur est l'id-champ, les autres sont les valeurs de ce champ.
 
 
             //Lancement de la connexion pour remplir la requete 'GET'
             string url = "http://v8.mailperformance.com/targets?unicity=" + unicity;
             HttpWebRequest con = Connect(url, xKey, "GET");
 
-            //Teste de l'envoie
+            //Test de l'envoie
             HttpWebResponse httpResponseGet = null;
             int response = 0;
             try
@@ -131,7 +131,7 @@ namespace createTargetAndAddToSegment
             streamWriter.Flush();
             streamWriter.Close();
 
-            //Teste de l'envoie
+            //Test de l'envoie
             HttpWebResponse httpResponsePost = null;
             int response = 0;
             try

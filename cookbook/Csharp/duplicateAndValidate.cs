@@ -10,10 +10,10 @@ namespace duplicateAndValidate
     {
         static void Main(string[] args)
         {
-            //Ici, renseignez la xKey et les parametres personnalises
+            //Ici, renseignez la xKey
             String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-            String unicity = "test@test.com";	//email de la cible
+            String unicity = "test@test.com";	//Email de la cible
             int[] idSegment = { 0123 };	//Id du segment
             String idAction = "000ABC";	//Id de l'action a dupliquer
             int[] idTestSegment = { 0123 };	//Id du segment de test
@@ -23,7 +23,7 @@ namespace duplicateAndValidate
             //Nouvelle url
             String url = "http://v8.mailperformance.com/targets?unicity=" + unicity;
 
-            //Lancement de la connection pour remplir la requete
+            //Lancement de la connexion pour remplir la requete
             Object[] connection = allConnection(url, xKey, null, "GET");
             int response = (int)connection[0];
             HttpWebRequest con = (HttpWebRequest)connection[1];
@@ -153,7 +153,7 @@ namespace duplicateAndValidate
                             //On affiche le json
                             Console.Write(jsonTest + "\n");
 
-                            //Lancement de la connectio
+                            //Lancement de la connexion
                             connection = allConnection(url, xKey, jsonTest, "POST");
                             response = (int)connection[0];
                             con = (HttpWebRequest)connection[1];
@@ -164,7 +164,7 @@ namespace duplicateAndValidate
 
                             if (response != 200 || actionState == 20)
                             {
-                                //Affichage de l"erreur
+                                //Affichage de l'erreur
                                 if (actionState == 20)
                                     Console.Write("Error : the test failed.");
                                 else
@@ -177,9 +177,9 @@ namespace duplicateAndValidate
 
                                 //Creation du Json du message pour la validation
                                 JObject jsonValid = new JObject();
-                                jsonValid.Add("fortest", false);	//Phase de teste
+                                jsonValid.Add("fortest", false);	//Phase de test
                                 jsonValid.Add("campaignAnalyser", false);	//Campaign Analyzer : 'true' = oui / 'false' = non
-                                jsonValid.Add("testSegments", null);	//Les Ids des differents segments de testes
+                                jsonValid.Add("testSegments", null);	//Les Ids des differents segments de tests
                                 jsonValid.Add("mediaForTest", null);	//Rediriger tous les tests vers une seule adresse ('NULL' pour aucune valeur)
                                 jsonValid.Add("textandHtml", false);	//Envoyer la version texte et la version html : 'true' = oui / 'false' = non
                                 jsonValid.Add("comments", null);	//Commentaire ('NULL' pour aucuns commentaires)
@@ -187,7 +187,7 @@ namespace duplicateAndValidate
                                 //On affiche le json
                                 Console.Write(jsonValid + "\n");
 
-                                //Lancement de la connectio
+                                //Lancement de la connexion
                                 connection = allConnection(url, xKey, jsonValid, "POST");
                                 response = (int)connection[0];
                                 con = (HttpWebRequest)connection[1];
@@ -197,7 +197,7 @@ namespace duplicateAndValidate
                                 //Verification des reponses
                                 if (response != 200)
                                 {
-                                    //Affichage de l"erreur
+                                    //Affichage de l'erreur
                                     Console.Write("Error : " + response + " " + responseString);
                                 }
                                 else
@@ -221,10 +221,10 @@ namespace duplicateAndValidate
         //Fonctions ----
 
 
-        //Fonction de connection
+        //Fonction de connexion
         static HttpWebRequest Connect(string url, string xKey, string method)
         {
-            //Lancement de la connection pour remplir la requete
+            //Lancement de la connexion pour remplir la requete
             HttpWebRequest con = (HttpWebRequest)WebRequest.Create(url);
             con.Method = method;
 
@@ -287,13 +287,13 @@ namespace duplicateAndValidate
                 Console.Write("Wait 20sec...\n");
                 System.Threading.Thread.Sleep(20000);
 
-                //Nouvelle addresse
+                //Nouvelle adresse
                 String url = "http://v8.mailperformance.com/actions/" + idAction;
 
-                //Lancement de la connection pour remplir la requete
+                //Lancement de la connexion pour remplir la requete
                 HttpWebRequest con = Connect(url, xKey, "GET");
 
-                //Teste de l'envoie
+                //Test de l'envoie
                 HttpWebResponse httpResponse = null;
                 int response = 0;
                 string responseString = null;

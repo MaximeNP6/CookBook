@@ -11,9 +11,9 @@ public class createField
 {
 	public static void main(String[] args) throws IOException, JSONException, InterruptedException
 	{
-		//Ici, renseignez la xKey et les parametres personnalises du message
+		//Ici, renseignez la xKey et les parametres personnalises
 		String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		String fieldId = "0123";	//Id du critere a modifier ('null' si le critere est a creer)
+		String fieldId = "0123";	//Id du critere a modifier ('null' si le critere doit etre creer)
 
 		String type = "numeric";	//Code pour creer un critere :
 			//Normales : email = 'email' / telephone = 'phone' / zone de texte = 'textArena' / chaine de caractere = 'textField' / valeur numerique = 'numeric' / date = 'date'
@@ -22,13 +22,13 @@ public class createField
 		Boolean isUnicity = false;	//Unicite : oui = 'true' / non = 'false'
 		Boolean isMandatory = false;	//Obligatoire : oui = 'true' / non = 'false'
 
-		int constraintOperator = 0;	//Pour les valeurs numeriques et les dates : 1 = '>' / 2 = '<' / 3 = '>=' / 4 = '<=' / 5 = '=' ('0' pour rien)
+		int constraintOperator = 0;	//Pour les valeurs numeriques et les dates : 1 = '>' / 2 = '<' / 3 = '>=' / 4 = '<=' / 5 = '==' ('0' pour rien)
 		String constraintValue = "42";	//Valeur de la contrainte ('null' pour rien)
 
-		int valueListId = 0;	//Id de la liste dans le cas d'un 'singelSelectList' ou un 'multipleSelectList' ('0' pour rien)
+		int valueListId = 0;	//Id de la liste dans le cas d'un 'singleSelectList' ou un 'multipleSelectList' ('0' pour rien)
 
 
-		//On trouve l'addresse pour la requete
+		//On trouve l'adresse pour la requete
 		String url = "http://v8.mailperformance.com/fields/";
 		if (fieldId != null)
 		{

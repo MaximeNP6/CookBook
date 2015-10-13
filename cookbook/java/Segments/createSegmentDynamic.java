@@ -11,7 +11,7 @@ public class createSegmentDynamic
 {
 	public static void main(String[] args) throws IOException, JSONException, InterruptedException
 	{
-		//Ici, renseignez la xKey et les parametres personnalises du message
+		//Ici, renseignez la xKey et les parametres personnalises
 		String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		String segmentId = "0123";	//Id du segment a modifier ('null' si le segment est a creer)
 		

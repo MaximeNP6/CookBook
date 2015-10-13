@@ -9,15 +9,15 @@ namespace createCategory
     {
         static void Main(string[] args)
         {
-            //Ici, renseignez la xKey et les parametres personnalises du message
+            //Ici, renseignez la xKey et les parametres personnalises
             String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            String categoriesId = "0123";	//Id de la categorie a modifier ('null' si la categorie est a creer)
+            String categoriesId = "0123";	//Id de la categorie a modifier ('null' si la categorie doit etre cree)
 
             String name = "Category Csharp";	//Nom de la categorie
             String description = "Category (Csharp)";	//Description de la categorie
 
 
-            //On trouve l'addresse pour la requete
+            //On trouve l'adresse pour la requete
             String url = "http://v8.mailperformance.com/categories/";
             if (categoriesId != null)
             {

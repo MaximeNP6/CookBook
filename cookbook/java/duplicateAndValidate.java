@@ -17,7 +17,7 @@ public class duplicateAndValidate
 		//Ici, renseignez la xKey et les parametres personnalises
 		String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		
-		String unicity = "test@test.com";	//email de la cible
+		String unicity = "test@test.com";	//Email de la cible
 		int[] idSegment = {0123};	//Id du segment
 		String idAction = "000ABC";	//Id de l'action a dupliquer
 		int[] idTestSegment = {0123};	//Id du segment de test
@@ -27,7 +27,7 @@ public class duplicateAndValidate
 		//Nouvelle url
 		String url = "http://v8.mailperformance.com/targets?unicity=" + unicity;
 		
-		//Lancement de la connection
+		//Lancement de la connexion
 		HttpURLConnection con = connection(url, xKey, null, "GET");
 		
 		//Verification des reponses
@@ -214,7 +214,7 @@ public class duplicateAndValidate
 	//Ouverture de la connexion
 	public static HttpURLConnection openConn(String url, String xKey) throws MalformedURLException, IOException
 	{
-		//Lancement de la connection
+		//Lancement de la connexion
 		HttpURLConnection con = (HttpURLConnection)new URL(url).openConnection();
 		
 		//Mise en place du xKey et des options
@@ -226,7 +226,7 @@ public class duplicateAndValidate
 	//Fonction de connexion et envoie des informations
 	public static HttpURLConnection connection(String url, String xKey, JSONObject jsonMessage, String method) throws IOException
 	{
-		//Lancement de la connection pour remplir la requete
+		//Lancement de la connexion pour remplir la requete
 		HttpURLConnection con = openConn(url, xKey);
 		if (jsonMessage != null)
 			con.setRequestProperty("Content-Length", Integer.toString(jsonMessage.length()));
@@ -235,7 +235,7 @@ public class duplicateAndValidate
 		con.setRequestMethod(method);
 		con.setDoOutput(true);
 				        
-		// Envoie des informations dans la connection
+		// Envoie des informations dans la connexion
 		if (jsonMessage != null)
 		{
 			OutputStreamWriter sendMessage = new OutputStreamWriter(con.getOutputStream());
@@ -257,7 +257,7 @@ public class duplicateAndValidate
 			System.out.print("Wait 20sec...\n");
 			Thread.sleep(2000);
 			
-			//Nouvelle addresse
+			//Nouvelle adresse
 			String url = "http://v8.mailperformance.com/actions/" + idAction;
 			
 			//Lancement de la connexion pour remplir la requete

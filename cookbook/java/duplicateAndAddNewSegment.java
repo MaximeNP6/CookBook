@@ -14,13 +14,13 @@ public class duplicateAndAddNewSegment
 {
 	public static JSONObject getTargetJson(String unicity) throws JSONException
 	{
-		//Syntaxe pour les différents types d'informations :
+		//Syntaxe pour les differents types d'informations :
 		String targetString = "name";	//Chaine de caracteres
 		String tagetListOfValues = "Mr";	//Liste de valeurs
-		String targetEmail = unicity;	// E-mail
-		String tagetPhoneNumber = "0123456789";	// Telephone
+		String targetEmail = unicity;	//E-mail
+		String tagetPhoneNumber = "0123456789";	//Telephone
 		String targetTextZone = "150 caracters max";	//Zone de texte
-		int targetNumbers = 123;	//Valeur numérique
+		int targetNumbers = 123;	//Valeur numerique
 		String targetDate = "01/01/2000";	//Date
 		String largetListMultipleValues[] = {"valeur 1", "valeur 2"};	//Liste de valeurs multiples
 
@@ -43,7 +43,7 @@ public class duplicateAndAddNewSegment
 	
 	public static JSONObject getSegmentJson() throws JSONException
 	{
-		//Syntaxe pour les différents types d'informations :
+		//Syntaxe pour les differents types d'informations :
 		String segmentType = "static";	//Code pour creer un segment Statique
 		String segmentName = "Nom du segment";	//Nom du segment
 		String segmentDescription = "Description";	//Description du segment
@@ -73,7 +73,7 @@ public class duplicateAndAddNewSegment
 		segments.put("selected", segmentList);
 		
 		JSONObject scheduler = new JSONObject();
-		scheduler.put("type", "asap");	//Envoie : immédiat = 'asap' / Date = 'scheduled'
+		scheduler.put("type", "asap");	//Envoie : immediat = 'asap' / Date = 'scheduled'
 		//scheduler.put("type", "2015-07-27T08:15:00Z");	//Si type = 'scheduled' sinon a enlever
 		scheduler.put("segments", segments);
 		
@@ -112,18 +112,18 @@ public class duplicateAndAddNewSegment
 		//Url de base
 		String urlBase = "http://v8.mailperformance.com/";
 
-		//Ici, renseignez l"email de la cible, la X-Key
+		//Ici, renseignez l'email de la cible, la X-Key
 		String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		String unicity = "test@test.com";	//L"adresse mail de la cible a mettre dans le segment ("null" pour ne rien ajouter au segment)
+		String unicity = "test@test.com";	//L'adresse mail de la cible a mettre dans le segment ("null" pour ne rien ajouter au segment)
 		String segmentId = "0123";	//Id du segment a modifier ("null" si le segment est a creer)
-		String actionId = "000ABC";	//Id de l"action a dupliquer
+		String actionId = "000ABC";	//Id de l'action a dupliquer
 		
 		//Ne pas remplir
 		String targetId = null;
 		ArrayList result = new ArrayList();
 		
 		
-		//Lancement de la connection pour remplir la requete
+		//Lancement de la connexion pour remplir la requete
 		String url = urlBase + "targets?unicity=" + unicity;
 		HttpURLConnection con = null;
 		
@@ -209,7 +209,7 @@ public class duplicateAndAddNewSegment
 	
 	public static ArrayList createSegment(String segmentId, String urlBase, HttpURLConnection con, String xKey) throws MalformedURLException, IOException, JSONException
 	{
-		//Lancement de la connection
+		//Lancement de la connexion
 		if (segmentId != null)
 		{
 			String url =  urlBase + "segments/" + segmentId;
@@ -225,7 +225,7 @@ public class duplicateAndAddNewSegment
 		int responseCode = con.getResponseCode();
 		if (responseCode != 200)
 		{
-			//Affichage de l"erreur
+			//Affichage de l'erreur
 			System.out.print("Error : " + responseCode + " " + con.getResponseMessage());
 			System.exit(1);
 		}
@@ -342,7 +342,7 @@ public class duplicateAndAddNewSegment
 	//Fonctions de connexion
 	public static HttpURLConnection startCon(String url, String xKey) throws MalformedURLException, IOException
 	{
-		//Lancement de la connection
+		//Lancement de la connexion
 		HttpURLConnection con = (HttpURLConnection)new URL(url).openConnection();
 		
 		//Mise en place du xKey et des options
@@ -363,13 +363,13 @@ public class duplicateAndAddNewSegment
 	public static HttpURLConnection urlPostOrPut(HttpURLConnection con, String request, JSONObject dataJson, String xKey, String url) throws MalformedURLException, IOException
 	{
 		con.disconnect();
-		//Lancement de la connection pour remplir la requete
+		//Lancement de la connexion pour remplir la requete
 		con = startCon(url, xKey);
 		con.setRequestProperty("Content-Length", Integer.toString(dataJson.toString().length()));
 		con.setRequestMethod(request);
 		con.setDoOutput(true);
 		
-		// Envoie des informations dans la connection
+		// Envoie des informations dans la connexion
 	    DataOutputStream streamCon = new DataOutputStream(con.getOutputStream());
 	    streamCon.write(dataJson.toString().getBytes());
 	    streamCon.flush();
@@ -397,7 +397,7 @@ public class duplicateAndAddNewSegment
 			System.out.print("Wait 20sec...\n");
 			Thread.sleep(20000);
 			
-			//Nouvelle addresse
+			//Nouvelle adresse
 			String url = urlBase + "actions/" + idAction;
 			
 			//Lancement de la connexion pour remplir la requete

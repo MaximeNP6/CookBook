@@ -12,7 +12,7 @@ public class getTargetAndSendMessage
 {
 	public static HttpURLConnection openConn(String url) throws MalformedURLException, IOException
 	{
-		//Lancement de la connection
+		//Lancement de la connexion
 		HttpURLConnection con = (HttpURLConnection)new URL(url).openConnection();
 		
 		//Mise en place du xKey et des options
@@ -23,7 +23,7 @@ public class getTargetAndSendMessage
 	
 	public static void main(String[] args) throws IOException, JSONException
 	{
-		//Ici, renseignez l'email dont vous voulez obtenir les valeurs des champs, et l'id du message
+		//Ici, renseignez l'email et l'id du message
 		String unicity = "test@test.com";
 		String idMessage = "000ABC";
 		
@@ -60,7 +60,7 @@ public class getTargetAndSendMessage
 			con.setRequestMethod("POST");
 			con.setDoOutput(true);
 			        
-			// Envoie des informations dans la connection
+			// Envoie des informations dans la connexion
 			con.getOutputStream();
 			
 			//Verification des reponses

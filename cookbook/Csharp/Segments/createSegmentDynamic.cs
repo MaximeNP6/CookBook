@@ -9,9 +9,9 @@ namespace createSegmentDynamic
     {
         static void Main(string[] args)
         {
-            //Ici, renseignez la xKey et les parametres personnalises du message
+            //Ici, renseignez la xKey et les parametres personnalises
             String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            String segmentId = "0123";	//Id du segment a modifier ('null' si le segment est a creer)
+            String segmentId = "0123";	//Id du segment a modifier ('null' si le segment doit etre cree)
 
             String type = "dynamic";	//Code pour creer un segment Dynamique
             String name = "SegmentDynamic (Csharp)";	//Nom du segment
@@ -21,7 +21,7 @@ namespace createSegmentDynamic
             String parentId = null;	//Id du segment pere ('null' pour aucun segments pere)
 
 
-            //On trouve l'addresse pour la requete
+            //On trouve l'adresse pour la requete
             String url = "http://v8.mailperformance.com/segments/";
             if (segmentId != null)
             {

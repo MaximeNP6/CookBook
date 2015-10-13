@@ -9,9 +9,9 @@ namespace createValueList
     {
         static void Main(string[] args)
         {
-            //Ici, renseignez la xKey et les parametres personnalises du message
+            //Ici, renseignez la xKey et les parametres personnalises
             String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            String valueListsId = "012";	//Id de la liste a modifier ('null' si le critere est a creer)
+            String valueListsId = "012";	//Id de la liste a modifier ('null' si le critere doit etre creer)
 
             String name = "createValueList (Csharp)";	//Nom de la liste
             Boolean ordered = false;	//Ordonnee : oui = 'true' / non = 'false'
@@ -27,7 +27,7 @@ namespace createValueList
                 values.Add(value2);
 
 
-            //On trouve l'addresse pour la requete
+            //On trouve l'adresse pour la requete
             String url = "http://v8.mailperformance.com/valueLists/";
             if (valueListsId != null)
             {

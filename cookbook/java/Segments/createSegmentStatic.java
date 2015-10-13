@@ -13,9 +13,9 @@ public class createSegmentStatic
 {
 	public static void main(String[] args) throws IOException, JSONException, InterruptedException
 	{
-		//Ici, renseignez la xKey et les parametres personnalises du message
+		//Ici, renseignez la xKey et les parametres personnalises
 		String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		String segmentId = "0123";	//Id du segment a modifier ('null' si le segment est a creer)
+		String segmentId = "0123";	//Id du segment a modifier ('null' si le segment doit etre cree)
 		String unicity = "test@test.com"; //L'adresse mail de la cible a mettre dans le segment ('null' pour ne rien ajouter au segment)
 		
 		String type = "static";	//Code pour creer un segment Statique

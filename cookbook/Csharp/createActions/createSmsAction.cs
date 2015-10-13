@@ -9,7 +9,7 @@ namespace createSmsAction
     {
         static void Main(string[] args)
         {
-            //Ici, renseignez la xKey et les parametres personnalises du message
+            //Ici, renseignez la xKey
             String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
             String type = "smsMessage";	//Code pour envoyer un SMS
@@ -21,7 +21,7 @@ namespace createSmsAction
 
             String textContent = "Text message";	//Message texte
 
-            //On trouve l'addresse pour la requete
+            //On trouve l'adresse pour la requete
             String url = "http://v8.mailperformance.com/actions";
 
 
