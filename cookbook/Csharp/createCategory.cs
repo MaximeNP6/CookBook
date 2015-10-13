@@ -87,7 +87,7 @@ namespace createCategory
             return (con);
         }
 
-        //Fonction de connexion et envoie des informations
+        //Fonction de connexion et envoi des informations
         static Object[] allConnection(String url, String xKey, JObject jsonMessage, String method)
         {
             HttpWebRequest con = Connect(url, xKey, method);
@@ -101,7 +101,7 @@ namespace createCategory
                 streamWriter.Close();
             }
 
-            //Test de l'envoie
+            //Test de l'envoi
             HttpWebResponse httpResponse = null;
             int response = 0;
             string responseString = null;
