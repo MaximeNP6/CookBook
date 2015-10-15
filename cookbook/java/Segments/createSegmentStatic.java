@@ -25,7 +25,7 @@ public class createSegmentStatic
 		Boolean isTest = true;	//Segment de test : oui = 'true' / non = 'false'
 
 
-		//On trouve l'addresse pour la requete
+		//On trouve l'adresse pour la requete
 		String url = "http://v8.mailperformance.com/segments/";
 		if (segmentId != null)
 		{
