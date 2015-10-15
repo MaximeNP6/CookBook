@@ -95,7 +95,7 @@ public class postTarget
 		con.setRequestMethod(request);
 		con.setDoOutput(true);
 		
-		//Envoie des informations dans la connexion
+		//Envoi des informations dans la connexion
 	    DataOutputStream payload = new DataOutputStream(con.getOutputStream());
 	    payload.write(data.toString().getBytes());
 	    payload.flush();
