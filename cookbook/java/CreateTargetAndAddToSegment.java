@@ -63,7 +63,7 @@ public class CreatTargetAndAddToSegment
 				//Nouvelle url
 				url = "http://v8.mailperformance.com/targets/";
 				
-				//Requette 'POST' pour creer la cible
+				//Requete 'POST' pour creer la cible
 				con = postOrPutOnTarget(con, "POST", data, xKey, url);
 			}
 		}
@@ -106,7 +106,7 @@ public class CreatTargetAndAddToSegment
 		con.setRequestProperty("Content-Length", Integer.toString(data.toString().length()));
 		con.setRequestMethod(request);
 		con.setDoOutput(true);
-		//Envoie des informations dans la connexion
+		//Envoi des informations dans la connexion
 	    DataOutputStream payload = new DataOutputStream(con.getOutputStream());
 	    payload.write(data.toString().getBytes());
 	    payload.flush();
