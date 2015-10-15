@@ -82,7 +82,7 @@ else
 			
 			//Modification de la nouvelle action
 			$data['scheduler'] = array(
-					"type" => "asap",	//Envoie : immediat = 'asap' / Date = 'scheduled'
+					"type" => "asap",	//Envoi : immediat = 'asap' / Date = 'scheduled'
 					//"type" => "2015-07-27T08:15:00Z",	//Si type = 'scheduled' sinon a enlever
 					"segments" => array(
 						"selected" => $idSegment));
@@ -108,7 +108,7 @@ else
 			{
 				echo "The action duplicate ( " . json_decode($result, TRUE)['name'] . " ) is update.\n";
 				
-				//On test l'action
+				//On teste l'action
 				
 				//Nouvelle url
 				$url = "http://v8.mailperformance.com/actions/" . $idNewAction . "/validation";
