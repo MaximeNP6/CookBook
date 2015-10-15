@@ -57,7 +57,7 @@ public class createMailCampaignAction
 		segments.put("selected", idSelectSegment);
 		
 		JSONObject scheduler = new JSONObject();
-		scheduler.put("type", "asap");	//Envoie : immediat = 'asap' / Date = 'scheduled'
+		scheduler.put("type", "asap");	//Envoi : immediat = 'asap' / Date = 'scheduled'
 		//scheduler.put("type", "2015-07-27T08:15:00Z");	//Si type = 'scheduled' sinon a enlever
 		scheduler.put("segments", segments);
 
@@ -188,7 +188,7 @@ public class createMailCampaignAction
 		return (con);
 	}
 	
-	//Fonction de connexion et envoie des informations
+	//Fonction de connexion et envoi des informations
 	public static HttpURLConnection connection(String url, String xKey, JSONObject jsonMessage) throws IOException
 	{
 		//Lancement de la connexion pour remplir la requete
@@ -197,7 +197,7 @@ public class createMailCampaignAction
 		con.setRequestMethod("POST");
 		con.setDoOutput(true);
 				        
-		//Envoie des informations dans la connexion
+		//Envoi des informations dans la connexion
 		OutputStreamWriter sendMessage = new OutputStreamWriter(con.getOutputStream());
 		sendMessage.write(jsonMessage.toString());
 		sendMessage.flush();
@@ -223,7 +223,7 @@ public class createMailCampaignAction
 			HttpURLConnection con = openConn(url, xKey);
 			con.setRequestMethod("GET");
 			
-			//Lecture des donnees ligne par lignes
+			//Lecture des donnees ligne par ligne
 			BufferedReader buffRead = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			String reply = buffRead.readLine();
 			con.disconnect();
