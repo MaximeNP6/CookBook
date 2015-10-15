@@ -12,7 +12,7 @@ $mailFrom = 'mail@address.com';
 $replyTo = 'mail@return.com';
 
 
-//On trouve l'addresse pour la requete
+//On trouve l'adresse pour la requete
 $url = 'http://v8.mailperformance.com/targets?unicity='. $unicity;
 
 //On remplit la requete
