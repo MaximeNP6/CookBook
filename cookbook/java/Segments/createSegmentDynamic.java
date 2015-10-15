@@ -23,7 +23,7 @@ public class createSegmentDynamic
 		String parentId = null;	//Id du segment pere ('null' pour aucun segments pere)
 
 
-		//On trouve l'addresse pour la requete
+		//On trouve l'adresse pour la requete
 		String url = "http://v8.mailperformance.com/segments/";
 		if (segmentId != null)
 		{
@@ -84,7 +84,7 @@ public class createSegmentDynamic
 		return (con);
 	}
 	
-	//Fonction de connexion et envoie des informations
+	//Fonction de connexion et envoi des informations
 	public static HttpURLconnection connection(String url, String xKey, JSONObject jsonMessage, String method) throws IOException
 	{
 		//Lancement de la connexion pour remplir la requete
@@ -93,7 +93,7 @@ public class createSegmentDynamic
 		con.setRequestMethod(method);
 		con.setDoOutput(true);
 				        
-		//Envoie des informations dans la connexion
+		//Envoi des informations dans la connexion
 		OutputStreamWriter sendMessage = new OutputStreamWriter(con.getOutputStream());
 		sendMessage.write(jsonMessage.toString());
 		sendMessage.flush();
