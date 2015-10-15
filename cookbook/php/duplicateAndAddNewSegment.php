@@ -66,7 +66,7 @@ function getNewActionDuplicateJson($actionDuplicateJson, $segmentId)
 	
 	//Modification de la nouvelle action
 	$actionDuplicateJson['scheduler'] = array(
-		"type" => "asap",	//Envoie : immediat = 'asap' / Date = 'scheduled'
+		"type" => "asap",	//Envoi : immediat = 'asap' / Date = 'scheduled'
 		//"type" => "2015-07-27T08:15:00Z",	//Si type = 'scheduled' sinon a enlever
 		"segments" => array(
 			"selected" => array($segmentId)));
@@ -300,7 +300,7 @@ function updateActionDuplicate($urlBase, $actionDuplicateId, $req, $actionDuplic
 
 function testActionDuplicate($urlBase, $actionDuplicateId, $req, $segmentId, $xKey)
 {
-	//On test l'action
+	//On teste l'action
 	
 	//Nouvelle url
 	$url = $urlBase . 'actions/' . $actionDuplicateId . '/validation';
