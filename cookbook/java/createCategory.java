@@ -54,7 +54,7 @@ public class createCategory
 		}
 		else
 		{
-			//La categorie a bien ete cree
+			//La categorie a bien ete creee
 			System.out.print("The category : " + name + " is update.\n\n");
 		}
 		con.disconnect();
@@ -76,7 +76,7 @@ public class createCategory
 		return (con);
 	}
 	
-	//Fonction de connexion et envoie des informations
+	//Fonction de connexion et envoi des informations
 	public static HttpURLConnection connection(String url, String xKey, JSONObject jsonMessage, String method) throws IOException
 	{
 		//Lancement de la connexion pour remplir la requete
@@ -85,7 +85,7 @@ public class createCategory
 		con.setRequestMethod(method);
 		con.setDoOutput(true);
 				        
-		//Envoie des informations dans la connexion
+		//Envoi des informations dans la connexion
 		OutputStreamWriter sendMessage = new OutputStreamWriter(con.getOutputStream());
 		sendMessage.write(jsonMessage.toString());
 		sendMessage.flush();
