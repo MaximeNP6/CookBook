@@ -13,7 +13,7 @@ public class createField
 	{
 		//Ici, renseignez la xKey et les parametres personnalises
 		String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		String fieldId = "0123";	//Id du critere a modifier ('null' si le critere doit etre creer)
+		String fieldId = "0123";	//Id du critere a modifier ('null' si le critere doit etre cree)
 
 		String type = "numeric";	//Code pour creer un critere :
 			//Normales : email = 'email' / telephone = 'phone' / zone de texte = 'textArena' / chaine de caractere = 'textField' / valeur numerique = 'numeric' / date = 'date'
@@ -99,7 +99,7 @@ public class createField
 		return (con);
 	}
 	
-	//Fonction de connexion et envoie des informations
+	//Fonction de connexion et envoi des informations
 	public static HttpURLConnection connection(String url, String xKey, JSONObject jsonMessage, String method) throws IOException
 	{
 		//Lancement de la connexion pour remplir la requete
@@ -108,7 +108,7 @@ public class createField
 		con.setRequestMethod(method);
 		con.setDoOutput(true);
 				        
-		//Envoie des informations dans la connexion
+		//Envoi des informations dans la connexion
 		OutputStreamWriter sendMessage = new OutputStreamWriter(con.getOutputStream());
 		sendMessage.write(jsonMessage.toString());
 		sendMessage.flush();
