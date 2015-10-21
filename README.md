@@ -13,6 +13,10 @@ Prestashop
 
 This folder contains drivers to call the MailPerformance v8 APIs on Prestashop. 
 
+WordPress
+--
+
+This folder contains drivers to call the MailPerformance v8 APIs on Prestashop. 
 
 Version
 --

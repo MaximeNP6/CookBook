@@ -26,6 +26,10 @@ $arr = array(
 	'informations' => array(
 		'folder' => $informationFolder,
 		'category' => $informationCategory),
+	'scheduler' => array(
+		'type' => 'asap',	//Envoie : immediat = 'asap' / Date = 'scheduled'
+		//'startDate' => '2016-07-27T08:15:00Z',	//Si type = 'scheduled' sinon a enlever)
+		)
 	'content' => array(
 		'textContent' => $textContent));
 		

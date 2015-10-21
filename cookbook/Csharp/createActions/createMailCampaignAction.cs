@@ -57,7 +57,7 @@ namespace createMailCampaignAction
 
             JObject scheduler = new JObject();
             scheduler.Add("type", "asap");	//Envoie : immediat = 'asap' / Date = 'scheduled'
-            //scheduler.Add("type", "2015-07-27T08:15:00Z");	//Si type = 'scheduled' sinon a enlever
+            //scheduler.Add("startDate", "2015-07-27T08:15:00Z");	//Si type = 'scheduled' sinon a enlever
             scheduler.Add("segments", segments);
 
             JObject content = new JObject();

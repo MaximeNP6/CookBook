@@ -34,12 +34,17 @@ public class createSmsCampaignAction
 		JSONObject content = new JSONObject();
 		content.put("textContent", textContent);
 		
+		JSONObject scheduler = new JSONObject();
+		scheduler.put("type", "scheduled");	//Envoie : immediat = 'asap' / Date = 'scheduled'
+		//scheduler.put("startDate", "2015-07-27T08:15:00Z");	//Si type = 'scheduled' sinon a enlever
+		
 		JSONObject jsonMessage = new JSONObject();
 		jsonMessage.put("type", type);
 		jsonMessage.put("name", name);
 		jsonMessage.put("description", description);
 		jsonMessage.put("informations", informations);
 		jsonMessage.put("content", content);
+		jsonMessage.put("scheduler", scheduler);
 		
 		//On affiche le message
 		System.out.print(jsonMessage + "\n");

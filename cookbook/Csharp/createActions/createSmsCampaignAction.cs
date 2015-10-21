@@ -32,12 +32,17 @@ namespace createSmsCampaignAction
 
             JObject content = new JObject();
             content.Add("textContent", textContent);
+			
+            JObject scheduler = new JObject();
+            scheduler.Add("type", "asap");	//Envoie : immediat = 'asap' / Date = 'scheduled'
+            //scheduler.Add("startDate", "2015-07-27T08:15:00Z");	//Si type = 'scheduled' sinon a enlever
 
             JObject jsonMessage = new JObject();
             jsonMessage.Add("type", type);
             jsonMessage.Add("name", name);
             jsonMessage.Add("description", description);
             jsonMessage.Add("informations", informations);
+            jsonMessage.Add("scheduler", scheduler);
             jsonMessage.Add("content", content);
 
             //On affiche le message

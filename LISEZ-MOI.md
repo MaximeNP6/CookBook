@@ -13,6 +13,10 @@ Prestashop
 
 Ce dossier contient le module pour appeler les APIs v8 de MailPerformance.
 
+WordPress
+--
+
+Ce dossier contient le module pour appeler les APIs v8 de MailPerformance.
 
 Version
 --
