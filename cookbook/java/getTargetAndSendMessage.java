@@ -60,7 +60,7 @@ public class getTargetAndSendMessage
 			con.setRequestMethod("POST");
 			con.setDoOutput(true);
 			        
-			// Envoie des informations dans la connexion
+			// Envoi des informations dans la connexion
 			con.getOutputStream();
 			
 			//Verification des reponses

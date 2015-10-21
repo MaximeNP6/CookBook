@@ -31,7 +31,7 @@ public class T8
 	//Fonction qui cree les liens T8
 	public static String createT8(String url) throws UnsupportedEncodingException, NoSuchAlgorithmException
 	{
-		//La clef du code md5 (peut etre changer)
+		//La clef du code md5 (peut etre change)
 		String keyMd5 = "ABCD";
 		
 		//les differentes variables

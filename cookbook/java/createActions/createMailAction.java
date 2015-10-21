@@ -83,7 +83,7 @@ public class createMailAction
 		{
 			System.out.print("Action : " + name + " created.\n\n");
 			
-			//Lecture des donnees ligne par lignes
+			//Lecture des donnees ligne par ligne
 			BufferedReader buffRead = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			String reply = buffRead.readLine();
 			con.disconnect();
@@ -178,7 +178,7 @@ public class createMailAction
 		return (con);
 	}
 	
-	//Fonction de connexion et envoie des informations
+	//Fonction de connexion et envoi des informations
 	public static HttpURLConnection connection(String url, String xKey, JSONObject jsonMessage) throws IOException
 	{
 		//Lancement de la connexion pour remplir la requete
@@ -187,7 +187,7 @@ public class createMailAction
 		con.setRequestMethod("POST");
 		con.setDoOutput(true);
 				        
-		//Envoie des informations dans la connexion
+		//Envoi des informations dans la connexion
 		OutputStreamWriter sendMessage = new OutputStreamWriter(con.getOutputStream());
 		sendMessage.write(jsonMessage.toString());
 		sendMessage.flush();

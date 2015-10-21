@@ -193,7 +193,7 @@ namespace createMailAction
             streamWriter.Flush();
             streamWriter.Close();
 
-            //Test de l'envoie
+            //Test de l'envoi
             HttpWebResponse httpResponse = null;
             int response = 0;
             string responseString = null;
@@ -238,7 +238,7 @@ namespace createMailAction
                 //Lancement de la connexion pour remplir la requete
                 HttpWebRequest con = Connect(url, xKey, "GET");
 
-                //Test de l'envoie
+                //Test de l'envoi
                 HttpWebResponse httpResponse = null;
                 int response = 0;
                 string responseString = null;

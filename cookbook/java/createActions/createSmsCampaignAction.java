@@ -55,7 +55,7 @@ public class createSmsCampaignAction
 		con.setRequestMethod("POST");
 		con.setDoOutput(true);
 		        
-		// Envoie des informations dans la connection
+		// Envoi des informations dans la connection
 		OutputStreamWriter sendMessage = new OutputStreamWriter(con.getOutputStream());
 		sendMessage.write(jsonMessage.toString());
 		sendMessage.flush();

@@ -73,7 +73,7 @@ public class duplicateAndAddNewSegment
 		segments.put("selected", segmentList);
 		
 		JSONObject scheduler = new JSONObject();
-		scheduler.put("type", "asap");	//Envoie : immediat = 'asap' / Date = 'scheduled'
+		scheduler.put("type", "asap");	//Envoi : immediat = 'asap' / Date = 'scheduled'
 		//scheduler.put("type", "2015-07-27T08:15:00Z");	//Si type = 'scheduled' sinon a enlever
 		scheduler.put("segments", segments);
 		
@@ -369,7 +369,7 @@ public class duplicateAndAddNewSegment
 		con.setRequestMethod(request);
 		con.setDoOutput(true);
 		
-		// Envoie des informations dans la connexion
+		// Envoi des informations dans la connexion
 	    DataOutputStream streamCon = new DataOutputStream(con.getOutputStream());
 	    streamCon.write(dataJson.toString().getBytes());
 	    streamCon.flush();

@@ -76,7 +76,7 @@ namespace duplicateAndAddNewSegment
             segments.Add("selected", segmentArray);
 
             JObject scheduler = new JObject();
-            scheduler.Add("type", "asap");	//Envoie : immediat = 'asap' / Date = 'scheduled'
+            scheduler.Add("type", "asap");	//Envoi : immediat = 'asap' / Date = 'scheduled'
             //scheduler.Add("type", "2015-07-27T08:15:00Z");	//Si type = 'scheduled' sinon a enlever
             scheduler.Add("segments", segments);
 
@@ -95,7 +95,7 @@ namespace duplicateAndAddNewSegment
             segmentList.Add(segmentId);
 
             JObject actionValidationJson = new JObject();
-            actionValidationJson.Add("fortest", true);	//Phase de teste
+            actionValidationJson.Add("fortest", true);	//Phase de test
             actionValidationJson.Add("campaignAnalyser", false);	//Campaign Analyzer : 'true' = oui / 'false' = non
             actionValidationJson.Add("testSegments", segmentList);	//Les Ids des differents segments de tests
             actionValidationJson.Add("mediaForTest", null);	//Rediriger tous les tests vers une seule adresse ('NULL' pour aucune valeur)
@@ -378,7 +378,7 @@ namespace duplicateAndAddNewSegment
                 streamWriter.Close();
             }
 
-            //Test de l'envoie
+            //Test de l'envoi
             HttpWebResponse httpResponse = null;
             int response = 0;
             String responseString = null;
@@ -422,7 +422,7 @@ namespace duplicateAndAddNewSegment
                 //Lancement de la connexion pour remplir la requete
                 HttpWebRequest con = Connect(url, xKey, "GET");
 
-                //Test de l'envoie
+                //Test de l'envoi
                 HttpWebResponse httpResponse = null;
                 int response = 0;
                 String responseString = null;

@@ -74,7 +74,7 @@ public class sendHTML
 			con.setRequestMethod("POST");
 			con.setDoOutput(true);
 			        
-			//Envoie des informations dans la connexion
+			//Envoi des informations dans la connexion
 			OutputStreamWriter sendMessage = new OutputStreamWriter(con.getOutputStream());
 			sendMessage.write(jsonMessage.toString());
 			sendMessage.flush();

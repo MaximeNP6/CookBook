@@ -25,7 +25,7 @@ public class createSegmentStatic
 		Boolean isTest = true;	//Segment de test : oui = 'true' / non = 'false'
 
 
-		//On trouve l'addresse pour la requete
+		//On trouve l'adresse pour la requete
 		String url = "http://v8.mailperformance.com/segments/";
 		if (segmentId != null)
 		{
@@ -84,7 +84,7 @@ public class createSegmentStatic
 				}
 				else
 				{
-					//Lecture des donnees ligne par lignes
+					//Lecture des donnees ligne par ligne
 					BufferedReader buffRead = new BufferedReader(new InputStreamReader(con.getInputStream()));
 					String reply = buffRead.readLine();
 					con.disconnect();
@@ -104,7 +104,7 @@ public class createSegmentStatic
 					con.setRequestProperty("Content-Length", "0");
 					con.setDoOutput(true);
 			        
-					//Envoie des informations dans la connection
+					//Envoi des informations dans la connection
 					OutputStreamWriter sendMessage = new OutputStreamWriter(con.getOutputStream());
 					sendMessage.flush();
 					sendMessage.close();
@@ -142,7 +142,7 @@ public class createSegmentStatic
 		return (con);
 	}
 	
-	//Fonction de connexion et envoie des informations
+	//Fonction de connexion et envoi des informations
 	public static HttpURLConnection connection(String url, String xKey, JSONObject jsonMessage, String method) throws IOException
 	{
 		//Lancement de la connexion pour remplir la requete
@@ -151,7 +151,7 @@ public class createSegmentStatic
 		con.setRequestMethod(method);
 		con.setDoOutput(true);
 				        
-		//Envoie des informations dans la connexion
+		//Envoi des informations dans la connexion
 		OutputStreamWriter sendMessage = new OutputStreamWriter(con.getOutputStream());
 		sendMessage.write(jsonMessage.toString());
 		sendMessage.flush();

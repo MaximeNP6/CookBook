@@ -66,7 +66,7 @@ public class createValueList
 		}
 		else
 		{
-			//La liste a bien ete cree
+			//La liste a bien ete creee
 			System.out.print("The value list  : " + name + " is created / update.");
 		}
 		con.disconnect();
@@ -88,7 +88,7 @@ public class createValueList
 		return (con);
 	}
 	
-	//Fonction de connexion et envoie des informations
+	//Fonction de connexion et envoi des informations
 	public static HttpURLConnection connection(String url, String xKey, JSONObject jsonMessage, String method) throws IOException
 	{
 		//Lancement de la connexion pour remplir la requete
@@ -97,7 +97,7 @@ public class createValueList
 		con.setRequestMethod(method);
 		con.setDoOutput(true);
 				        
-		//Envoie des informations dans la connexion
+		//Envoi des informations dans la connexion
 		OutputStreamWriter sendMessage = new OutputStreamWriter(con.getOutputStream());
 		sendMessage.write(jsonMessage.toString());
 		sendMessage.flush();

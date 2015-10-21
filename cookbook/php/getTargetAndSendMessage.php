@@ -4,7 +4,7 @@
 $unicity = 'test@test.com';
 $idMessage = '000ABC';
 
-//On trouve l'addresse pour la requete
+//On trouve l'adresse pour la requete
 $url = 'http://v8.mailperformance.com/targets?unicity='. $unicity;
 
 //Utilisation de cURL pour remplir les requetes

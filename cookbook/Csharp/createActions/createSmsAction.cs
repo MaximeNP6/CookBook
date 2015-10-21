@@ -51,7 +51,7 @@ namespace createSmsAction
             streamWriter.Flush();
             streamWriter.Close();
 
-            //Teste de l'envoie
+            //Teste de l'envoi
             HttpWebResponse httpResponse = null;
             int response = 0;
             try

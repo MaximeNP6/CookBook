@@ -11,7 +11,7 @@ namespace createValueList
         {
             //Ici, renseignez la xKey et les parametres personnalises
             String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            String valueListsId = "012";	//Id de la liste a modifier ('null' si le critere doit etre creer)
+            String valueListsId = "012";	//Id de la liste a modifier ('null' si le critere doit etre cree)
 
             String name = "createValueList (Csharp)";	//Nom de la liste
             Boolean ordered = false;	//Ordonnee : oui = 'true' / non = 'false'
@@ -19,10 +19,10 @@ namespace createValueList
             JArray values = new JArray();	//Valeurs de la liste
                 JObject value1 = new JObject();	//Premiere valeur
                     value1.Add("index", 1);	//Numeros de la valeur
-                    value1.Add("value", "Mr");	//Valeur du champs
+                    value1.Add("value", "Mr");	//Valeur du champ
                 JObject value2 = new JObject();	//Premiere valeur
                     value2.Add("index", 2);	//Numeros de la valeur
-                    value2.Add("value", "Mme");	//Valeur du champs
+                    value2.Add("value", "Mme");	//Valeur du champ
                 values.Add(value1);
                 values.Add(value2);
 
@@ -111,7 +111,7 @@ namespace createValueList
                 streamWriter.Close();
             }
 
-            //Test de l'envoie
+            //Test de l'envoi
             HttpWebResponse httpResponse = null;
             int response = 0;
             string responseString = null;

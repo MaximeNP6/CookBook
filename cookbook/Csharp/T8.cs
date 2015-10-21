@@ -26,7 +26,7 @@ namespace T8
         //Fonction qui cree les liens T8
         static String createT8(Match url)
         {
-            //La clef du code md5 (peut etre changer)
+            //La clef du code md5 (peut etre change)
             String keyMd5 = "ABCD";
 
             //les differentes variables
@@ -72,7 +72,7 @@ namespace T8
                 sb.Append(hash[i].ToString("X2"));
             }
 
-            //Envoie des donnees
+            //Envoi des donnees
             String h = sb.ToString();
             return (h);
         }
