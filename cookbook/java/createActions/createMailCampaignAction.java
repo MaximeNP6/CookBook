@@ -57,13 +57,8 @@ public class createMailCampaignAction
 		segments.put("selected", idSelectSegment);
 		
 		JSONObject scheduler = new JSONObject();
-<<<<<<< HEAD
 		scheduler.put("type", "asap");	//Envoie : immediat = 'asap' / Date = 'scheduled'
 		//scheduler.put("startDate", "2015-07-27T08:15:00Z");	//Si type = 'scheduled' sinon a enlever
-=======
-		scheduler.put("type", "asap");	//Envoi : immediat = 'asap' / Date = 'scheduled'
-		//scheduler.put("type", "2015-07-27T08:15:00Z");	//Si type = 'scheduled' sinon a enlever
->>>>>>> origin/master
 		scheduler.put("segments", segments);
 
 		JSONObject content = new JSONObject();

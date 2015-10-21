@@ -56,13 +56,8 @@ namespace createMailCampaignAction
             segments.Add("selected", SelectSegment);
 
             JObject scheduler = new JObject();
-<<<<<<< HEAD
             scheduler.Add("type", "asap");	//Envoie : immediat = 'asap' / Date = 'scheduled'
             //scheduler.Add("startDate", "2015-07-27T08:15:00Z");	//Si type = 'scheduled' sinon a enlever
-=======
-            scheduler.Add("type", "asap");	//Envoi : immediat = 'asap' / Date = 'scheduled'
-            //scheduler.Add("type", "2015-07-27T08:15:00Z");	//Si type = 'scheduled' sinon a enlever
->>>>>>> origin/master
             scheduler.Add("segments", segments);
 
             JObject content = new JObject();
@@ -229,7 +224,7 @@ namespace createMailCampaignAction
                 httpResponse.Close();
                 reader.Close();
             }
-            //Reception du signal 
+            //Reception du signal
             catch (WebException ex)
             {
                 if (ex.Status == WebExceptionStatus.ProtocolError)
@@ -274,7 +269,7 @@ namespace createMailCampaignAction
                     httpResponse.Close();
                     reader.Close();
                 }
-                //Reception du signal 
+                //Reception du signal
                 catch (WebException ex)
                 {
                     if (ex.Status == WebExceptionStatus.ProtocolError)
