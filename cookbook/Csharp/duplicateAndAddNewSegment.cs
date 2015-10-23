@@ -48,7 +48,7 @@ namespace duplicateAndAddNewSegment
             String segmentDescription = "Description";	//Description du segment
             String segmentExpiration = "2016-01-08T12:11:00Z";	//Date d'expiration du segment
             Boolean segmentIsTest = true;	//Le test est un segment de test : oui = 'true' / non = 'false'
-            
+
             //Creation du Json du message
             JObject segmentJson = new JObject();
             segmentJson.Add("type", segmentType);
@@ -77,7 +77,7 @@ namespace duplicateAndAddNewSegment
 
             JObject scheduler = new JObject();
             scheduler.Add("type", "asap");	//Envoi : immediat = 'asap' / Date = 'scheduled'
-            //scheduler.Add("type", "2015-07-27T08:15:00Z");	//Si type = 'scheduled' sinon a enlever
+            //scheduler.Add("startDate", "2015-07-27T08:15:00Z");	//Si type = 'scheduled' sinon a enlever
             scheduler.Add("segments", segments);
 
             actionDuplicateJson.Remove("scheduler");
@@ -144,7 +144,7 @@ namespace duplicateAndAddNewSegment
             responseString = (String)result[3];
 
             Console.Write("Target : \n" + responseString + "\n\n");
-            
+
             result = createTarget(response, urlBase, con, xKey, unicity, result);
             con = (HttpWebRequest)result[1];
             httpResponse = (HttpWebResponse)result[2];
@@ -180,7 +180,7 @@ namespace duplicateAndAddNewSegment
 
 
         public static Object[] createTarget(int response, String urlBase, HttpWebRequest con, String xKey, String unicity, Object[] result)
-    	{
+      {
             String url = urlBase + "targets/";
 
             if (response == 404)
@@ -301,7 +301,7 @@ namespace duplicateAndAddNewSegment
         public static Object[] updateActionDuplicate(String urlBase, String actionDuplicateId, JObject actionDuplicateJson, String segmentId, HttpWebRequest con, String xKey, Object[] result)
         {
             //Nouvelle url
-		    String url = urlBase + "actions/" + actionDuplicateId;
+        String url = urlBase + "actions/" + actionDuplicateId;
 
             result = allConnection(con, url, xKey, getNewActionDuplicateJson(actionDuplicateJson, segmentId), "PUT");
 
@@ -393,7 +393,7 @@ namespace duplicateAndAddNewSegment
                 httpResponse.Close();
                 reader.Close();
             }
-            //Reception du signal 
+            //Reception du signal
             catch (WebException ex)
             {
                 if (ex.Status == WebExceptionStatus.ProtocolError)
@@ -437,7 +437,7 @@ namespace duplicateAndAddNewSegment
                     httpResponse.Close();
                     reader.Close();
                 }
-                //Reception du signal 
+                //Reception du signal
                 catch (WebException ex)
                 {
                     if (ex.Status == WebExceptionStatus.ProtocolError)

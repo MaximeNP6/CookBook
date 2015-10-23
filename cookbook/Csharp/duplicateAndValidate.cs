@@ -105,7 +105,7 @@ namespace duplicateAndValidate
 
                         JObject scheduler = new JObject();
                         scheduler.Add("type", "asap");	//Envoi : immediat = 'asap' / Date = 'scheduled'
-                        //scheduler.Add("type", "2015-07-27T08:15:00Z");	//Si type = 'scheduled' sinon a enlever
+                        //scheduler.Add("startDate", "2015-07-27T08:15:00Z");	//Si type = 'scheduled' sinon a enlever
                         scheduler.Add("segments", segments);
 
                         data.Remove("scheduler");
@@ -264,7 +264,7 @@ namespace duplicateAndValidate
                 httpResponse.Close();
                 reader.Close();
             }
-            //Reception du signal 
+            //Reception du signal
             catch (WebException ex)
             {
                 if (ex.Status == WebExceptionStatus.ProtocolError)
@@ -308,7 +308,7 @@ namespace duplicateAndValidate
                     httpResponse.Close();
                     reader.Close();
                 }
-                //Reception du signal 
+                //Reception du signal
                 catch (WebException ex)
                 {
                     if (ex.Status == WebExceptionStatus.ProtocolError)
