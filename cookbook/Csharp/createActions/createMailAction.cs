@@ -114,11 +114,13 @@ namespace createMailAction
 
                 int actionState = waitForState(idAction, xKey);
 
-                if (response != 200 || actionState == 20)
+                if (response != 200 || actionState != 38)
                 {
                     //Affichage de l'erreur
                     if (actionState == 20)
                         Console.Write("Error : the test failed.");
+                    else if (actionState == 10)
+                        Console.Write("Error : check the campaign in the Backoffice.");
                     else
                         Console.Write("Error : " + response + " " + responseString);
                 }
@@ -165,7 +167,7 @@ namespace createMailAction
             }
         }
 
-		
+
         //Fonctions ----
 
 
@@ -183,7 +185,7 @@ namespace createMailAction
             return (con);
         }
 
-		//Fonction de connexion et envoie des informations
+        //Fonction de connexion et envoie des informations
         static Object[] allConnection(String url, String xKey, JObject jsonMessage)
         {
             HttpWebRequest con = Connect(url, xKey, "POST");
@@ -208,7 +210,7 @@ namespace createMailAction
                 httpResponse.Close();
                 reader.Close();
             }
-            //Reception du signal 
+            //Reception du signal
             catch (WebException ex)
             {
                 if (ex.Status == WebExceptionStatus.ProtocolError)
@@ -221,12 +223,12 @@ namespace createMailAction
             return (result);
         }
 
-		//Fonction d'attente de fin de test
+        //Fonction d'attente de fin de test
         static int waitForState(String idAction, String xKey)
         {
             int actionState = 30;
 
-            while (actionState != 38 && actionState != 20)
+            while (actionState != 38 && actionState != 20 && actionState != 10)
             {
                 //On attend 20 secondes
                 Console.Write("Wait 20sec...\n");
@@ -253,7 +255,7 @@ namespace createMailAction
                     httpResponse.Close();
                     reader.Close();
                 }
-                //Reception du signal 
+                //Reception du signal
                 catch (WebException ex)
                 {
                     if (ex.Status == WebExceptionStatus.ProtocolError)

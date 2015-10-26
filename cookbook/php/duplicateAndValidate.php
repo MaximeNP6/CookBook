@@ -136,10 +136,12 @@ else
         $actionState = waitForState($idNewAction, $xKey);
 
         //On verifie les reponses
-        if ($info['http_code'] != 204 || $actionState == 20)
+        if ($info['http_code'] != 204 || $actionState != 38)
         {
           if ($actionState == 20)
             echo 'Error : the test failed';
+          else if ($actionState == 10)
+            echo 'Error : check the campaign in the Backoffice.';
           else
             echo 'Error : ' . $info['http_code'];
         }
@@ -230,7 +232,7 @@ function waitForState($idAction, $xKey)
 {
   $actionState = 30;
 
-  while ($actionState != 38 && $actionState != 20)
+  while ($actionState != 38 && $actionState != 20 && $actionState != 10)
   {
     //On attend 20 secondes
     echo "Wait 20sec...\n";

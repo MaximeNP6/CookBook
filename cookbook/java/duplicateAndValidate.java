@@ -156,11 +156,13 @@ public class duplicateAndValidate
 
             int actionState = waitForState(idNewAction, xKey);
 
-            if (responseCode != 204 || actionState == 20)
+            if (responseCode != 204 || actionState != 38)
             {
               //Affichage de l'erreur
               if (actionState == 20)
                 System.out.print("Error : the test failed.");
+              else if (actionState == 10)
+                System.out.print("Error : check the campaign in the Backoffice.");
               else
                 System.out.print("Error : " + responseCode + " " + con.getResponseMessage());
             }
@@ -251,7 +253,7 @@ public class duplicateAndValidate
   {
     int actionState = 30;
 
-    while (actionState != 38 && actionState != 20)
+    while (actionState != 38 && actionState != 20 && actionState != 10)
     {
       //On attend 20 secondes
       System.out.print("Wait 20sec...\n");

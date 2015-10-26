@@ -326,10 +326,13 @@ public class duplicateAndAddNewSegment
 
     int actionState = waitForState(actionDuplicateId, xKey, urlBase);
 
-    if (actionState == 20)
+    if (actionState == 38)
     {
       //Affichage de l'erreur
-      System.out.print("Error : the test failed.");
+      if (actionState == 20)
+        System.out.print("Error : the test failed.");
+      else if (actionState == 10)
+        System.out.print("Error : check the campaign in the Backoffice.");
     }
     else
     {
@@ -391,7 +394,7 @@ public class duplicateAndAddNewSegment
   {
     int actionState = 30;
 
-    while (actionState != 38 && actionState != 20)
+    while (actionState != 38 && actionState != 20 && actionState != 10)
     {
       //On attend 20 secondes
       System.out.print("Wait 20sec...\n");
