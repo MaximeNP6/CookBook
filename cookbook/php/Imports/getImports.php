@@ -1,0 +1,72 @@
+<?php
+
+// Url de base
+$urlBase = 'http://v8.mailperformance.com/';
+
+// la X-Key
+$xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////DEBUT DU PROGRAMME///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+$url = $urlBase . 'imports/'; // Si vous voulez des informations presises sur un seul import faite : "$url = $urlBase . 'imports/[Id de l'Import]';"
+
+//Requete 'GET' sur les imports
+$return = urlGet($url, $xKey);
+$result = $return["result"];
+$req = $return["req"];
+
+//Verification des reponses
+if ($result == false)
+{
+    //Erreur lors de la requete
+
+    //Affichage de l'erreur
+    $info = curl_getinfo($req);
+    echo 'Error : ' . $info['http_code'] . "\n";
+}
+else
+{
+    //On affiche la reponse
+    echo $result . "\n";
+}
+curl_close($req);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////FIN DU PROGRAMME/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////DEBUT DES FONCTIONS//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//Utilisation de cURL pour remplir levs requetes
+//Fonctions de connexion
+function startCurlInit($url)
+{
+    $init = curl_init();
+    curl_setopt($init, CURLOPT_URL, $url);
+    curl_setopt($init, CURLOPT_RETURNTRANSFER, true);
+    return ($init);
+}
+
+function urlGet($url, $xKey)
+{
+    //On remplit la requete 'GET'
+    $req = startCurlInit($url);
+    curl_setopt($req, CURLOPT_CUSTOMREQUEST, 'GET');
+
+    //Mise en place du xKey et des options
+    curl_setopt($req, CURLOPT_HTTPHEADER, array(
+    'X-Key: ' . $xKey,
+    'Content-Type: application/json',
+    'Accept: application/vnd.mperf.v8.import.v1+json'));
+
+    //Execution de la requete
+    $result = curl_exec($req);
+    return (array('req' => $req, 'result' => $result));
+}
+
+?>
