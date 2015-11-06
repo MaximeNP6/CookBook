@@ -13,7 +13,7 @@ $xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-$url = $urlBase . 'imports/'; // Si vous voulez des informations presises sur un seul import faite : "$url = $urlBase . 'imports/[Id de l'Import]';"
+$url = $urlBase . 'imports/'; // Si vous voulez des informations precises sur un seul import faites : "$url = $urlBase . 'imports/[Id de l'Import]';"
 
 //Requete 'GET' sur les imports
 $return = urlGet($url, $xKey);
@@ -42,7 +42,7 @@ curl_close($req);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-//Utilisation de cURL pour remplir levs requetes
+//Utilisation de cURL pour remplir les requetes
 //Fonctions de connexion
 function startCurlInit($url)
 {
