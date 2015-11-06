@@ -11,6 +11,11 @@ createAutoImports
 
 This code create an automatic Import.
 
+createMaunalImport
+--
+
+This code create a manual Import with the creation of the bindings.
+
 Version
 --
 

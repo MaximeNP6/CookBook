@@ -11,7 +11,7 @@ $xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 function getCreateImportJson()
 {
     // Remplissez les informations obligatoires
-    $importName = "Nom de votre Import"; //Nom de l'import
+    $importName = "Nom de votre Import automatique"; //Nom de l'import
     $schedulerName = "Nom du scheduler"; //Nom du scheduler
     $binding = 1234; // Id du binding
     $segmentId = 1234; // Id du segment
