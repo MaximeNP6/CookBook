@@ -86,8 +86,8 @@ function getExecutionImportJson($idBindings)
     // Remplissez les informations obligatoires
     $segmentId = 1234; // Id du segment
     $phoneFieldsId = 1234; // Id du field
-    $contactsId = array("1234ABCD"); // Id des utilisateurs : Administration -> Utilisateurs -> Idenfitifant
-    $groupsContactsId = array(1234); // Id des groupes : Administration -> Groupes -> Idenfitifant
+    $contactsId = array("1234ABCD"); // Id des utilisateurs : Administration -> Utilisateurs -> Idenfitifiant
+    $groupsContactsId = array(1234); // Id des groupes : Administration -> Groupes -> Idenfitifiant
 
     $executionImportData = array(
         "features" => array(
@@ -114,8 +114,8 @@ function getExecutionImportJson($idBindings)
                 "type" => "report",
                 "sendFinalReport" => false,
                 "sendErrorReport" => true,
-                "contactGuids" => $contactsId, // Id des utilisateurs : Administration -> Utilisateurs -> Idenfitifant
-                "groupIds" => $groupsContactsId, // Id des groupes : Administration -> Groupes -> Idenfitifant
+                "contactGuids" => $contactsId, // Id des utilisateurs : Administration -> Utilisateurs -> Idenfitifiant
+                "groupIds" => $groupsContactsId, // Id des groupes : Administration -> Groupes -> Idenfitifiant
             ),
             array( // Parametres pour mettre a jour une cible dans la base de donnees
                 "type" => "database",
@@ -163,7 +163,7 @@ if (($req = verification($con)) == null)
 
 //Nouvelle url
 $url = $urlBase . "importFormats/";
-//On cree notre binding (parsseur du fichier Source)
+//On cree notre binding (parser du fichier Source)
 echo "CREATION BINDINGS\n";
 $con = urlPostOrPut($req, 'POST', getBindingsJson(), $xKey, $url, 0);
 if (($req = verification($con)) == null)
@@ -246,7 +246,7 @@ function urlPostOrPut($req, $request, $dataJson, $xKey, $url, $source)
     }
     else if ($source == 1)
     {
-        //Envoie des informations du fichier selectionne
+        //Envoi des informations du fichier selectionne
         curl_setopt($req, CURLOPT_POSTFIELDS, $dataJson["data"]);
         curl_setopt($req, CURLOPT_HTTPHEADER, array(
                 'X-Key: ' . $xKey,
