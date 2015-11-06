@@ -40,7 +40,7 @@ function getCreateImportJson()
                     "days" => array("Mon", "Tue", "Wed", "Thu", "Fri", "Sat"), // les jours selectionnes de la semaine
 
                     "type" => "monthly", // Mensuel
-                    "days" => array( 20 ) // le numeros du jours des imports
+                    "days" => array( 20 ) // le numeros du jour des imports
                     */
                 ),
                 "periodicity" => array( // Heure de l'import
@@ -71,7 +71,7 @@ function getCreateImportJson()
                 )
             )
         ),
-        "features" => array( // POUR SUPPRIMER NIMPORTE QUEL FONCTIONS IL SUFFIT DE METTRE EN COMMENTAIRE !!! (exemple avec 'redList')
+        "features" => array( // POUR SUPPRIMER NIMPORTE QUELLE FONCTION IL SUFFIT DE METTRE EN COMMENTAIRE !!! (exemple avec 'redList')
             array( // Parametres de normalisation
                 "type" => "normalization",
                 "fields" => array(
@@ -93,12 +93,12 @@ function getCreateImportJson()
             ),
             array( // Parametres des rapports
                 "type" => "report",
-                "sendFinalReport" => false, //Envoie d'un rapport final
-                "sendErrorReport" => true, //Envoie d'un rapport d'erreur
+                "sendFinalReport" => false, //Envoi d'un rapport final
+                "sendErrorReport" => true, //Envoi d'un rapport d'erreur
 
                 //Si un des rapport doit être envoyer, il faut au moins un destinataire ('contactGuids'/'groupIds')
-                "contactGuids" => $contactsId, // Id des utilisateurs : Administration -> Utilisateurs -> Idenfitifant
-                "groupIds" => $groupsContactsId, // Id des groupes : Administration -> Groupes -> Idenfitifant
+                "contactGuids" => $contactsId, // Id des utilisateurs : Administration -> Utilisateurs -> Idenfitifiant
+                "groupIds" => $groupsContactsId, // Id des groupes : Administration -> Groupes -> Idenfitifiant
             ),
             array( // Parametres pour mettre a jour une cible dans la base de donnees
                 "type" => "database",
