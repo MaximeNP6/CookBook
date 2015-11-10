@@ -11,8 +11,8 @@ $xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 function getCreateImportJson()
 {
     // Remplissez les informations obligatoires
-    $importName = "Nom de votre Import automatique"; //Nom de l'import
-    $schedulerName = "Nom du scheduler"; //Nom du scheduler
+    $importName = "Nom de votre Import automatique"; // Nom de l'import
+    $schedulerName = "Nom du scheduler"; // Nom du scheduler
     $binding = 1234; // Id du binding
     $segmentId = 1234; // Id du segment
     $fieldsId = 1234; // Id du field
@@ -82,23 +82,23 @@ function getCreateImportJson()
                 "type" => "segmentation",
                 "segmentId" => $segmentId,
                 "emptyExisitingSegment" => true
-            ),/*
-            array( // Ajout de TOUTES les cibles (de l'import) a la liste rouge
+            ),
+            /*array( // Ajout de TOUTES les cibles (de l'import) a la liste rouge
                 "type" => "redList",
                 "destination" => array( "sms" => true, "email" => true )
             ),*/
             array( // Regles a appliquer en cas de doublon
                 "type" => "duplicate",
-                "rules" => array( "ignore" => true ) /// ou "rules" => array( "first" => true ) ou "rules" => array( "last" => true )
+                "rules" => array( "ignore" => true ) // ou "rules" => array( "first" => true ) ou "rules" => array( "last" => true )
             ),
             array( // Parametres des rapports
                 "type" => "report",
-                "sendFinalReport" => false, //Envoi d'un rapport final
-                "sendErrorReport" => true, //Envoi d'un rapport d'erreur
+                "sendFinalReport" => false, // Envoi d'un rapport final
+                "sendErrorReport" => true, // Envoi d'un rapport d'erreur
 
-                //Si un des rapport doit être envoyer, il faut au moins un destinataire ('contactGuids'/'groupIds')
-                "contactGuids" => $contactsId, // Id des utilisateurs : Administration -> Utilisateurs -> Idenfitifiant
-                "groupIds" => $groupsContactsId, // Id des groupes : Administration -> Groupes -> Idenfitifiant
+                // Si un des rapport doit être envoyer, il faut au moins un destinataire ('contactGuids'/'groupIds')
+                "contactGuids" => $contactsId, // Id des utilisateurs : Administration -> Utilisateurs -> Identifiant
+                "groupIds" => $groupsContactsId, // Id des groupes : Administration -> Groupes -> Identifiant
             ),
             array( // Parametres pour mettre a jour une cible dans la base de donnees
                 "type" => "database",
@@ -119,7 +119,7 @@ function getCreateImportJson()
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////FIN DES CREATIONs DES JSONS//////////////////////////////////////////////////////////////////////////////////////////////////
+/////FIN DES CREATIONS DES JSONS//////////////////////////////////////////////////////////////////////////////////////////////////
 /////DEBUT DU PROGRAMME///////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

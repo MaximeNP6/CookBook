@@ -33,6 +33,7 @@ function getSourceImportJson()
     $fromFile = "C:\\votre\\chemin\\vers\\le\\fichier\\";
     $nameFile = "nomDeVotreFichier.extension";
 
+    //On lit l'interieur du fichier
     $sourceImportData = array(
         "data" => file_get_contents($fromFile . $nameFile),
         "name" => $nameFile
@@ -52,7 +53,7 @@ function getBindingsJson()
 
     $bindingsData = array(
         "name" => $nameBindings, //Nom de ce bindings
-        "separator" => 59, //Code ascii de votre separateur (59 = ;)*/
+        "separator" => 59, //Code ascii de votre separateur (59 = ;)
         "startAt" => 1, //Commence a la ligne indique
         "binds" => array( //On indique manuellement les colonnes avec les idFields
             array(
@@ -68,7 +69,7 @@ function getBindingsJson()
                 "fieldId" => -10 //Id du field (-10 = On ne prend pas en compte cette colonne)
             ),
         ),
-        "savedImportFormat" => true //On sauvegarde le format de l'import*/
+        "savedImportFormat" => true //On sauvegarde le format de l'import
     );
 
 
@@ -86,12 +87,12 @@ function getExecutionImportJson($idBindings)
     // Remplissez les informations obligatoires
     $segmentId = 1234; // Id du segment
     $phoneFieldsId = 1234; // Id du field
-    $contactsId = array("1234ABCD"); // Id des utilisateurs : Administration -> Utilisateurs -> Idenfitifiant
-    $groupsContactsId = array(1234); // Id des groupes : Administration -> Groupes -> Idenfitifiant
+    $contactsId = array("1234ABCD"); // Id des utilisateurs : Administration -> Utilisateurs -> Identifiant
+    $groupsContactsId = array(1234); // Id des groupes : Administration -> Groupes -> Identifiant
 
     $executionImportData = array(
         "features" => array(
-            array( // Parametre de normalisation
+            array( // Normalisation
                 "type" => "normalization",
                 "fields" => array(
                     $phoneFieldsId => array("FRA") // Pour changer de pays de normalisation utiliser l'ISO ALPHA-3 Code (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
@@ -114,8 +115,8 @@ function getExecutionImportJson($idBindings)
                 "type" => "report",
                 "sendFinalReport" => false,
                 "sendErrorReport" => true,
-                "contactGuids" => $contactsId, // Id des utilisateurs : Administration -> Utilisateurs -> Idenfitifiant
-                "groupIds" => $groupsContactsId, // Id des groupes : Administration -> Groupes -> Idenfitifiant
+                "contactGuids" => $contactsId, // Id des utilisateurs : Administration -> Utilisateurs -> Identifiant
+                "groupIds" => $groupsContactsId, // Id des groupes : Administration -> Groupes -> Identifiant
             ),
             array( // Parametres pour mettre a jour une cible dans la base de donnees
                 "type" => "database",
@@ -228,7 +229,7 @@ function startCurlInit($url)
 
 function urlPostOrPut($req, $request, $dataJson, $xKey, $url, $source)
 {
-    //On remplit la requete avec le bon verbe ($request) : POST / PUT
+    //On remplit la requete avec le bon verbe ($request)
     $req = startCurlInit($url);
     curl_setopt($req, CURLOPT_CUSTOMREQUEST, $request);
 

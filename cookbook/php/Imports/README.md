@@ -11,7 +11,7 @@ createAutoImports
 
 This code creates an automatic Import.
 
-createMaunalImport
+createManualImports
 --
 
 This code creates a manual Import with the creation of the bindings.

@@ -11,7 +11,7 @@ createAutoImports
 
 Ce code permet de creer un Import automatique.
 
-createMaunalImport
+createManualImports
 --
 
 Ce code cree un Import manuel avec des bindings.
