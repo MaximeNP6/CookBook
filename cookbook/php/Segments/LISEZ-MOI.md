@@ -15,4 +15,9 @@ Ce code modifie un segment dynamique.
 Version
 --
 
-1.0 
+1.0
+
+Contact
+--
+
+Contactez-nous sur : http://www.np6.fr/demande-de-contact/

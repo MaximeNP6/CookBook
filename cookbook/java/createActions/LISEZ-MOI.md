@@ -36,3 +36,8 @@ Version
 --
 
 1.0
+
+Contact
+--
+
+Contactez-nous sur : http://www.np6.fr/demande-de-contact/

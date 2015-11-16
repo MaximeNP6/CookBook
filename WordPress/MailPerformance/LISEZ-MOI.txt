@@ -26,3 +26,8 @@ Dans votre plugin d'inscription, quand un utilisateur s'inscrit, vous devez appe
 1, 2, 3: C'est fait!
 
 === Fin ===
+
+Contact
+--
+
+Contactez-nous sur : http://www.np6.fr/demande-de-contact/

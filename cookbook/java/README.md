@@ -10,13 +10,13 @@ This code example allows you to get the information of a target (Guid, fields...
 getTargetAndSendMessage
 --
 
-This code takes the id of a target (with the getTargetFromUnicity's informations) and sends it a pre-created message (the idMessage) in your account. 
+This code takes the id of a target (with the getTargetFromUnicity's informations) and sends it a pre-created message (the idMessage) in your account.
 To use this code you must import the Java JSON library.
 
 postTarget
 --
 
-This code checks if the target exist. If it is, the code will update the target with the new information; or else the code will create the new target with these information. 
+This code checks if the target exist. If it is, the code will update the target with the new information; or else the code will create the new target with these information.
 To use this code you must import the Java JSON library.
 
 creatTargetAndAddToSegment
@@ -76,3 +76,8 @@ Version
 --
 
 1.0
+
+Contact
+--
+
+Contact us at : http://www.np6.co.uk/contact-request/

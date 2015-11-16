@@ -26,3 +26,8 @@ In your subscription plugin, when your user subscribes you need to call this fun
 1, 2, 3: You're done!
 
 === End ===
+
+Contact
+--
+
+Contact us at : http://www.np6.co.uk/contact-request/

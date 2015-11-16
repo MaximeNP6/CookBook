@@ -22,3 +22,8 @@ Version
 --
 
 Ceci est la premiere version des drivers. Beaucoup de ces APIs ne sont pas dans leurs versions finales.
+
+Contact
+--
+
+Contactez-nous sur : http://www.np6.fr/demande-de-contact/

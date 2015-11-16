@@ -62,3 +62,8 @@ Version
 --
 
 1.0
+
+Contact
+--
+
+Contact us at : http://www.np6.co.uk/contact-request/

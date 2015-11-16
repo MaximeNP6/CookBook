@@ -16,7 +16,7 @@ To use this code you must import the JSON.Net library.
 postTarget
 --
 
-This code checks if the target exist. If it is, the code will update the target with the new information; or else the code will create the new target with this information. 
+This code checks if the target exist. If it is, the code will update the target with the new information; or else the code will create the new target with this information.
 To use this code you must import the JSON.NET library.
 
 creatTargetAndAddToSegment
@@ -76,3 +76,8 @@ Version
 --
 
 1.0
+
+Contact
+--
+
+Contact us at : http://www.np6.co.uk/contact-request/
