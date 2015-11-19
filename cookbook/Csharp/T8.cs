@@ -26,7 +26,7 @@ namespace T8
         //Fonction qui cree les liens T8
         static String createT8(Match url)
         {
-            //La clef du code md5 (peut etre change)
+            //La clef de hachage md5 (peut etre change)
             String keyMd5 = "ABCD";
 
             //les differentes variables
@@ -48,12 +48,12 @@ namespace T8
         static String findGV1()
         {
             String agenceId = "ABCD";	//Id de l'agence
-            String clientId = "0AB";	//Id du client
+            String customerId = "0AB";	//Id du compte client
             String actionId = "000ABC";	//Id de l'action
             String targetId = "000ABCDE";	//Id de la cible
 
             //Creation du GV1
-            String GV1 = agenceId + clientId + actionId + targetId + '0';
+            String GV1 = agenceId + customerId + actionId + targetId + '0';
             return (GV1);
         }
 
