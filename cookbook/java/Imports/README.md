@@ -19,6 +19,12 @@ createManualImports
 This code creates a manual Import with the creation of the bindings.
 To use this code you must import the Java JSON library.
 
+createManualImportOn2Steps
+--
+
+This code creates a manual Import with only two API calls.
+To use this code you must import the Java JSON library.
+
 JSON librairy
 --
 

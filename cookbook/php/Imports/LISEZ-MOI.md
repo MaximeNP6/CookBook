@@ -16,6 +16,11 @@ createManualImports
 
 Ce code cree un Import manuel avec des bindings.
 
+createManualImportOn2Steps
+--
+
+Ce code cree un Import manuel avec seulement deux appels aux APIs.
+
 Version
 --
 
