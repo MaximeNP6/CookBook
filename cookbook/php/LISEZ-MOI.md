@@ -57,6 +57,10 @@ duplicateAndAddNewSegment
 
 Ce code cree/modifie une cible, cree/modifie un segment, place la cible dans le segment, duplique une action, fait du segment le nouveau segment d'envoi de l'action duplique et enfin lance une phase de test.
 
+SendMessageOnSegment
+--
+
+Ce code prend tous les ids des cibles d'un segment et lance un SendMessage avec toutes les cibles.
 
 Version
 --

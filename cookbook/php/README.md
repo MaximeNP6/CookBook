@@ -57,6 +57,10 @@ duplicateAndAddNewSegment
 
 With this code you can create/modify a target, create/modify a segment, place target in segment, duplicate an action, make segment as new sending segment to the duplicated action and finally launch a test phase.
 
+SendMessageOnSegment
+--
+
+This code takes all id targets from a segment and start a SendMessage with all the targets.
 
 Version
 --
