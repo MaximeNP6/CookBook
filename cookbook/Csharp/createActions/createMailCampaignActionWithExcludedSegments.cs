@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using System.Net;
 
-namespace createMailCampaignAction
+namespace createMailCampaignActionWithExcludedSeg
 {
     class Program
     {
@@ -30,6 +30,7 @@ namespace createMailCampaignAction
 
             int[] idTestSegment = { 0123 };	//Id du segment de test pour la validation
             int[] idSelectSegment = { 0123 };	//Ids des segments selectionnes
+            int[] idExcludedSegment = { 0123 };	//Ids des segments exclus
 
 
             //On trouve l'adresse pour la requete
@@ -52,8 +53,12 @@ namespace createMailCampaignAction
             JArray SelectSegment = new JArray();
             SelectSegment.Add(idSelectSegment);
 
+            JArray ExcludedSegment = new JArray();
+            ExcludedSegment.Add(idExcludedSegment);
+
             JObject segments = new JObject();
             segments.Add("selected", SelectSegment);
+            segments.Add("excluded", ExcludedSegment);
 
             JObject scheduler = new JObject();
             scheduler.Add("type", "asap");	//Envoie : immediat = 'asap' / Date = 'scheduled'

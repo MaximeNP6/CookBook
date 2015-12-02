@@ -11,7 +11,7 @@ createSmsAction
 
 This code creates a Sms action (a pre-created message).
 
-createMailCampaignActionAction
+createMailCampaignAction
 --
 
 This code creates a mail campaign action. It test the campaign and finally valid it.
@@ -21,6 +21,10 @@ createSmsCampaignAction
 
 This code creates a Sms campaign action.
 
+createMailCampaignActionWithExcludedSegments
+--
+
+This code create a mail campaign like createMailCampaignAction but with excluded segments.
 
 Version
 --

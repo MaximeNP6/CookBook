@@ -16,7 +16,7 @@ Ce code cree une action "sms message" (un message deja cree).
 
 Pour utiliser ce code vous devez importer la librairie JSON.Net .
 
-createMailCampaignActionAction
+createMailCampaignAction
 --
 
 Ce code cree une action "campaign mail". Le code teste la campagne et finit par le valider.
@@ -27,6 +27,14 @@ createSmsCampaignAction
 --
 
 Ce code cree une action "campaign sms".
+
+Pour utiliser ce code vous devez importer la librairie JSON.Net .
+
+
+createMailCampaignActionWithExcludedSegments
+--
+
+Ce code cree une campagne email comme createMailCampaignAction mais avec des segments exclus.
 
 Pour utiliser ce code vous devez importer la librairie JSON.Net .
 
