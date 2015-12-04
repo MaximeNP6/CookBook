@@ -28,7 +28,7 @@ $result = $con['result'];
 $req = $con['req'];
 $tab = myTab($result);
 
-//Pour chaque Taget on fait un SendMessage
+//Pour chaque Target on fait un SendMessage
 foreach ($tab as $idTarget)
 {
     //Nouvelle url
@@ -57,7 +57,7 @@ function myTab($result)
     //On regarde tout le tableau de char
     foreach ($tabChar as $value)
     {
-        //Si un caractere et bon, on le garde
+        //Si un caractere est bon, on le garde
         if ((ord($value) >= ord("0") && ord($value) <= ord("9"))
                 || (ord($value) >= ord("A") && ord($value) <= ord("Z"))
                 || $value == ",")
