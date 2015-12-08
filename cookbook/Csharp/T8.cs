@@ -17,6 +17,8 @@ namespace T8
             Regex rgx = new Regex("\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
             string result = rgx.Replace(text, createT8);
 
+            result = addOpeningLink(result);
+
             //Attente de lecture (optionnel)
             Console.Write(result);
             Console.ReadLine();
@@ -42,6 +44,25 @@ namespace T8
 
             //Retourne le nouveau lien
             return (finalUrl);
+        }
+
+        //On ajoute le lien pour tracker les ouvertures
+        static String addOpeningLink(string result)
+        {
+            String endHtml = "</body></html>";  //EndHtml
+            String urlT8 = "http://t8.mailperformance.com/";	//Adresse du catcher
+
+            String openLink = "<img src=\"" + urlT8 + "o5.aspx?GV1=" + findGV1() + "\">"; // Open Link
+
+            //Position de la derniere occurence connu
+            int position = result.LastIndexOf(endHtml);
+
+            if (position == -1) //if failed
+                result = result + openLink;
+            else
+                result = result.Replace(endHtml, openLink + endHtml);
+
+            return (result);
         }
 
         //Fonction pour trouver le GV1

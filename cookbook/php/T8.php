@@ -5,6 +5,8 @@ $text = "This is the exemple : first link : https://www.google.com / second link
 
 //Fonction qui copie le texte avec des liens T8
 $newText = preg_replace('#(?:https?|ftp)://(?:[\w%?=,:;+\#@./-]|&amp;)+#e', "createT8('$0')", $text);
+$newText = addOpeningLink($newText);
+
 echo $newText;
 
 //Fonction qui cree les liens T8
@@ -27,6 +29,25 @@ function createT8($url)
 
     //Retourne le nouveau lien
     return ($FinalUrl);
+}
+
+//On ajoute le lien pour tracker les ouvertures
+function addOpeningLink($text)
+{
+    $endHtml = "</body></html>";	//EndHtml
+    $urlT8 = 'http://t8.mailperformance.com/';	//adresse du catcher
+
+    $openLink = '<img src="' . $urlT8 . 'o5.aspx?GV1=' . findGV1() . '">';	// Open Link
+
+    //Position de la derniere occurence connu
+    $pos = strrpos($text, $endHtml);
+
+    if($pos !== false)
+        $newText = substr_replace($text, $openLink . $endHtml, $pos, strlen($endHtml));
+    else	//if failed
+        $newText = $text . $openLink;
+
+    return ($newText);
 }
 
 //Fonction pour trouver le GV1

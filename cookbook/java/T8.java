@@ -25,6 +25,8 @@ public class T8
 
         //On affiche le nouveau texte
         String newText = sb.toString();
+        newText = addOpeningLink(newText);
+
         System.out.print(newText);
     }
 
@@ -46,6 +48,25 @@ public class T8
         String finalUrl = urlT8 + redirectUrl + "?GV1=" + GV1 + "&linkId=" +  linkId + "&targetUrl=" + targetUrl + "&h=" + h;
 
         return (finalUrl);
+    }
+
+    //On ajoute le lien pour tracker les ouvertures
+    public static String addOpeningLink(String result)
+    {
+        String endHtml = "</body></html>";  //EndHtml
+        String urlT8 = "http://t8.mailperformance.com/";	//adresse du catcher
+
+        String openLink = "<img src=\"" + urlT8 + "o5.aspx?GV1=" + findGV1() + "\">"; // Open Link
+
+        //Position de la derniere occurence connu
+        int position = result.lastIndexOf(endHtml);
+
+        if (position == -1) //if failed
+            result = result + openLink;
+        else
+            result = result.replace(endHtml, openLink + endHtml);
+
+        return (result);
     }
 
     //Fonction pour trouver le GV1
