@@ -49,7 +49,7 @@ function getSourceImportJson()
 function getBindingsJson()
 {
     // Remplissez les informations obligatoires
-    $nameBindings = "Nom du Binding"; // Nom du binding ('null' pour rien)
+    $nameBindings = "Nom du Binding"; // Nom du binding (ne doit pas être null)
 
     $bindingsData = array(
         "name" => $nameBindings, //Nom de ce bindings
