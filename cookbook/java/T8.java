@@ -39,7 +39,7 @@ public class T8
         //les differentes variables
         String urlT8 = "http://t8.mailperformance.com/";	//adresse du catcher
         String redirectUrl = "redirectUrl";	//nom de l'api de redirection
-        String GV1 = findGV1();	//identifie la demande ( utilisation de la fonction "findGV1()" )
+        String GV1 = findGV1(1);	//identifie la demande ( utilisation de la fonction "findGV1()" )
         String linkId = "nameOfTheLink";	//Nom du lien
         String targetUrl = URLEncoder.encode(url,"UTF-8");	//l'url de redirection souhaitee
         String h = findH(keyMd5, url);	//valeur de hachage base sur l'url de redirection et un code specifique au client ( utilisation de la fonction "findH()" )
@@ -56,7 +56,7 @@ public class T8
         String endHtml = "</body></html>";  //EndHtml
         String urlT8 = "http://t8.mailperformance.com/";	//adresse du catcher
 
-        String openLink = "<img src=\"" + urlT8 + "o5.aspx?GV1=" + findGV1() + "\">"; // Open Link
+        String openLink = "<img src=\"" + urlT8 + "o5.aspx?GV1=" + findGV1(2) + "\">"; // Open Link
 
         //Position de la derniere occurence connu
         int position = result.lastIndexOf(endHtml);
@@ -70,15 +70,22 @@ public class T8
     }
 
     //Fonction pour trouver le GV1
-    public static String findGV1()
+    public static String findGV1(int option)
     {
+        String GV1 = null;
+
         String agenceId = "ABCD";	//Id de l'agence
         String customerId = "0AB";	//Id du compte client
         String actionId = "000ABC";	//Id de l'action
         String targetId = "000ABCDE";	//Id de la cible
 
         //Creation du GV1
-        String GV1 = agenceId + customerId + actionId + targetId + '0';
+        if (option == 1) //Ouverture de liens
+            GV1 = agenceId + customerId + actionId + targetId + '0';
+        else if (option == 2) //Ouverture de l'email
+            GV1 = agenceId + customerId + "00000" + actionId + targetId;
+        else //Erreur
+            GV1 = null;
         return (GV1);
     }
 

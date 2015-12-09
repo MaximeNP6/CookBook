@@ -18,7 +18,7 @@ function createT8($url)
     //les differentes variables
     $urlT8 = 'http://t8.mailperformance.com/';	//adresse du catcher
     $redirectUrl = 'redirectUrl';	//nom de l'api de redirection
-    $GV1 = findGV1();	//identifie la demande ( utilisation de la fonction "findGV1()" )
+    $GV1 = findGV1(1);	//identifie la demande ( utilisation de la fonction "findGV1()" )
     $linkId = 'nameOfTheLink';	//Nom du lien
     $targetUrl = $url;	//l'url de redirection souhaitee
     $h = findH($keyMd5, $url);	//valeur de hachage base sur l'url de redirection et un code specifique au client ( utilisation de la fonction "findH()" )
@@ -37,7 +37,7 @@ function addOpeningLink($text)
     $endHtml = "</body></html>";	//EndHtml
     $urlT8 = 'http://t8.mailperformance.com/';	//adresse du catcher
 
-    $openLink = '<img src="' . $urlT8 . 'o5.aspx?GV1=' . findGV1() . '">';	// Open Link
+    $openLink = '<img src="' . $urlT8 . 'o5.aspx?GV1=' . findGV1(2) . '">';	// Open Link
 
     //Position de la derniere occurence connu
     $pos = strrpos($text, $endHtml);
@@ -51,7 +51,7 @@ function addOpeningLink($text)
 }
 
 //Fonction pour trouver le GV1
-function findGV1()
+function findGV1($option)
 {
     $agenceId = 'ABCD';	//Id de l'agence
     $customerId = '0AB';	//Id du compte client
@@ -59,7 +59,10 @@ function findGV1()
     $targetId = '000ABCDE';	//Id de la cible
 
     //Creation du GV1
-    $GV1 = $agenceId . $customerId . $actionId . $targetId . '0';
+    if ($option == 1) //Ouverture de liens
+        $GV1 = $agenceId . $customerId . $actionId . $targetId . '0';
+    else if ($option == 2) //Ouverture de l'email
+        $GV1 = $agenceId . $customerId . '00000' . $actionId . $targetId;
     return ($GV1);
 }
 
