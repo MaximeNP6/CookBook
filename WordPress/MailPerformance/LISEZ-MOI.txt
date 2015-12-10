@@ -21,7 +21,9 @@ Aller dans extensions -> Ajouter -> Mettre une extension en ligne -> Choisissez 
 
 Activez le plugin dans les extensions, puis rentrez votre 'x-Key' et 'Id Champ' (le champ doit etre de type 'E-mail' et avoir le 'Critere d'unicite') dans l'onglet 'MailPerformance'.
 
-Dans votre plugin d'inscription, quand un utilisateur s'inscrit, vous devez appeler la fonction "MPerf_Plugin::MPerfPostTarget([email]);" avec l'email de l'utilisateur. (Pour plus d'aide, demandez a : "apiv8@np6.com")
+Dans votre plugin d'inscription, quand un utilisateur s'inscrit, vous devez appeler la fonction "MPerf_Plugin::MPerfPostTarget([email]);" (PHP) avec l'email de l'utilisateur. (Pour plus d'aide, demandez a : "apiv8@np6.com")
+
+Si vous ne pouvez pas appeler la fonction en PHP, vous pouvez faire un appel GET (REST) sur la route suivante : '/wp-admin/admin-ajax.php?email=[EMAIL]'.
 
 1, 2, 3: C'est fait!
 

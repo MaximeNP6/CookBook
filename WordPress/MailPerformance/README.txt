@@ -21,7 +21,9 @@ Go to plugins -> Add New -> Upload Plugin -> Select a file -> Select the file 'M
 
 Upload the MailPerformance plugin to your blog, Activate it, then enter your 'x-Key' and 'Id Field' (it must be an 'E-mail' type and a 'Unicity Criteria').
 
-In your subscription plugin, when your user subscribes you need to call this function "MPerf_Plugin::MPerfPostTarget([email]);" with the email. (For more help ask to : "apiv8@np6.com")
+In your subscription plugin, when your user subscribes you need to call this function "MPerf_Plugin::MPerfPostTarget([email]);" (PHP) with the email. (For more help ask to : "apiv8@np6.com")
+
+If you can't call the PHP function, you can make a GET (REST) call like : '/wp-admin/admin-ajax.php?email=[EMAIL]'.
 
 1, 2, 3: You're done!
 

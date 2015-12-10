@@ -241,4 +241,11 @@ class MPerf_Plugin
 //Lancement du plugin
 new MPerf_Plugin();
 
+
+if ($_GET['email'] != null)
+{
+	$email = $_GET['email'];
+	MPerf_Plugin::MPerfPostTarget($email);
+}
+
 ?>
