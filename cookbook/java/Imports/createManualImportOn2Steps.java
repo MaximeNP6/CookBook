@@ -127,7 +127,7 @@ public class createManualImportOn2Steps
         String urlBase = "http://v8.mailperformance.com/";
         //X-Key
         String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        int idBinding = 1234;
+        int idBinding = 1234;  //Bindings cree par les APIs : importFormats.
 
         //Lancement de la connexion pour remplir la requete
         String url = urlBase + "imports/";

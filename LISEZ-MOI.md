@@ -11,12 +11,12 @@ Vous devez remplacer les xKey des exemples par votre xKey.
 Prestashop
 --
 
-Ce dossier contient le module pour appeler les APIs v8 de MailPerformance.
+Ce dossier contient le module Prestashop pour appeler les APIs v8 de MailPerformance.
 
 WordPress
 --
 
-Ce dossier contient le module pour appeler les APIs v8 de MailPerformance.
+Ce dossier contient le module WordPress pour appeler les APIs v8 de MailPerformance.
 
 Version
 --

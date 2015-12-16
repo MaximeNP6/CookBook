@@ -21,7 +21,7 @@ $contentText = 'Text message';	//Texte du message
 $idTestSegment = 0123;	//Id du segment de test pour la validation
 
 
-//On trouve l'addresse pour la requete
+//On trouve l'adresse pour la requete
 $url = 'http://v8.mailperformance.com/actions';
 
 //Creation du Json du message

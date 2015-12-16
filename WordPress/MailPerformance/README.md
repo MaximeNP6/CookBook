@@ -1,10 +1,13 @@
-=== MailPerformance ===
+MailPerformance
+==
 Contributors: NP6
+
 License: MIT License
 
 This plugin allows your subscription system to post a target on your MailPerformance account.
 
-== Description ==
+Description
+--
 
 Major features in MailPerformance include:
 
@@ -13,7 +16,8 @@ Major features in MailPerformance include:
 
 PS: You'll need your 'x-Key', your 'Id Field' (it must be an 'E-mail' type and a 'Unicity Criteria') to activate the plugin. (If you don't have it, you can ask to : "apiv8@np6.com")
 
-== Installation ==
+Installation
+--
 
 Download the plugin with the file MailPerformancePlugin.zip.
 

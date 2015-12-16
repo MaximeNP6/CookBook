@@ -3,7 +3,11 @@ CookBook
 
 You will find sample uses of MailPerformance's API in each folder, from target creation to action duplication.
 
-Available in C#, PHP and Java.
+Available in :
+
+* C#
+* PHP
+* Java.
 
 Version
 --

@@ -1,10 +1,13 @@
-=== MailPerformance ===
+MailPerformance
+==
 Contributeurs: NP6
+
 License: MIT License
 
 Ce plugin permet a votre systeme de d'incription d'ajouter une nouvelle cible a votre compte MailPerformance.
 
-== Description ==
+Description
+--
 
 Les principales caracteristiques de MailPerformance comprennent:
 
@@ -13,7 +16,8 @@ Les principales caracteristiques de MailPerformance comprennent:
 
 PS: Vous avez besoin de votre 'x-Key' et de votre 'Id Champ' (le champ doit etre de type 'E-mail' et avoir le 'Critere d'unicite') pour pouvoir activer le plugin. (Si vous n'avez pas votre x-Key, vous pouvez envoyer un email a : "apiv8@np6.com")
 
-== Installation ==
+Installation
+--
 
 Telecharger le plugin avec le MailPerformancePlugin.zip.
 
