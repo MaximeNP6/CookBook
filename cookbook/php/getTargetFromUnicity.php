@@ -1,34 +1,37 @@
 <?php
 
-//Ici, renseignez l'email
+/**
+ * Ce script permet de récuperer une cible grace à son caractère d'unicité.
+ *
+ * @package cookbook
+ */
+
+require 'utils.php';
+
+/**
+ * Variable contenant les configurations pour se connecter à l'API
+ *
+ * @var array
+ */
+$configs = parse_ini_file("config.ini");
+/**
+ * Caractère d'unicité qui vous permet d'identifier la cible que vous recherchez
+ *
+ * @var string
+ */
 $unicity = 'test@test.com';
 
-//Utilisation de cURL pour remplir la requete
-$req = curl_init();
-curl_setopt($req,CURLOPT_URL,'http://v8.mailperformance.com/targets?unicity='. $unicity);
-curl_setopt($req,CURLOPT_CUSTOMREQUEST,'GET');
-curl_setopt($req, CURLOPT_RETURNTRANSFER, true);
+// On trouve l'adresse pour la requete
+$url = $configs['url'] . 'targets?unicity='. $unicity;
+$con = connect($url, $configs['xKey'], null, 'GET');
 
-//Mise en place du xKey et des options
-curl_setopt($req, CURLOPT_HTTPHEADER, array(
-'X-Key: ABCDEFJHIJKLMNOPQRSTUVWXYZ0123456789',
-'Content-Type: application/json'));
-
-//Execution de la requete
-$result = curl_exec($req);
-
-//Verification des reponses
-if ($result == false)
-{
-	//Affichage de l'erreur
-	$info = curl_getinfo($req);
-	echo 'Error : ' . $info['http_code'];
+// Verification des reponses
+if ($con['result'] == true) {
+	echo $con['result'];
 }
-else
-{
-	//Affichage des donnees
-	echo $result;
+else {
+	// Affichage de l'erreur
+	echo 'Error : ' . $con['info']['http_code'];
 }
-curl_close($req);
 
 ?>

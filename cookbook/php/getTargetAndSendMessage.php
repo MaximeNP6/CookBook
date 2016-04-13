@@ -20,13 +20,13 @@ $configs = parse_ini_file("config.ini");
  *
  * @var integer
  */
-$unicity = 'hp@np6.com';
+$unicity = 'test@test.com';
 /**
  * Id du message à envoyer
  *
  * @var integer
  */
-$idMessage = '000QF0';
+$idMessage = '00000';
 
 // On trouve l'adresse pour la requete
 $url = $configs['url'] . 'targets?unicity='. $unicity;
