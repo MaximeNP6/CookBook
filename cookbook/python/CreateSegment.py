@@ -12,7 +12,7 @@ def create_segment(config):
 
     Pour plus d'informations : http://v8.mailperformance.com/doc/#api-Segment-CreateSegmentAsync
 
-    Description du fichier CreateCampaign.json
+    Description du fichier createSegment.json
 
     type                => Le type de segment
     name                => Le nom du segment

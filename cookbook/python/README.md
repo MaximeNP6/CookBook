@@ -5,6 +5,23 @@ Cook Book for Python Implementation
 ###Dependencies
 Make sure to install requests first.
 
+
+
+CreateCampaign
+--
+
+This code creates a campaign.
+
+createCategory
+--
+
+This code creates a category for a campaign.
+
+CreateSegment
+--
+
+This code can create a static segment.
+
 CreateTargetAndAddToSegment
 --
 
@@ -15,20 +32,15 @@ GetTargetFromUnicity
 
 This code example allows you to get the information of a target (Guid, fields....following the model you can find on API documentation: https://v8.mailperformance.com/doc) giving his unicity criteria.
 
-CreateCampaign
---
-
-This code creates a campaign.
-
-CreateSegment
---
-
-This code can create a static segment.
-
 SendBATAndValidateCampaign
 --
 
 This code tests the action and finally valids it.
+
+SendMessageOnSegment
+--
+
+This code takes all targets' ID from a segment and starts a SendMessage with all the targets.
 
 Version
 --
