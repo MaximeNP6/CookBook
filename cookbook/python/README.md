@@ -6,6 +6,10 @@ Cook Book for Python Implementation
 Make sure to install requests first.
 
 
+CreateAutoImports
+--
+
+This code creates an automatic Import.
 
 CreateCampaign
 --

@@ -7,12 +7,17 @@ Exemples de code en Python
 Soyez sur d'avoir installé le module requests.
 
 
+CreateAutoImports
+--
+
+Ce code permet de créer un Import automatique.
+
 CreateCampaign
 --
 
 Ce code permet de créer une Campagne.
 
-createCategory
+CreateCategory
 --
 
 Ce code peut créer une 'catégorie' pour une campagne.

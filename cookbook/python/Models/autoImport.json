@@ -1,0 +1,62 @@
+{
+	"name": "Nom de votre Import automatique",
+	"binding": 1234,
+	"source": {
+		"type": "ftp"
+	},
+	"scheduler": {
+		"type": "periodic",
+		"name": "Nom du scheduler",
+		"frequency": {
+			"occurs": {
+				"type": "daily"
+			},
+			"periodicity": {
+				"type": "once",
+				"value": {
+					"hour": 6,
+					"minute": 0,
+					"second": 0
+				}
+			}
+		},
+		"validity": {
+			"start": {
+				"year": 2016,
+				"month": 12,
+				"date": 1,
+				"hour": 0,
+				"minute": 0,
+				"second": 0
+			},
+			"end": {
+				"year": 2017,
+				"month": 10,
+				"date": 1,
+				"hour": 0,
+				"minute": 0,
+				"second": 0
+			}
+		}
+	},
+	"features": [{
+		"type": "segmentation",
+		"segmentId": 1234,
+		"emptyExisitingSegment": false
+	}, {
+		"type": "duplicate",
+		"rules": {
+			"ignore": true
+		}
+	}, {
+		"type": "report",
+		"sendFinalReport": true,
+		"sendErrorReport": true,
+		"contactGuids": ["XXXXXXXX"],
+		"groupIds": []
+	}, {
+		"type": "database",
+		"updateExisting": true,
+		"crushData": true
+	}]
+}
