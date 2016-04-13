@@ -1,74 +1,58 @@
 <?php
 
-//Ici, renseignez l'email dont vous voulez obtenir les valeurs des champs, et l'id du message
-$unicity = 'test@test.com';
-$idMessage = '000ABC';
+/**
+ * Ce script permet de récuperer une cible grace à son caractère d'unicité et de
+ * lui envoyer un message.
+ *
+ * @package cookbook
+ */
 
-//On trouve l'adresse pour la requete
-$url = 'http://v8.mailperformance.com/targets?unicity='. $unicity;
+require 'utils.php';
 
-//Utilisation de cURL pour remplir les requetes
-function startCurlInit($url)
-{
-	$init = curl_init();
-	curl_setopt($init,CURLOPT_URL, $url);
-	curl_setopt($init, CURLOPT_RETURNTRANSFER, true);
-	return ($init);
-}
+/**
+ * Variable contenant les configurations pour se connecter à l'API
+ *
+ * @var array
+ */
+$configs = parse_ini_file("config.ini");
+/**
+ * Caractère d'unicité de la cible
+ *
+ * @var integer
+ */
+$unicity = 'hp@np6.com';
+/**
+ * Id du message à envoyer
+ *
+ * @var integer
+ */
+$idMessage = '000QF0';
 
-//On remplit la requete
-$req = startCurlInit($url);
-curl_setopt($req,CURLOPT_CUSTOMREQUEST,'GET');
+// On trouve l'adresse pour la requete
+$url = $configs['url'] . 'targets?unicity='. $unicity;
+$con = connect($url, $configs['xKey'], null, 'GET');
 
-//Mise en place du xKey et des options
-curl_setopt($req, CURLOPT_HTTPHEADER, array(
-'X-Key: ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
-'Content-Type: application/json'));
-
-//Execution de la requete
-$result = curl_exec($req);
-
-//Verification des reponses
-if ($result == false)
-{
-	//Affichage de l'erreur
-	$info = curl_getinfo($req);
-	echo 'Error : ' . $info['http_code'];
-}
-else
-{
-	//On recupere l'id de la cible
-	$tab = json_decode($result, TRUE);
+// Verification des reponses
+if ($con['result'] == true) {
+	// On recupere l'id de la cible
+	$tab = json_decode($con['result'], TRUE);
 	$targetId = $tab['id'];
-	
-	//Nouvelle url en fonction de l'id du message et de la cible
-	$url = 'http://v8.mailperformance.com/actions/' . $idMessage . '/targets/' . $targetId;
 
-	//On remplit la requete
-	$req = startCurlInit($url);
-	curl_setopt($req, CURLOPT_POST, true);
-	
-	//Mise en place du xKey et des options
-	curl_setopt($req, CURLOPT_HTTPHEADER, array(
-	'X-Key: ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
-	'Content-Type: application/json',
-	'Content-Length: 0'));
+	// Nouvelle url en fonction de l'id du message et de la cible
+	$url = $configs['url'] . 'actions/' . $idMessage . '/targets/' . $targetId;
+	$con = connect($url, $configs['xKey'], null, 'POST');
 
-	//Execution de la requete
-	$result = curl_exec($req);
-
-	//Verification des reponses
-	$info = curl_getinfo($req);
-	if ($info['http_code'] != 204)
-	{
-		echo 'Error : ' . $info['http_code'];
+	if ($con['info']['http_code'] != 204) {
+		echo 'Error : ' . $con['info']['http_code'];
 	}
-	else
-	{
+	else {
 		echo 'Message sent to ' . $unicity;
 	}
 }
-
-curl_close($req);
+else {
+	// Affichage de l'erreur
+	$info = curl_getinfo($req);
+	echo 'Error : ' . $info['http_code'];
+}
 
 ?>
