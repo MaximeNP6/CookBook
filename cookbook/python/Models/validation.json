@@ -1,0 +1,8 @@
+{
+	"fortest": true,
+	"testSegments": [1234],
+	"textandHtml": false,
+	"comments": null,
+	"mediaForTest": null,
+	"campaignAnalyser": false
+}

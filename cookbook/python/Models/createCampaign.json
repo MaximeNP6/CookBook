@@ -1,0 +1,27 @@
+{
+	"type": "mailCampaign",
+	"description": "MailCampaignFromApi (python)",
+	"scheduler": {
+		"segments": {
+			"selected": [1234]
+		},
+		"type": "asap"
+	},
+	"name": "MailCampaignFromApi (python)",
+	"content": {
+		"text": "Text message",
+		"html": "Html message",
+		"subject": "Subject of the message",
+		"headers": {
+			"from": {
+				"label": "label",
+				"prefix": "prefix"
+			},
+			"reply": "address@reply.com"
+		}
+	},
+	"informations": {
+		"folder": null,
+		"category": null
+	}
+}
