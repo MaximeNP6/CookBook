@@ -1,72 +1,33 @@
 <?php
 
-// Url de base
-$urlBase = 'http://v8.mailperformance.com/';
+/**
+ * Ce script permet de récuperer la listes des imports.
+ *
+ * @package cookbook
+ */
 
-// la X-Key
-$xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+require __DIR__ . '/../utils.php';
 
+/**
+ * Variable contenant les configurations pour se connecter à l'API
+ *
+ * @var array
+ */
+$configs = parse_ini_file(__DIR__. '/../config.ini');
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////DEBUT DU PROGRAMME///////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+$url = $configs['url'] . 'imports/';
 
+$con = connect($url, $configs['xKey'], null, 'GET');
 
-$url = $urlBase . 'imports/'; // Si vous voulez des informations precises sur un seul import faites : "$url = $urlBase . 'imports/[Id de l'Import]';"
+if ($con['result'] == false) {
+  // Erreur lors de la requete
 
-//Requete 'GET' sur les imports
-$return = urlGet($url, $xKey);
-$result = $return["result"];
-$req = $return["req"];
-
-//Verification des reponses
-if ($result == false)
-{
-    //Erreur lors de la requete
-
-    //Affichage de l'erreur
-    $info = curl_getinfo($req);
-    echo 'Error : ' . $info['http_code'] . "\n";
+  // Affichage de l'erreur
+  echo 'Error : ' . $con['info']['http_code'] . "\n";
 }
-else
-{
-    //On affiche la reponse
-    echo $result . "\n";
-}
-curl_close($req);
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////FIN DU PROGRAMME/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////DEBUT DES FONCTIONS//////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-//Utilisation de cURL pour remplir les requetes
-//Fonctions de connexion
-function startCurlInit($url)
-{
-    $init = curl_init();
-    curl_setopt($init, CURLOPT_URL, $url);
-    curl_setopt($init, CURLOPT_RETURNTRANSFER, true);
-    return ($init);
-}
-
-function urlGet($url, $xKey)
-{
-    //On remplit la requete 'GET'
-    $req = startCurlInit($url);
-    curl_setopt($req, CURLOPT_CUSTOMREQUEST, 'GET');
-
-    //Mise en place du xKey et des options
-    curl_setopt($req, CURLOPT_HTTPHEADER, array(
-    'X-Key: ' . $xKey,
-    'Content-Type: application/json',
-    'Accept: application/vnd.mperf.v8.import.v1+json'));
-
-    //Execution de la requete
-    $result = curl_exec($req);
-    return (array('req' => $req, 'result' => $result));
+else {
+  // On affiche la reponse
+  echo $con['result'] . "\n";
 }
 
 ?>
