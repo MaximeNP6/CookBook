@@ -56,13 +56,13 @@ $textContent = 'Text message / max 160';
 // Creation du Json du message
 $arr = array(
 	'type'					=> $type,
-	'name' 					=> $name,
-	'description' 	=> $description,
-	'informations' 	=> array(
-		'folder' 			=> $informationFolder,
-		'category' 		=> $informationCategory
+	'name'					=> $name,
+	'description'		=> $description,
+	'informations'	=> array(
+		'folder'			=> $informationFolder,
+		'category'		=> $informationCategory
 	),
-	'content' 			=> array('textContent' => $textContent)
+	'content'				=> array('textContent' => $textContent)
 );
 
 // On affiche le message

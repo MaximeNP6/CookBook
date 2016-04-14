@@ -112,8 +112,8 @@ $arr['content']['headers'] = array(
   'reply'             => $contentHeadersReply
 );
 $arr['content']['headers']['from'] = array(
-'prefix'              => $contentHeadersFromPrefix,
-'label'               => $contentHeadersFromLabel
+  'prefix'              => $contentHeadersFromPrefix,
+  'label'               => $contentHeadersFromLabel
 );
 
 // On affiche le Json
