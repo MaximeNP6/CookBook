@@ -1,93 +1,85 @@
 <?php
 
-//Ici, renseignez la xKey
-$xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+/**
+ * Ce script permet de créer un SMS.
+ *
+ * @package cookbook
+ */
 
-$type = 'smsMessage';	//Code pour envoyer un SMS
-$name = 'SMSFromApi (php)';	//Nom de l'action
-$description = 'SMSFromApi (php)';	//Description de l'action
+require __DIR__ . '/../utils.php';
 
-$informationFolder = 0123;	//Id du dossier dans lequel vous voulez mettre l'action ('null' pour aucun dossier)
-$informationCategory = 0123;	//Id de la categorie de campagne (Infos compte > Parametrage > Categories de campagnes)
+/**
+ * Variable contenant les configurations pour se connecter à l'API.
+ *
+ * @var array
+ */
+$configs = parse_ini_file(__DIR__. '/../config.ini');
+/**
+ * Code pour envoyer un SMS.
+ *
+ * @var string
+ */
+$type = 'smsMessage';
+/**
+ * Nom du SMS.
+ *
+ * @var string
+ */
+$name = 'SMSFromApi (php)';
+/**
+ * Description de l'action.
+ *
+ * @var string
+ */
+$description = 'SMSFromApi (php)';
+/**
+ * Id du dossier dans lequel vous voulez mettre l'action ('null' pour aucun dossier).
+ *
+ * @var integer
+ */
+$informationFolder = null;
+/**
+ * Id de la categorie de campagne
+ * (Infos compte > Parametrage > Categories de campagnes)
+ * ('null' pour aucune campagne).
+ *
+ * @var integer
+ */
+$informationCategory = null;
+/**
+ * Message texte contenu dans le sms.
+ *
+ * @var string
+ */
+$textContent = 'Text message / max 160';
 
-$textContent = 'Text message / max 160';	//Message texte
-
-
-//On trouve l'addresse pour la requete
-$url = 'http://v8.mailperformance.com/actions';
-
-//Creation du Json du message
+// Creation du Json du message
 $arr = array(
-	'type' => $type,
-	'name' => $name,
-	'description' => $description,
-	'informations' => array(
-		'folder' => $informationFolder,
-		'category' => $informationCategory),
-	'content' => array(
-		'textContent' => $textContent));
-		
-		
-//On affiche le message
-$message = json_encode($arr);
-echo $message . "\n";
+	'type'					=> $type,
+	'name' 					=> $name,
+	'description' 	=> $description,
+	'informations' 	=> array(
+		'folder' 			=> $informationFolder,
+		'category' 		=> $informationCategory
+	),
+	'content' 			=> array('textContent' => $textContent)
+);
 
-//Connexion
-$con = connect($url, $xKey, $message);
+// On affiche le message
+$dataJson = json_encode($arr);
+echo $dataJson . "\n";
 
-$result = $con['result'];
-$info = $con['info'];
-$req = $con['req'];
+// Connexion
+$url = $configs['url'] . 'actions';
+$con = connect($url, $configs['xKey'], $dataJson, 'POST');
 
-//Verification des reponses
-if ($info['http_code'] != 200)
-{
-	echo 'Error : ' . $info['http_code'];
-}
-else
-{
-	//L'action a bien ete cree
-	echo 'Action : ' . $name . " created.\n\n";
+// Verification des reponses
+if ($con['info']['http_code'] == 200) {
+	// L'action a bien été crée
+	echo "Action : " . $name . " has been created.\n\n";
 	echo 'Don\'t forget to normalize your phone numbers with your country.';
 }
-curl_close($req);
-
-
-
-//Fonctions -----
-
-
-
-//Utilisation de cURL pour remplir les requetes
-function startCurlInit($url)
-{
-	$init = curl_init();
-	curl_setopt($init, CURLOPT_URL, $url);
-	curl_setopt($init, CURLOPT_RETURNTRANSFER, true);
-	return ($init);
+else {
+	echo 'Error : ' . $con['info']['http_code'];
 }
-
-//Fonction de connexion
-function connect($url, $xKey, $message)
-{
-	//On remplit la requete
-	$req = startCurlInit($url);
-	curl_setopt($req, CURLOPT_CUSTOMREQUEST, 'POST');
-
-	//Mise en place du xKey et des options
-	curl_setopt($req, CURLOPT_HTTPHEADER, array(
-	'X-Key: ' . $xKey,
-	'Content-Type: application/json',
-	'Content-Length: ' . strlen($message)));
-	curl_setopt($req, CURLOPT_POSTFIELDS, $message);
-
-	//Execution de la requete
-	$result = curl_exec($req);
-
-	//Verification des reponses
-	$info = curl_getinfo($req);
-	
-	return (array('result' => $result, 'info' => $info, 'req' => $req));
-}
-
 ?>

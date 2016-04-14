@@ -1,222 +1,216 @@
 <?php
 
-//Ici, renseignez la xKey
-$xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+/**
+ * Ce script permet de créer une Campagne Mail.
+ *
+ * @package cookbook
+ */
 
-$type = 'mailCampaign';	//Code pour envoyer une campagne de mail
-$name = 'MailCampaignFromApi (php)';	//Nom de l'action
-$description = 'MailCampaignFromApi (php)';	//Description de l'action
+require __DIR__ . '/../utils.php';
 
-$informationFolder = 0123;	//Id du dossier dans lequel vous voulez mettre l'action ('null' pour aucun dossier)
-$informationCategory = 0123;	//Id de la categorie de campagne (Infos compte > Parametrage > Categories de campagnes)
+/**
+ * Variable contenant les configurations pour se connecter à l'API.
+ *
+ * @var array
+ */
+$configs = parse_ini_file(__DIR__. '/../config.ini');
+/**
+ * Code pour créer une campagne mail.
+ *
+ * @var string
+ */
+$type = 'mailCampaign';
+/**
+ * Nom de la campagne.
+ *
+ * @var string
+ */
+$name = 'MailCampaignFromApi (php)';
+/**
+ * Description de la campagne.
+ *
+ * @var string
+ */
+$description = 'MailCampaignFromApi (php)';
+/**
+ * Id du dossier dans lequel vous voulez mettre la campagne.
+ * ('null' pour aucun dossier)
+ *
+ * @var integer
+ */
+$informationFolder = null;
+/**
+ * Id de la categorie de campagne.
+ * (Infos compte > Parametrage > Categories de campagnes).
+ *
+ * @var integer
+ */
+$informationCategory = null;
+/**
+ * Adresse expéditrice.
+ *
+ * @var string
+ */
+$contentHeadersFromPrefix = 'prefix';
+/**
+ * Libellé de l'expéditeur.
+ *
+ * @var string
+ */
+$contentHeadersFromLabel = 'label';
+/**
+ * Adresse vers laquelle sera redirigée la réponse.
+ *
+ * @var string
+ */
+$contentHeadersReply = 'address@reply.com';
+/**
+ * Objet du Mail.
+ *
+ * @var string
+ */
+$contentSubject = 'Subject of the message';
+/**
+ * Contenu (en HTML) du Mail.
+ *
+ * @var string
+ */
+$contentHTML = 'Html message';
+/**
+ * Contenu (en texte) du Mail.
+ *
+ * @var string
+ */
+$contentText = 'Text message';
+/**
+ * Id du segment de test qui sera utilisé pour la phase de validation.
+ *
+ * @var integer
+ */
+$idTestSegment = 01234;
+/**
+ * Id des segments qui seront utilisés pour la campagne.
+ *
+ * @var array
+ */
+$idSelectSegment = array(01234);
 
-$contentHeadersFromPrefix = 'prefix';	//Adresse expeditice
-$contentHeadersFromLabel = 'label';	//Libelle expediteur
-$contentHeadersReply = 'address@reply.com'; //Adresse de reponse
-
-$contentSubject = 'Subject of the message';	//Objet du mail
-$contentHTML = 'Html message';	//Message HTML
-$contentText = 'Text message';	//Message texte
-
-$idTestSegment = 0123;	//Id du segment de test
-$idSelectSegment = array(0123);	//Ids des segments selectionnes
-
-
-//On trouve l'addresse pour la requete
-$url = 'http://v8.mailperformance.com/actions';
-
-//Creation du Json du message
+// Creation du Json
 $arr = array(
-  'type' => $type,
-  'name' => $name,
-  'description' => $description,
-  'informations' => array(
-    'folder' => $informationFolder,
-    'category' => $informationCategory),
-  'scheduler' => array(
-    'type' => 'asap',	//Envoie : immediat = 'asap' / Date = 'scheduled'
-    //'startDate' => '2016-07-27T08:15:00Z',	//Si type = 'scheduled' sinon a enlever
-    'segments' => array(
-      'selected' => $idSelectSegment)),	//Les segments selectionnes
-  'content' => array(
-    'headers' => array(
-      'from' => array(
-        'prefix' => $contentHeadersFromPrefix,
-        'label' => $contentHeadersFromLabel),
-      'reply' => $contentHeadersReply),
-    'subject' => $contentSubject,
-    'html' => $contentHTML,
-    'text' => $contentText));
+  'type'              => $type,
+  'name'              => $name,
+  'description'       => $description,
+  'informations'      => [],
+  'scheduler'         => [],	//Les segments selectionnes
+  'content'           => []
+);
+$arr['informations'] = array(
+  'folder'            => $informationFolder,
+  'category'          => $informationCategory
+);
+$arr['scheduler'] = array(
+  'type'              => 'asap',	//Envoie : immediat = 'asap' / Date = 'scheduled'
+  // 'startDate'         => '2016-07-27T08:15:00Z',	//Si type = 'scheduled' sinon a enlever
+  'segments'          => ['selected' => $idSelectSegment]
+);
+$arr['content'] =  array(
+  'headers'           => [],
+  'subject'           => $contentSubject,
+  'html'              => $contentHTML,
+  'text'              => $contentText
+);
+$arr['content']['headers'] = array(
+  'from'              => [],
+  'reply'             => $contentHeadersReply
+);
+$arr['content']['headers']['from'] = array(
+  'prefix'            => $contentHeadersFromPrefix,
+  'label'             => $contentHeadersFromLabel
+);
 
+// On affiche le message
+$dataJson = json_encode($arr);
+echo $dataJson . "\n";
 
-//On affiche le message
-$message = json_encode($arr);
-echo $message . "\n";
+// Connexion
+$url = $configs['url'] . 'actions' ;
+$con = connect($url, $configs['xKey'], $dataJson, 'POST');
 
-//Connexion
-$con = connect($url, $xKey, $message);
-
-$result = $con['result'];
-$info = $con['info'];
-$req = $con['req'];
-
-//Verification des reponses
-if ($info['http_code'] != 200)
-{
-  echo 'Error : ' . $info['http_code'];
-}
-else
-{
-  //L'action a bien ete cree
+// Verification des reponses
+if ($con['info']['http_code'] == 200) {
+  // L'action a bien ete cree
   echo 'Action : ' . $name . " created.\n\n";
 
-  //On recupere l'id de l'action
-  $tab = json_decode($result, TRUE);
+  // On recupere l'id de l'action
+  $tab = json_decode($con['result'], TRUE);
   $idAction = $tab['id'];
 
-  //On valide l'action
-  $url = 'http://v8.mailperformance.com/actions/' . $idAction . '/validation';
 
-  //Creation du Json du message pour le test
+  /**
+   * Creation du Json pour la phase de test
+   * (détail : http://v8.mailperformance.com/doc/#api-Action-ValidateAsync)
+   *
+   * @var array
+   */
   $arr = array(
-  'fortest' => true,	//Phase de test
-  'campaignAnalyser' => false,	//Campaign Analyzer : 'true' = oui / 'false' = non
-  'testSegments' => array($idTestSegment),	//Les Ids des differents segments de tests
-  'mediaForTest' => null,	//Rediriger tous les tests vers une seule adresse ('null' pour aucune adresse)
-  'textandHtml' => false,	//Envoyer la version texte et la version html : 'true' = oui / 'false' = non
-  'comments' => null);	//Commentaire ('null' pour aucuns commentaires)
+  'fortest'           => true,	// Phase de test
+  'campaignAnalyser'  => false,	// Campaign Analyzer : 'true' = oui / 'false' = non
+  'testSegments'      => array($idTestSegment),	// Les Ids des differents segments de tests
+  'mediaForTest'      => null,	// Rediriger tous les tests vers une seule adresse ('null' pour aucune adresse)
+  'textandHtml'       => false,	// Envoyer la version texte et la version html : 'true' = oui / 'false' = non
+  'comments'          => null);	// Commentaire ('null' pour aucuns commentaires)
 
-  //On affiche le Json
-  $message = json_encode($arr);
-  echo $message . "\n";
+  // On affiche le Json
+  $dataJson = json_encode($arr);
+  echo $dataJson . "\n";
 
-  //Connexion
-  $con = connect($url, $xKey, $message);
-  $result = $con['result'];
-  $info = $con['info'];
-  $req = $con['req'];
+  // Connexion
+  $url =  $configs['url'] . 'actions/' . $idAction . '/validation';
+  $con = connect($url, $configs['xKey'], $dataJson, 'POST');
 
-  //On attend que la phase de test soit terminee (peut prendre plusieurs minutes)
-  $actionState = waitForState($idAction, $xKey);
+  // On attend que la phase de test soit terminee (peut prendre plusieurs minutes)
+  $actionState = waitForState($idAction, $configs['url'], $configs['xKey']);
 
-  //On verifie les reponses
-  if ($info['http_code'] != 204 || $actionState != 38)
-  {
-    if ($actionState == 20)
+  // On verifie les reponses
+  if ($con['info']['http_code'] != 204 || $actionState != 38) {
+    if ($actionState == 20) {
       echo 'Error : the test failed';
-    else if ($actionState == 10)
+    }
+    else if ($actionState == 10) {
       echo 'Error : check the campaign in the Backoffice.';
-    else
-      echo 'Error : ' . $info['http_code'];
+    }
+    else {
+      echo 'Error : ' . $con['info']['http_code'];
+    }
   }
-  else
-  {
-    //La phase de test a reussi
+  else {
+    // La phase de test a reussi
     echo 'The action ' . $name . " is tested.\n\n";
 
+    // On fait passer la demande de test en demande de validation
+    $arr['fortest'] = false;
+    $arr['testSegments'] = null;
 
-    //Creation du Json du message pour la validation
-    $arr = array(
-    'fortest' => false,	//Phase de validation
-    'campaignAnalyser' => false,	//Campaign Analyzer : 'true' = oui / 'false' = non
-    'testSegments' => array($idTestSegment),	//Les Ids des differents segments de tests
-    'mediaForTest' => null,	//Rediriger tous les tests vers une seule adresse ('null' pour aucune adresse)
-    'textandHtml' => false,	//Envoyer la version texte et la version html : 'true' = oui / 'false' = non
-    'comments' => null);	//Commentaire ('null' pour aucuns commentaires)
+    // On affiche le Json
+    $dataJson = json_encode($arr);
+    echo $dataJson . "\n";
 
-    //On affiche le Json
-    $message = json_encode($arr);
-    echo $message . "\n";
+    // Connexion
+    $con = connect($url, $configs['xKey'], $dataJson, 'POST');
 
-    //Connexion
-    $con = connect($url, $xKey, $message);
-
-    $result = $con['result'];
-    $info = $con['info'];
-    $req = $con['req'];
-
-    //On verifie les reponses
-    if ($info['http_code'] != 204)
-    {
-      echo 'Error : ' . $info['http_code'];
-    }
-    else
-    {
-      //La phase de validation a reussi
+    // On verifie les reponses
+    if ($con['info']['http_code'] == 204) {
+      // La phase de validation a reussi
       echo 'The action ' . $name . "is validated.\n\n";
     }
+    else {
+      echo 'Error : ' . $con['info']['http_code'];
+    }
   }
 }
-curl_close($req);
-
-
-
-//Fonctions -----
-
-
-
-//Utilisation de cURL pour remplir les requetes
-function startCurlInit($url)
-{
-  $init = curl_init();
-  curl_setopt($init, CURLOPT_URL, $url);
-  curl_setopt($init, CURLOPT_RETURNTRANSFER, true);
-  return ($init);
+else {
+  echo 'Error : ' . $con['info']['http_code'];
 }
 
-//Fonction de connexion
-function connect($url, $xKey, $message)
-{
-  //On remplit la requete
-  $req = startCurlInit($url);
-  curl_setopt($req, CURLOPT_CUSTOMREQUEST, 'POST');
-
-  //Mise en place du xKey et des options
-  curl_setopt($req, CURLOPT_HTTPHEADER, array(
-  'X-Key: ' . $xKey,
-  'Content-Type: application/json',
-  'Content-Length: ' . strlen($message)));
-  curl_setopt($req, CURLOPT_POSTFIELDS, $message);
-
-  //Execution de la requete
-  $result = curl_exec($req);
-
-  //Verification des reponses
-  $info = curl_getinfo($req);
-
-  return (array('result' => $result, 'info' => $info, 'req' => $req));
-}
-
-//Fonction qui verifie que la phase de test soit fini (peut prendre plusieurs minutes)
-function waitForState($idAction, $xKey)
-{
-  $actionState = 30;
-
-  while ($actionState != 38 && $actionState != 20 && $actionState != 10)
-  {
-    //On attend 20 secondes
-    echo "Wait 20sec...\n";
-    sleep(20);
-
-    //On trouve l'adresse pour la requete
-    $url = 'http://v8.mailperformance.com/actions/' . $idAction;
-
-    //On remplit la requete 'GET'
-    $req = startCurlInit($url);
-    curl_setopt($req, CURLOPT_CUSTOMREQUEST, 'GET');
-
-    //Mise en place du xKey et des options
-    curl_setopt($req, CURLOPT_HTTPHEADER, array(
-    'X-Key: ' . $xKey,
-    'Content-Type: application/json'));
-
-    //Execution de la requete
-    $result = curl_exec($req);
-
-    $tab = json_decode($result, TRUE);
-    $actionState = $tab['informations']['state'];
-  }
-  return ($actionState);
-}
 
 ?>
