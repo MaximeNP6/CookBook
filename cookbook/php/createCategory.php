@@ -1,82 +1,69 @@
 <?php
 
-//Ici, renseignez la xKey et les parametres personnalises
-$xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-$categorieId = '0123';	//Id de la categorie a modifier ('null' si la categorie doit etre cree)
+/**
+ * Ce script permet de créer ou modifier une Catégorie.
+ *
+ * @package cookbook
+ */
 
-$name = 'Category php';	//Nom de la categorie
-$description = 'Category (php)';	//Description de la categorie
+require 'utils.php';
 
-//On trouve l'adresse pour la requete
-$url = 'http://v8.mailperformance.com/categories/' . $categorieId;
+/**
+ * Variable contenant les configurations pour se connecter à l'API
+ *
+ * @var array
+ */
+$configs = parse_ini_file("config.ini");
+/**
+ * Id de la catégorie à créer/modifier ('null' si la catégorie doit être créée)
+ *
+ * @var integer
+ */
+$categorieId = null;
+/**
+ * Nom de la catégorie
+ *
+ * @var string
+ */
+$name = 'Category php';
+/**
+ * Description de la catégorie
+ *
+ * @var string
+ */
+$description = 'Category (php)';
 
-//Creation du Json du message
-$arr = array(
-	'name' => $name,
+
+/**
+ * Creation du JSON contenant les informations
+ * (pour plus de détails : http://v8.mailperformance.com/doc/#api-Category)
+ *
+ * @var array
+ */
+$data = array(
+	'name'	 			=> $name,
 	'description' => $description);
+$dataJson = json_encode($data);
 
+// On affiche le message
+echo $dataJson . "\n";
 
-//On affiche le message
-$message = json_encode($arr);
-echo $message . "\n";
-
-//Connexion
-if ($categorieId != null)
-	$con = connect($url, $xKey, $message, 'PUT');
-else
-	$con = connect($url, $xKey, $message, 'POST');
-	
+// Connexion
+$url = $configs['url'] . 'categories/' . $categorieId;
+if ($categorieId != null) {
+	$con = connect($url, $configs['xKey'], $dataJson, 'PUT');
+}
+else {
+	$con = connect($url, $configs['xKey'], $dataJson, 'POST');
+}
 $result = $con['result'];
-$info = $con['info'];
-$req = $con['req'];
+$info   = $con['info'];
 
-if ($info['http_code'] != 200)
-{
+if ($info['http_code'] == 200) {
+	// La catégorie a bien été créée
+	echo "\nThe category  : " . $name . " has been created / updated.";
+}
+else {
 	echo 'Error : ' . $info['http_code'];
 }
-else
-{
-	//La categorie a bien ete cree
-	echo "\nThe category  : " . $name . " is created / update.";
-}
-curl_close($req);
-
-
-
-//Fonctions -----
-
-
-
-//Utilisation de cURL pour remplir les requetes
-function startCurlInit($url)
-{
-	$init = curl_init();
-	curl_setopt($init, CURLOPT_URL, $url);
-	curl_setopt($init, CURLOPT_RETURNTRANSFER, true);
-	return ($init);
-}
-
-//Fonction de connexion
-function connect($url, $xKey, $message, $method)
-{
-	//On remplit la requete
-	$req = startCurlInit($url);
-	curl_setopt($req, CURLOPT_CUSTOMREQUEST, $method);
-		
-	//Mise en place du xKey et des options
-	curl_setopt($req, CURLOPT_HTTPHEADER, array(
-	'X-Key: ' . $xKey,
-	'Content-Type: application/json',
-	'Content-Length: ' . strlen($message)));
-	curl_setopt($req, CURLOPT_POSTFIELDS, $message);
-
-	//Execution de la requete
-	$result = curl_exec($req);
-
-	//Verification des reponses
-	$info = curl_getinfo($req);
-	
-	return (array('result' => $result, 'info' => $info, 'req' => $req));
-}
-
 ?>

@@ -1,128 +1,80 @@
 <?php
 
-//Ici, renseignez l'email de la cible, la X-Key et l'id du segment
-$unicity = 'test@test.com';
-$xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-$idSegment = '7503';
+/**
+ * Ce script permet de créer une cible si elle n'existe pas et de l'ajouter
+ * à un ségment.
+ *
+ * @package cookbook
+ */
 
-//Syntaxe pour les differents types d'informations :
-$string = "name";	//Chaine de caracteres
-$listOfValues = "Mr";	//Liste de valeurs
-$email = "test@test.com";	// E-mail
-$phoneNumber = "0123456789";	// Telephone
-$textZone = "150 caracters max";	//Zone de texte
-$numbers = 123;	//Valeur numerique
-$date = "01/01/2000";	//Date
-$listMultipleValues = array("valeur 1", "valeur 2");	//Liste de valeurs multiples
+require 'utils.php';
 
-//Creation du tableau en fonction de l'id des champs de la fiche cible : "id-champ" => "valeur du champ"
-$data = array("5398" => $string,
-		"5399" => $listOfValues,
-		"5400" => $email,
-		"5452" => $phoneNumber,
-		"5453" => $textZone,
-		"5454" => $numbers,
-		"5455" => $date,
-		"5456" => $listMultipleValues);
+/**
+ * Variable contenant les configurations pour se connecter à l'API
+ *
+ * @var array
+ */
+$configs = parse_ini_file("config.ini");
+/**
+ * Id du segment vers lequel sera ajouté la cible
+ *
+ * @var string
+ */
+$idSegment = 'XXXXX';
+/**
+ * Creation du JSON en fonction des champs que vous voulez renseigner.
+ * Remplacez les XXXX par l'id des champs que vous voulez renseigner.
+ * Les valeurs renseignez ici sont à remplacer par les votres.
+ *
+ * @var array
+ */
+$data = array(
+	"XXXX" => "name",
+	"XXXX" => "Mr",
+	"XXXX" => "test@test.com",
+	"XXXX" => "0123456789",
+	"XXXX" => "150 caracters max",
+	"XXXX" => 123,
+	"XXXX" => "01/01/2000",
+	"XXXX" => array("valeur 1", "valeur 2"),
+);
 $dataJson = json_encode($data);
 
-//On trouve l'adresse pour la requete
-$url = 'http://v8.mailperformance.com/targets?unicity=' . $unicity;
+/**
+ * On créé le liens pour verifier si la cible n'existe pas, remplacez XXXX par
+ * l'id d'un champ d'unicité.
+ */
+$url = $configs['url'] . 'targets?unicity=' . $data['8628'];
 
-//On remplit la requete 'GET'
-$req = startCurlInit($url);
-curl_setopt($req, CURLOPT_CUSTOMREQUEST, 'GET');
+$con = connect($url, $configs['xKey'], null, 'GET');
 
-//Mise en place du xKey et des options
-curl_setopt($req, CURLOPT_HTTPHEADER, array(
-'X-Key: ' . $xKey,
-'Content-Type: application/json'));
+// Verification des reponses
+if ($con['result'] == false) {
+  // La cible n'éxiste pas, nous devons la créer
 
-//Execution de la requete
-$result = curl_exec($req);
+  // Affichage de l'erreur
+  echo "Error : " .
+       $con['info']['http_code'] .
+       " : Creation of the target.\n";
 
-$resultDisplay = 0;
-
-//Verification des reponses
-if ($result == false)
-{
-	//La cible n'existe pas, nous devons la creer
-	
-	//Affichage de l'erreur
-	$info = curl_getinfo($req);
-	echo 'Error : ' . $info['http_code'] . " : Creation of the target.\n";
-	
-	//nouvelle url
-	$url = 'http://v8.mailperformance.com/targets/';
-	
-	//On remplit la requete 'POST' et on cree la cible
-	$result = request($req, 'POST', $dataJson, $xKey, $url);
-	echo $result . "\n";
-	$resultDisplay = 1;
+  $con = connect($url, $configs['xKey'], $dataJson, 'POST');
 }
 
-//La cible existe
-curl_close($req);
+// On affiche les valeurs renvoyé par l'API
+echo $con['result'] . "\n";
 
-//On recupere l'id de la cible
-$tab = json_decode($result, TRUE);
+// On recupere l'id de la cible
+$tab = json_decode($con['result'], TRUE);
 $idTarget = $tab['id'];
 
-//On affiche les anciennes valeurs
-if ($resultDisplay != 1)
-	echo $result . "\n";
-
-//Nouvelle url
-$url = 'http://v8.mailperformance.com/targets/' . $idTarget . '/segments/' . $idSegment;
-
 //On remplit la requete 'POST'
-$result = request($req, 'POST', null, $xKey, $url);
-if ($result != 'error')
-{
-	echo "The target " . $unicity . " is added to the segment " . $idSegment . ".";
-}
-
-
-
-//Fonctions
-
-
-
-//Utilisation de cURL pour remplir les requetes
-function startCurlInit($url)
-{
-	$init = curl_init();
-	curl_setopt($init, CURLOPT_URL, $url);
-	curl_setopt($init, CURLOPT_RETURNTRANSFER, true);
-	return ($init);
-}
-
-function request($req, $request, $dataJson, $xKey, $url)
-{
-	//On remplit la requete avec le bon verbe ($request) : GET / POST / PUT
-	$req = startCurlInit($url);
-	curl_setopt($req, CURLOPT_CUSTOMREQUEST, $request);
-	if (strlen($dataJson) != 0)
-		curl_setopt($req, CURLOPT_POSTFIELDS, $dataJson);
-	
-	//Mise en place du xKey et des options
-	curl_setopt($req, CURLOPT_HTTPHEADER, array(
-	'X-Key: ' . $xKey,
-	'Content-Type: application/json',
-	'Content-Length: ' . strlen($dataJson)));
-
-	//Execution de la requete
-	$result = curl_exec($req);
-
-	//Verification des reponses
-	$info = curl_getinfo($req);
-	curl_close($req);
-	if ($info['http_code'] != 200 && $info['http_code'] != 204)
-	{
-		echo "Error : " . $info['http_code'] . "\n";
-		return ('error');
-	}
-	return ($result);
+$url = $configs['url'] . 'targets/' . $idTarget . '/segments/' . $idSegment;
+$con = connect($url, $configs['xKey'], null, 'POST');
+if ($con['result'] != 'error') {
+	echo "The target " .
+			 $data['8628'] .
+			 " has been added to the segment " .
+			 $idSegment . ".";
 }
 
 ?>

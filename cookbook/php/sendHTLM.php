@@ -33,15 +33,15 @@ $idMessage = 'XXXXX';
  * @var array
  */
 $arr = array(
-						'content' => array(
-															'html' 		 => 'html message',
-															'text' 		 => 'text message'
-															),
-						'header'	=> array(
-															'subject'	 => 'subject of the message',
-															'mailFrom' => 'mail@address.com',
-															'replyTo'	 => 'mail@return.com'
-															)
+	'content'			=> array(
+		'html'			=> 'html message',
+		'text'			=> 'text message'
+	),
+	'header'			=> array(
+		'subject'		=> 'subject of the message',
+		'mailFrom'	=> 'mail@address.com',
+		'replyTo'		=> 'mail@return.com'
+	)
 );
 
 

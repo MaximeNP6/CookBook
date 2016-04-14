@@ -1,116 +1,113 @@
 <?php
 
-//Ici, renseignez la xKey et les parametres personnalises
-$xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-$fieldId = 0123;	//Id du critere a modifier ('null' si le critere doit etre creer)
+/**
+ * Ce script permet de créer ou modifier un Champ.
+ *
+ * @package cookbook
+ */
 
-$type = 'numeric';	//Code pour creer un critere :
-	//Types : email = 'email' / telephone = 'phone' / zone de texte = 'textArena' / chaine de caractere = 'textField' / valeur numerique = 'numeric' / date = 'date'
-	//Listes : liste de valeurs = 'singleSelectList' / Liste de valeurs multiples = 'multipleSelectList'
-$name = 'createField (php)';	//Nom du critere
-$isUnicity = false;	//Unicite : oui = 'true' / non = 'false'
-$isMandatory = true;	//Obligatoire : oui = 'true' / non = 'false'
+require 'utils.php';
 
-$constraintOperator = 1;	//Pour les valeurs numeriques et les dates : 1 = '>' / 2 = '<' / 3 = '>=' / 4 = '<=' / 5 = '==' ('null' pour rien)
-$constraintValue = "42";	//Valeur de la contrainte ex : ["42"] ('null' pour rien)
+/**
+ * Variable contenant les configurations pour se connecter à l'API
+ *
+ * @var array
+ */
+$configs = parse_ini_file("config.ini");
+/**
+ * Id du champ à créer/modifier ('null' si le champ doit être créée)
+ *
+ * @var integer
+ */
+$fieldId = null;
+/**
+ * Type du champ à créer/modifier
+ * (pour le détail des différents types : http://v8.mailperformance.com/doc/#api-Field)
+ *
+ * @var string
+ */
+$type = 'numeric';
+/**
+ * Nom du champ
+ *
+ * @var string
+ */
+$name = 'createField (php)';
+/**
+ * Défini si le champ doit être un critère d'unicité ou non
+ *
+ * @var bool
+ */
+$isUnicity = false;
+/**
+ * Défini si le champ doit être oubligatoire ou non
+ *
+ * @var bool
+ */
+$isMandatory = true;
+/**
+ * Pour les valeurs numeriques et les dates : 1 = '>' / 2 = '<' / 3 = '>='
+ * 4 = '<=' / 5 = '==' ('null' pour ne pas ajouter)
+ *
+ * @var integer
+ */
+$constraintOperator = 1;
+/**
+ * Valeur de la contrainte ('null' pour ne pas ajouter)
+ *
+ * @var string
+ */
+$constraintValue = "42";
+/**
+ * Id de la liste associée ('null' pour ne pas ajouter)
+ *
+ * @var string
+ */
+$valueListId = null;
 
-$valueListId = null;	//Id de la liste dans le cas d'un 'singleSelectList' ou un 'multipleSelectList' ('null' pour rien)
-
-//On trouve l'adresse pour la requete
-$url = 'http://v8.mailperformance.com/fields/' . $fieldId;
-
-//Creation du Json du message
-if ($constraintOperator != null && $constraintValue != null)
-{
-	$arr = array(
-			'type' => $type,
-			'name' => $name,
-			'isUnicity' => $isUnicity,
-			'isMandatory' => $isMandatory,
-			'constraint' => array(
-					'operator' => $constraintOperator,
-					'value' => $constraintValue));
-	
+/**
+ * Creation du JSON contenant les informations
+ * (pour plus de détails : http://v8.mailperformance.com/doc/#api-Field)
+ *
+ * @var array
+ */
+$data = array(
+	'type' 					=> $type,
+	'name' 					=> $name,
+	'isUnicity' 		=> $isUnicity,
+	'isMandatory' 	=> $isMandatory
+);
+if ($constraintOperator != null && $constraintValue != null) {
+	$data['constraint'] = array(
+		'operator' 		=> $constraintOperator,
+		'value' 			=> $constraintValue);
 }
-else if ($valueListId != null)
-{
-	$arr = array(
-			'type' => $type,
-			'name' => $name,
-			'isUnicity' => $isUnicity,
-			'isMandatory' => $isMandatory,
-			'valueListId' => $valueListId);
+if ($valueListId != null) {
+		$data['valueListId'] = $valueListId;
 }
-else
-{
-	$arr = array(
-			'type' => $type,
-			'name' => $name,
-			'isUnicity' => $isUnicity,
-			'isMandatory' => $isMandatory);
-}
+$dataJson = json_encode($data);
 
 //On affiche le message
-$message = json_encode($arr);
-echo $message . "\n";
+echo $dataJson . "\n";
 
 //Connexion
-if ($fieldId != null)
-	$con = connect($url, $xKey, $message, 'PUT');
-else
-	$con = connect($url, $xKey, $message, 'POST');
+$url = $configs['url'] . 'fields/' . $fieldId;
+if ($fieldId != null) {
+	$con = connect($url, $configs['xKey'], $dataJson, 'PUT');
+}
+else {
+	$con = connect($url, $configs['xKey'], $dataJson, 'POST');
+}
 
 $result = $con['result'];
 $info = $con['info'];
-$req = $con['req'];
 
-if ($info['http_code'] != 200)
-{
+if ($info['http_code'] == 200) {
+	//La champ a bien été créée
+	echo "\nThe field  : " . $name . " has been created / updated.";
+}
+else {
 	echo 'Error : ' . $info['http_code'];
-}
-else
-{
-	//Le critere a bien ete cree
-	echo 'The field  : ' . $name . " is created / update.\n\n";
-}
-curl_close($req);
-
-
-
-//Fonctions -----
-
-
-
-//Utilisation de cURL pour remplir les requetes
-function startCurlInit($url)
-{
-	$init = curl_init();
-	curl_setopt($init, CURLOPT_URL, $url);
-	curl_setopt($init, CURLOPT_RETURNTRANSFER, true);
-	return ($init);
-}
-
-//Fonction de connexion
-function connect($url, $xKey, $message, $method)
-{
-	//On remplit la requete
-	$req = startCurlInit($url);
-	curl_setopt($req, CURLOPT_CUSTOMREQUEST, $method);
-		
-	//Mise en place du xKey et des options
-	curl_setopt($req, CURLOPT_HTTPHEADER, array(
-	'X-Key: ' . $xKey,
-	'Content-Type: application/json',
-	'Content-Length: ' . strlen($message)));
-	curl_setopt($req, CURLOPT_POSTFIELDS, $message);
-
-	//Execution de la requete
-	$result = curl_exec($req);
-
-	//Verification des reponses
-	$info = curl_getinfo($req);
-	
-	return (array('result' => $result, 'info' => $info, 'req' => $req));
 }
 
 ?>
