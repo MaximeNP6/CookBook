@@ -45,7 +45,6 @@ function connect($url, $xKey, $dataJson, $method) {
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 	'X-Key: ' . $xKey,
 	'Content-Type: application/json',
-	'Accept: application/vnd.mperf.v8.import.v1+json',
 	'Content-Length: ' . strlen($dataJson)));
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $dataJson);
 

@@ -1,97 +1,81 @@
 <?php
 
-//Ici, renseignez l'email de la cible, la xKey, l'id du message et les parametres personnalises
+/**
+ * Ce script permet d'envoyer un message personnalisés à une cible.
+ *
+ * @package cookbook
+ */
+
+require 'utils.php';
+
+/**
+ * Variable contenant les configurations pour se connecter à l'API
+ *
+ * @var array
+ */
+$configs = parse_ini_file("config.ini");
+/**
+ * Caractère d'unicité qui vous permet d'identifier la cible
+ *
+ * @var string
+ */
 $unicity = 'test@test.com';
-$xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-$idMessage = '000ABC';
+/**
+ * Id du message qui sera utilisé (il est obligatoire de fournir un id valable)
+ *
+ * @var string
+ */
+$idMessage = 'XXXXX';
+/**
+ * Creation du JSON contenant les informations
+ * (plus de détails : http://v8.mailperformance.com/doc/#api-Action-SendMessage)
+ *
+ * @var array
+ */
+$arr = array(
+						'content' => array(
+															'html' 		 => 'html message',
+															'text' 		 => 'text message'
+															),
+						'header'	=> array(
+															'subject'	 => 'subject of the message',
+															'mailFrom' => 'mail@address.com',
+															'replyTo'	 => 'mail@return.com'
+															)
+);
 
-$htmlMessage = 'html message';
-$textMessage = 'text message';
-$subject = 'subject of the message';
-$mailFrom = 'mail@address.com';
-$replyTo = 'mail@return.com';
 
+// On trouve l'adresse pour la requete
+$url = $configs['url'] . 'targets?unicity='. $unicity;
 
-//On trouve l'adresse pour la requete
-$url = 'http://v8.mailperformance.com/targets?unicity='. $unicity;
+$con = connect($url, $configs['xKey'], null, 'GET');
 
-//On remplit la requete
-$req = startCurlInit($url);
-curl_setopt($req,CURLOPT_CUSTOMREQUEST,'GET');
-
-//Mise en place du xKey et des options
-curl_setopt($req, CURLOPT_HTTPHEADER, array(
-'X-Key: ' . $xKey,
-'Content-Type: application/json'));
-
-//Execution de la requete
-$result = curl_exec($req);
-
-//Verification des reponses
-if ($result == false)
-{
-	//Affichage de l'erreur
-	$info = curl_getinfo($req);
-	echo 'Error : ' . $info['http_code'];
-}
-else
-{
-	//On recupere l'id de la cible
-	$tab = json_decode($result, TRUE);
+// Verification des reponses
+if ($con['result'] == true) {
+	// On recupere l'id de la cible
+	$tab = json_decode($con['result'], TRUE);
 	$idTarget = $tab['id'];
 
-	//On affiche la cible
-	echo $result . "\n";
+	// On affiche la cible
+	echo $con['result'] . "\n";
 
-	//Nouvelle url en fonction de l'id du message et de la cible
-	$url = 'http://v8.mailperformance.com/actions/' . $idMessage . '/targets/' . $idTarget;
-	
-	//Creation du Json du message
-	$arr = array('content' => array('html' => $htmlMessage, 'text' => $textMessage),
-	'header' => array('subject' => $subject, 'mailFrom' => $mailFrom, 'replyTo' => $replyTo));
-	$message = json_encode($arr);
+	// Nouvelle url en fonction de l'id du message et de la cible
+	$url = $configs['url'] . 'actions/' . $idMessage . '/targets/' . $idTarget;
 
-	//On remplit la requete
-	$req = startCurlInit($url);
-	curl_setopt($req, CURLOPT_CUSTOMREQUEST, 'POST');
+	$dataJson = json_encode($arr);
 
-	//Mise en place du xKey et des options
-	curl_setopt($req, CURLOPT_HTTPHEADER, array(
-	'X-Key: ' . $xKey,
-	'Content-Type: application/json',
-	'Content-Length: ' . strlen($message)));
-	curl_setopt($req, CURLOPT_POSTFIELDS, $message);
+	$con = connect($url, $configs['xKey'], $dataJson, 'POST');
 
-	//Execution de la requete
-	$result = curl_exec($req);
-
-	//Verification des reponses
-	$info = curl_getinfo($req);
-	if ($info['http_code'] != 204)
-	{
-		echo 'Error : ' . $info['http_code'];
-	}
-	else
-	{
+	if ($con['info']['http_code'] == 204) {
 		echo 'Message sent to ' . $unicity;
 	}
+	else {
+		echo 'Error : ' . $con['info']['http_code'];
+	}
 }
-
-curl_close($req);
-
-
-
-//Fonctions -----
-
-
-
-//Utilisation de cURL pour remplir les requetes
-function startCurlInit($url)
-{
-	$init = curl_init();
-	curl_setopt($init,CURLOPT_URL, $url);
-	curl_setopt($init, CURLOPT_RETURNTRANSFER, true);
-	return ($init);
+else {
+	// Affichage de l'erreur
+	echo 'Error : ' . $con['info']['http_code'];
 }
 
 ?>

@@ -1,108 +1,72 @@
 <?php
 
-//Ici, renseignez l'email dont vous voulez obtenir les valeurs des champs et la X-Key
-$unicity = 'test@test.com';
-$xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+/**
+ * Ce script permet de créer une cible.
+ *
+ * @package cookbook
+ */
 
-//Syntaxe pour les differents types d'informations :
-$string = "name";	//Chaine de caracteres
-$listOfValues = "Mr";	//Liste de valeurs
-$email = "test@test.com";	// E-mail
-$phoneNumber = "0123456789";	// Telephone
-$textZone = "150 caracters max";	//Zone de texte
-$numbers = 123;	//Valeur numerique
-$date = "01/01/2000";	//Date
-$listMultipleValues = array("valeur 1", "valeur 2");	//Liste de valeurs multiples
+require 'utils.php';
 
-//Creation du tableau en fonction de l'id des champs de la fiche cible : "id-champ" => "valeur de l'information"
-$data = array("5398" => $string,
-        "5399" => $listOfValues,
-        "5400" => $email,
-        "5452" => $phoneNumber,
-        "5453" => $textZone,
-        "5454" => $numbers,
-        "5455" => $date,
-        "5456" => $listMultipleValues);
+/**
+ * Variable contenant les configurations pour se connecter à l'API
+ *
+ * @var array
+ */
+$configs = parse_ini_file("config.ini");
+/**
+ * Creation du JSON en fonction des champs que vous voulez renseigner.
+ * Remplacez les XXXX par l'id des champs que vous voulez renseigner.
+ * Les valeurs renseignez ici sont à remplacer par les votres.
+ *
+ * @var array
+ */
+$data = array(
+							"XXXX" => "Toto",
+							"XXXX" => "Mr",
+							"XXXX" => "test@test.com",
+							"XXXX" => "0123456789",
+							"XXXX" => "150 caracters max",
+							"XXXX" => 123,
+							"XXXX" => "01/01/2000",
+							"XXXX" => array("valeur 1", "valeur 2"),
+);
 $dataJson = json_encode($data);
 
 
-//On trouve l'adresse pour la requete
-$url = 'http://v8.mailperformance.com/targets?unicity=' . $unicity;
+/**
+ * On créé le liens pour verifier si la cible n'existe pas, remplacez XXXX par
+ * l'id d'un champ d'unicité.
+ */
+$url = $configs['url'] . 'targets?unicity=' . $data['XXXX'];
 
-//On remplit la requete 'GET'
-$req = startCurlInit($url);
-curl_setopt($req, CURLOPT_CUSTOMREQUEST, 'GET');
+$con = connect($url, $configs['xKey'], null, 'GET');
 
-//Mise en place du xKey et des options
-curl_setopt($req, CURLOPT_HTTPHEADER, array(
-'X-Key: ' . $xKey,
-'Content-Type: application/json'));
+// Verification des reponses
+if ($con['result'] == false) {
+  // La cible n'éxiste pas, nous devons la créer
 
-//Execution de la requete
-$result = curl_exec($req);
+  // Affichage de l'erreur
+  echo "Error : " .
+       $con['info']['http_code'] .
+       " : Creation of the target.\n";
 
-
-//Verification des reponses
-if ($result == false)
-{
-    //La cible n'existe pas, nous devons la creer
-
-    //Affichage de l'erreur
-    $info = curl_getinfo($req);
-    echo 'Error : ' . $info['http_code'] . " : Creation of the target.\n";
-
-    //On remplit la requete 'POST'
-    $req = postOrPutOnTarget($req, 'POST', $dataJson, $xKey);
+  $con = connect($url, $configs['xKey'], $dataJson, 'POST');
+	echo "The target " .
+			 $data['XXXX'] .
+			 " has been created.";
 }
-else
-{
-    //La cible existe, nous la mettons a jour
+else {
+  // La cible existe, nous la mettons a jour
 
-    //On affiche les anciennes valeurs
-    echo $result . "\n";
+  // On affiche les anciennes valeurs
+  echo $con['result'] . "\n";
 
-    //On remplit la requete 'PUT'
-    $req = postOrPutOnTarget($req, 'PUT', $dataJson, $xKey);
-}
-curl_close($req);
-
-
-
-//Utilisation de cURL pour remplir les requetes
-function startCurlInit($url)
-{
-    $init = curl_init();
-    curl_setopt($init, CURLOPT_URL, $url);
-    curl_setopt($init, CURLOPT_RETURNTRANSFER, true);
-    return ($init);
-}
-
-function postOrPutOnTarget($req, $request, $dataJson, $xKey)
-{
-    //Nouvelle url
-    $url = 'http://v8.mailperformance.com/targets/';
-
-    //On remplit la requete avec le bon verbe ($request) : GET / POST / PUT
-    $req = startCurlInit($url);
-    curl_setopt($req, CURLOPT_CUSTOMREQUEST, $request);
-    curl_setopt($req, CURLOPT_POSTFIELDS, $dataJson);
-
-    //Mise en place du xKey et des options
-    curl_setopt($req, CURLOPT_HTTPHEADER, array(
-    'X-Key: ' . $xKey,
-    'Content-Type: application/json',
-    'Content-Length: ' . strlen($dataJson)));
-
-    //Execution de la requete
-    $result = curl_exec($req);
-
-    //Verification des reponses
-    $info = curl_getinfo($req);
-    if ($info['http_code'] != 200)
-        echo 'Error : ' . $info['http_code'];
-    else
-        echo $result . "\nData base changed.";
-    return ($req);
+  // On remplit la requete 'PUT'
+  $con = connect($url, $configs['xKey'], $dataJson, 'PUT');
+  echo "The target " .
+       $data['XXXX'] .
+       " has been updated.";
 }
 
 ?>
