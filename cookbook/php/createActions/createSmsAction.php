@@ -55,14 +55,14 @@ $textContent = 'Text message / max 160';
 
 // Creation du Json du message
 $arr = array(
-	'type'					=> $type,
-	'name'					=> $name,
-	'description'		=> $description,
-	'informations'	=> array(
-		'folder'			=> $informationFolder,
-		'category'		=> $informationCategory
+  'type'		      => $type,
+  'name'		      => $name,
+  'description'	  => $description,
+  'informations'  => array(
+    'folder'      => $informationFolder,
+	  'category'    => $informationCategory
 	),
-	'content'				=> array('textContent' => $textContent)
+  'content'       => array('textContent' => $textContent)
 );
 
 // On affiche le message
@@ -75,11 +75,11 @@ $con = connect($url, $configs['xKey'], $dataJson, 'POST');
 
 // Verification des reponses
 if ($con['info']['http_code'] == 200) {
-	// L'action a bien été crée
-	echo "Action : " . $name . " has been created.\n\n";
-	echo 'Don\'t forget to normalize your phone numbers with your country.';
+  // L'action a bien été crée
+  echo "Action : " . $name . " has been created.\n\n";
+  echo 'Don\'t forget to normalize your phone numbers with your country.';
 }
 else {
-	echo 'Error : ' . $con['info']['http_code'];
+  echo 'Error : ' . $con['info']['http_code'];
 }
 ?>
