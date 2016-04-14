@@ -6,8 +6,6 @@ import json
 import requests
 import Utils
 
-# TODO
-
 def create_auto_import(config):
     """
     Création de la campagne
