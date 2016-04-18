@@ -1,39 +1,43 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-using System.IO;
+﻿using System;
 using System.Net;
+using System.Xml;
+using Newtonsoft.Json.Linq;
 
 namespace createSmsAction
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            //Ici, renseignez la xKey
-            String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            // Changez le Path pour correspondre à la destination de votre fichier de configuration
+            var doc = new XmlDocument();
+            doc.Load("config.xml");
 
-            String type = "smsMessage";	//Code pour envoyer un SMS
-            String name = "SMSFromApi (Csharp)";	//Nom de l'action
-            String description = "SMSFromApi (Csharp)";	//Description de l'action
+            var xKey = doc.DocumentElement.SelectSingleNode("/config/xKey").InnerText;
+            var baseUrl = doc.DocumentElement.SelectSingleNode("/config/url").InnerText;
 
-            int informationFolder = 0123;	//Id du dossier dans lequel vous voulez mettre l'action ('null' pour aucun dossier)
-            int informationCategory = 0123;	//Id de la categorie de campagne (Infos compte > Parametrage > Categories de campagnes)
+            const string type = "smsMessage";	//Code pour envoyer un SMS
+            const string name = "SMSFromApi (Csharp)";	//Nom de l'action
+            const string description = "SMSFromApi (Csharp)";	//Description de l'action
 
-            String textContent = "Text message";	//Message texte
+            int? informationFolder = 01234;	//Id du dossier dans lequel vous voulez mettre l'action ('null' pour aucun dossier)
+            int? informationCategory = 01234;	//Id de la categorie de campagne (Infos compte > Parametrage > Categories de campagnes)
+
+            const string textContent = "Text message";	//Message texte
 
             //On trouve l'adresse pour la requete
-            String url = "http://v8.mailperformance.com/actions";
+            var url = baseUrl + "actions";
 
 
             //Creation du Json du message
-            JObject informations = new JObject();
+            var informations = new JObject();
             informations.Add("folder", informationFolder);
             informations.Add("category", informationCategory);
 
-            JObject content = new JObject();
+            var content = new JObject();
             content.Add("textContent", textContent);
 
-            JObject jsonMessage = new JObject();
+            var jsonMessage = new JObject();
             jsonMessage.Add("type", type);
             jsonMessage.Add("name", name);
             jsonMessage.Add("description", description);
@@ -44,62 +48,23 @@ namespace createSmsAction
             Console.Write(jsonMessage + "\n");
 
             //Lancement de la connexion pour remplir la requete
-            HttpWebRequest con = Connect(url, xKey, "POST");
-            con.ContentLength = jsonMessage.ToString().Length;
-            var streamWriter = new StreamWriter(con.GetRequestStream());
-            streamWriter.Write(jsonMessage);
-            streamWriter.Flush();
-            streamWriter.Close();
-
-            //Teste de l'envoi
-            HttpWebResponse httpResponse = null;
-            int response = 0;
-            try
-            {
-                httpResponse = (HttpWebResponse)con.GetResponse();
-                response = 200;
-            }
-            //Reception du signal 
-            catch (WebException ex)
-            {
-                if (ex.Status == WebExceptionStatus.ProtocolError)
-                {
-                    httpResponse = (HttpWebResponse)ex.Response;
-                    response = (int)httpResponse.StatusCode;
-                }
-            }
+            var result = Utils.allConnection(url, xKey, jsonMessage, "POST");
 
             //Verification des reponses
-            if (response != 200)
-            {
-                //Affichage de l'erreur
-                Console.Write("\nError : " + response);
-            }
-            else
+            if ((int)result[0] == 200)
             {
                 Console.Write("Action : " + name + " created.");
             }
-            httpResponse.Close();
+            else
+            {
+                //Affichage de l'erreur
+                Console.Write("Error : {0} {1}", (int)result[0], ((HttpWebResponse)result[2]).StatusCode.ToString());
+            }
 
             //Attente de lecture (optionnel)
             Console.ReadLine();
-        }
+            ((HttpWebResponse)result[2]).Close();
 
-        //Fonctions ----
-
-
-        //Fonction de connexion
-        static HttpWebRequest Connect(string url, string xKey, string method)
-        {
-            //Lancement de la connexion pour remplir la requete
-            HttpWebRequest con = (HttpWebRequest)WebRequest.Create(url);
-            con.Method = method;
-
-            //Mise en place du xKey et des options
-            con.Headers.Add("X-Key", xKey);
-            con.ContentType = "application/json";
-
-            return (con);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -16,30 +17,29 @@ public class Utils
         static HttpWebRequest Connect(string url, string xKey, string method)
         {
             //Lancement de la connexion pour remplir la requete
-            var con = (HttpWebRequest)WebRequest.Create(url);
-            con.Method = method;
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = method;
 
             //Mise en place du xKey et des options
-            con.Headers.Add("X-Key", xKey);
-            con.ContentType = "application/json";
+            request.Headers.Add("X-Key", xKey);
+            request.ContentType = "application/json";
 
-            return (con);
+            return (request);
         }
 
         /// <summary>
         ///  Fonction de connexion et envoi des informations
         /// </summary>
-        public static object[] allConnection(string url, string xKey, JObject jsonMessage, string method)
+        public static object[] allConnection(string url, string xKey, dynamic jsonMessage, string method)
         {
-            HttpWebRequest con = Connect(url, xKey, method);
-            con.ContentLength = 0;
+            var request = Connect(url, xKey, method);
+            request.ContentLength = 0;
             if (jsonMessage != null)
             {
-                con.ContentLength = jsonMessage.ToString().Length;
-                var streamWriter = new StreamWriter(con.GetRequestStream());
-                streamWriter.Write(jsonMessage);
-                streamWriter.Flush();
-                streamWriter.Close();
+                byte[] byteArray = Encoding.UTF8.GetBytes(jsonMessage.ToString());
+                request.ContentLength = byteArray.Length;
+                var dataStream = request.GetRequestStream();
+                dataStream.Write(byteArray, 0, byteArray.Length);
             }
 
             // Test de l'envoi
@@ -48,11 +48,11 @@ public class Utils
             string responseString = null;
             try
             {
-                httpResponse = (HttpWebResponse)con.GetResponse();
+                httpResponse = (HttpWebResponse)request.GetResponse();
                 response = 200;
 
                 // Lecture des donnees
-                var reader = new StreamReader(con.GetResponse().GetResponseStream());
+                var reader = new StreamReader(request.GetResponse().GetResponseStream());
                 responseString = reader.ReadToEnd();
                 httpResponse.Close();
                 reader.Close();
@@ -66,7 +66,7 @@ public class Utils
                     response = (int)httpResponse.StatusCode;
                 }
             }
-            object[] result = { response, con, httpResponse, responseString };
+            object[] result = { response, request, httpResponse, responseString };
             return (result);
         }
 

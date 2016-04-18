@@ -12,10 +12,10 @@ namespace createAutoImports
             // Remplissez les informations obligatoires
             const string importName = "Nom de votre Import automatique"; // Nom de l'import
             const string schedulerName = "Nom du scheduler"; // Nom du scheduler
-            const int binding = 8335; // Id du binding
-            const int segmentId = 14091; // Id du segment
-            const int fieldsId = 1234; // Id du field
-            string[] contactsId = { "044EAE5A" }; // Id des utilisateurs : Administration -> Utilisateurs -> Identifiant
+            const int binding = 0123; // Id du binding
+            const int segmentId = 0123; // Id du segment
+            const int fieldsId = 0123; // Id du field
+            string[] contactsId = { "01234" }; // Id des utilisateurs : Administration -> Utilisateurs -> Identifiant
             int[] groupsContactsId = {  }; // Id des groupes : Administration -> Groupes -> Identifiant
 
             //Creation du Json

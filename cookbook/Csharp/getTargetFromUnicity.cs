@@ -17,7 +17,7 @@ namespace getTargetFromUnicity
             var baseUrl = doc.DocumentElement.SelectSingleNode("/config/url").InnerText;
             
             //Ici, renseignez l'email et la X-Key
-            const string unicity = "hp@np6.com";
+            const string unicity = "test@test.com";
             
             //Lancement de la connexion pour remplir la requete
             var url = baseUrl + "targets?unicity=" + unicity;
