@@ -73,14 +73,4 @@ public class Request {
         con.disconnect();
         return (resp);
     }
-
-    public static HttpURLConnection postOrPutOnTarget(HttpURLConnection con, String post, JSONObject data, String xKey, String url) {
-        System.out.print("POSTORPUT MAUVAISE FONCTION");
-        return null;
-    }
-
-    public static HttpURLConnection createGetConnection(String url, String xKey) {
-        System.out.print("MAUVAISE FONCTION");
-        return null;
-    }
 }
