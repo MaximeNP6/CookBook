@@ -1,95 +1,70 @@
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import java.util.Map;
+import java.util.Properties;
+
+import Utils.Request;
+
 public class createCategory
 {
-	public static void main(String[] args) throws IOException, JSONException, InterruptedException
+    public static void main(String[] args) throws IOException, JSONException, InterruptedException
 	{
-		//Ici, renseignez la xKey et les parametres personnalises
-		String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		String categoriesId = "0123";	//Id de la categorie a modifier ('null' si la categorie est a creer)
-		
-		String name = "Category java";	//Nom de la categorie
-		String description = "Category (java)";	//Description de la categorie
+    	/*
+		    Renseignez ici les paramètres que vous souhaitez
+		    @var categoriesId 		=> ID de la catégorie à modifier (renseignez null pour la créer)
+		    @var name 				=> nom de la catégorie
+		    @var description 		=> description de la catégorie
+		*/
+		String categoriesId	= null;
+		String name			= "Category java";
+		String description	= "Category (java)";
 
+		Properties properties   = new Properties();
 
-		//On trouve l'adresse pour la requete
-		String url = "http://v8.mailperformance.com/categories/";
-		if (categoriesId != null)
-		{
-			url = "http://v8.mailperformance.com/categories/" + categoriesId;
+		try {
+			properties.load(new FileInputStream("config.properties"));
+		} catch (IOException e) {
+			System.out.print(e.getMessage());
 		}
-		
-		//Creation du Json du message
+
+		String xKey = properties.getProperty("xKey");
+		String baseUrl = properties.getProperty("url");
+		String url = baseUrl + "categories/";
+
+		if (categoriesId != null) {
+			url += categoriesId;
+		}
+
+		// Creation du Json du message
 		JSONObject jsonData = new JSONObject();
 		jsonData.put("name", name);
 		jsonData.put("description", description);
-		
-		//On affiche le message
+
+		// On affiche le message
 		System.out.print(jsonData + "\n\n");
-		
-		//Lancement de la connexion
-		HttpURLConnection con = null;
-		if (categoriesId != null)
-		{
-			con = connection(url, xKey, jsonData, "PUT");
-		}
-		else
-		{
-			con = connection(url, xKey, jsonData, "POST");
-		}
-		
-		//Verification des reponses
-		int responseCode = con.getResponseCode();
-		if (responseCode != 200)
-		{
-			//Affichage de l'erreur
-			System.out.print("Error : " + responseCode + " " + con.getResponseMessage());
-		}
-		else
-		{
-			//La categorie a bien ete creee
-			System.out.print("The category : " + name + " is update.\n\n");
-		}
-		con.disconnect();
-	}
 
-	
-	//Fonctions ----
 
-	
-	//Ouverture de la connexion
-	public static HttpURLConnection openConn(String url, String xKey) throws MalformedURLException, IOException
-	{
-		//Lancement de la connexion
-		HttpURLConnection con = (HttpURLConnection)new URL(url).openConnection();
-		
-		//Mise en place du xKey et des options
-		con.setRequestProperty("X-Key", xKey);
-		con.setRequestProperty("Content-Type", "application/json");
-		return (con);
-	}
-	
-	//Fonction de connexion et envoi des informations
-	public static HttpURLConnection connection(String url, String xKey, JSONObject jsonMessage, String method) throws IOException
-	{
-		//Lancement de la connexion pour remplir la requete
-		HttpURLConnection con = openConn(url, xKey);
-		con.setRequestProperty("Content-Length", Integer.toString(jsonMessage.length()));
-		con.setRequestMethod(method);
-		con.setDoOutput(true);
-				        
-		//Envoi des informations dans la connexion
-		OutputStreamWriter sendMessage = new OutputStreamWriter(con.getOutputStream());
-		sendMessage.write(jsonMessage.toString());
-		sendMessage.flush();
-		sendMessage.close();
-		return (con);
+		// Lancement de la connexion
+		Map<String, String> resp;
+		if (categoriesId != null) {
+			resp = Request.connection(url, xKey, jsonData, "PUT");
+		}
+		else {
+			resp = Request.connection(url, xKey, jsonData, "POST");
+		}
+
+		// Verification des reponses
+		if (resp.get("code").equals("200")) {
+			// La categorie a bien ete créée
+			System.out.print("Category : " + name + " has been created / updated.\n\n");
+		}
+		else {
+			// Affichage de l'erreur
+			System.out.print("Error : " + resp.get("code") + " " + resp.get("mess"));
+		}
 	}
 }

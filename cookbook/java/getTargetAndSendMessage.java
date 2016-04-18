@@ -1,38 +1,43 @@
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.Properties;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import Utils.Request;
+
 public class getTargetAndSendMessage
 {
-	public static HttpURLConnection openConn(String url) throws MalformedURLException, IOException
-	{
-		//Lancement de la connexion
-		HttpURLConnection con = (HttpURLConnection)new URL(url).openConnection();
-		
-		//Mise en place du xKey et des options
-		con.setRequestProperty("X-Key", "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
-		con.setRequestProperty("Content-Type", "application/json");
-		return (con);
-	}
-	
 	public static void main(String[] args) throws IOException, JSONException
 	{
-		//Ici, renseignez l'email et l'id du message
+		/*
+		 * Renseignez ci-dessous les paramètres que vous souhaitez
+		 * @var uniciy		=> E-mail de la cible
+		 * @var idMessage	=> ID du message que vous souhaitez envoyer
+		*/
 		String unicity = "test@test.com";
 		String idMessage = "000ABC";
-		
-		//Lancement de la connexion pour remplir la requete
-		String url = "http://v8.mailperformance.com/targets?unicity=" + unicity;
-		HttpURLConnection con = openConn(url);
+
+
+		Properties properties = new Properties();
+		try {
+			properties.load(new FileInputStream("config.properties"));
+		} catch (IOException e) {
+			System.out.print(e.getMessage());
+		}
+		String xKey = properties.getProperty("xKey");
+		String baseUrl = properties.getProperty("url");
+		String url = baseUrl + "targets";
+
+		//Lancement de la connexion pour remplir la requête
+		HttpURLConnection con = Request.openConn(url + "?unicity=" + unicity, xKey);
 		con.setRequestMethod("GET");
 		
-		//Verification des reponses
+		//Vérification des réponses
 		int responseCode = con.getResponseCode();
 		if (responseCode != 200)
 		{
@@ -41,21 +46,21 @@ public class getTargetAndSendMessage
 		}
 		else
 		{
-			//Lecture des donnees ligne par lignes
+			//Lecture des données ligne par ligne
 			BufferedReader buffRead = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			String reply = buffRead.readLine();
 			con.disconnect();
 			buffRead.close();
 			
-			//On recupere l'id de la cible
+			//On récupère l'id de la cible
 			JSONObject jObject  = new JSONObject(reply);
 			String idTarget = jObject.getString("id");
 			
 			//Nouvelle url en fonction de l'id du message et de la cible
-			url = "http://v8.mailperformance.com/actions/" + idMessage + "/targets/" + idTarget;
+			url = baseUrl + "actions/" + idMessage + "/targets/" + idTarget;
 
-			//Lancement de la connexion pour remplir la requete
-			con = openConn(url);
+			//Lancement de la connexion pour remplir la requête
+			con = Request.openConn(url, xKey);
 			con.setRequestProperty("Content-Length", "");
 			con.setRequestMethod("POST");
 			con.setDoOutput(true);
@@ -63,7 +68,7 @@ public class getTargetAndSendMessage
 			// Envoi des informations dans la connexion
 			con.getOutputStream();
 			
-			//Verification des reponses
+			//Vérification des réponses
 			responseCode = con.getResponseCode();
 			if (responseCode != 204)
 			{
