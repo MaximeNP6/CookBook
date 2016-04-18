@@ -21,7 +21,7 @@ namespace createMailCampaignAction
             const string name = "MailCampaignFromApi (Csharp)";	//Nom de l'action
             const string description = "MailCampaignFromApi (Csharp)";	//Description de l'action
 
-            int? informationFolder = null;	//Id du dossier dans lequel vous voulez mettre l'action ('null' pour aucun dossier)
+            int? informationFolder = 1234;	//Id du dossier dans lequel vous voulez mettre l'action ('null' pour aucun dossier)
             int? informationCategory = null;	//Id de la categorie de campagne (Infos compte > Parametrage > Categories de campagnes)
 
             const string contentHeadersFromPrefix = "prefix";	//Adresse expeditice
@@ -32,8 +32,8 @@ namespace createMailCampaignAction
             const string contentHTML = "Html message";	//Message HTML
             const string contentText = "Text message";	//Message texte
 
-            int[] idTestSegment = { 14091 };	//Id du segment de test pour la validation
-            int[] idSelectSegment = { 14098 };	//Ids des segments selectionnes
+            int[] idTestSegment = { 1234 };	//Id du segment de test pour la validation
+            int[] idSelectSegment = { 1234 };	//Ids des segments selectionnes
 
 
             //On trouve l'adresse pour la requete
