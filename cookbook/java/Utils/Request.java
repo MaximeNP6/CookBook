@@ -43,14 +43,14 @@ public class Request {
                                                  String xKey,
                                                  JSONObject jsonMessage,
                                                  String method) throws IOException {
-        int jsonLength = 0;
+        String jsonLength = "";
         Map<String, String> resp  = new HashMap<>();
 
         if (jsonMessage != null) {
-            jsonLength = jsonMessage.length();
+            jsonLength = Integer.toString(jsonMessage.length());
         }
         HttpURLConnection con = openConn(url, xKey);
-        con.setRequestProperty("Content-Length", Integer.toString(jsonLength));
+        con.setRequestProperty("Content-Length", jsonLength);
         con.setRequestMethod(method);
         con.setDoOutput(true);
 

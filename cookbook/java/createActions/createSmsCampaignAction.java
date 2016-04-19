@@ -12,7 +12,7 @@ import org.json.JSONObject;
 
 public class createSmsCampaignAction
 {
-	public static void main(String[] args) throws IOException, JSONException
+    public static void main(String[] args) throws IOException, JSONException
 	{
         Properties properties = new Properties();
         try {
