@@ -1,7 +1,5 @@
 import java.io.*;
 
-import java.net.HttpURLConnection;
-
 import java.util.Map;
 import java.util.Properties;
 

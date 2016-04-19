@@ -1,7 +1,6 @@
 import java.io.FileInputStream;
 import java.io.IOException;
 
-
 import java.util.Map;
 import java.util.Properties;
 
@@ -31,7 +30,7 @@ public class getTargetFromUnicity
 		String baseUrl = properties.getProperty("url");
 		String url = baseUrl + "targets?unicity=" + unicity;
 
-		Map<String, String> resp = null;
+		Map<String, String> resp;
 		resp = Request.connection(url, xKey, null, "GET");
 
 		// Vérification de la réponse
