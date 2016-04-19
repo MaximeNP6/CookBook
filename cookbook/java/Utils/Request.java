@@ -6,11 +6,13 @@ import java.io.OutputStreamWriter;
 import java.io.IOException;
 
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Request {
@@ -49,8 +51,7 @@ public class Request {
             jsonLength = jsonMessage.length();
         }
         HttpURLConnection con = openConn(url, xKey);
-        if (jsonMessage != null)
-            con.setRequestProperty("Content-Length", Integer.toString(jsonLength));
+        con.setRequestProperty("Content-Length", Integer.toString(jsonLength));
         con.setRequestMethod(method);
         con.setDoOutput(true);
 
@@ -72,5 +73,40 @@ public class Request {
         }
         con.disconnect();
         return (resp);
+    }
+
+    /**
+     * Fonction d'attente de changement d'état de l'action
+     * @param idAction String
+     * @param xKey String
+     * @param baseUrl String
+     * @return Reponses de la connection
+     * @throws InterruptedException
+     * @throws IOException
+     * @throws JSONException
+     */
+    public static int waitForState(String idAction,
+                                   String xKey,
+                                   String baseUrl) throws InterruptedException, IOException, JSONException
+    {
+        int actionState = 30;
+        Map<String, String> resp;
+
+        while (actionState != 38 && actionState != 20 && actionState != 10)
+        {
+            //On attend 20 secondes
+            System.out.print("Wait 20sec...\n");
+            Thread.sleep(20000);
+
+            //Nouvelle adresse
+            String url = baseUrl + "/actions/" + idAction;
+
+            resp = Request.connection(url, xKey, null, "GET");
+
+            //On recupere l'etat de l'action
+            JSONObject jObject  = new JSONObject(resp.get("reply"));
+            actionState = jObject.getJSONObject("informations").getInt("state");
+        }
+        return (actionState);
     }
 }

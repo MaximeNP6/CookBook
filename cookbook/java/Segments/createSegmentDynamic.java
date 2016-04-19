@@ -1,33 +1,51 @@
+package Segments;
+
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLconnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.Map;
+import java.util.Properties;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import Utils.Request;
 
 public class createSegmentDynamic 
 {
 	public static void main(String[] args) throws IOException, JSONException, InterruptedException
 	{
-		//Ici, renseignez la xKey et les parametres personnalises
-		String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		String segmentId = "0123";	//Id du segment a modifier ('null' si le segment est a creer)
-		
-		String type = "dynamic";	//Code pour creer un segment Dynamique
-		String name = "SegmentDynamic (java)";	//Nom du segment
-		String description = "SegmentDynamic (java)";	//Description du segment
-		String expiration = "2016-01-08T12:11:00Z";	//Date d'expiration du segment
-		Boolean isTest = true;	//Le test est un segment de test : oui = 'true' / non = 'false'
-		String parentId = null;	//Id du segment pere ('null' pour aucun segments pere)
+		/*
+		** Renseignez ici les paramètres que vous souhaitez
+		** @var segmentId 			=> ID du segment à modifier (renseignez null pour le créer)
+		** @var type 				=> Type du segment ('static' ou 'dynamic')
+		** @var name	 			=> Nom du segment
+		** @var description			=> Description du segment
+		** @var expiration  		=> Date d'expiration du segment
+		** @var isTest				=> Définit si le segment est un segment de test ou non (true: segment de test // false: n'est pas segment de test)
+		** @var parentId			=> ID du segment parent (renseignez null s'il n'en a pas)
+		*/
+		String segmentId 	= null;
+		String type 		= "dynamic";
+		String name 		= "SegmentDynamic (java)";
+		String description 	= "SegmentDynamic (java)";
+		String expiration 	= "2026-01-08T12:11:00Z";
+		Boolean isTest 		= true;
+		String parentId 	= null;
 
 
-		//On trouve l'adresse pour la requete
-		String url = "http://v8.mailperformance.com/segments/";
+		Properties properties = new Properties();
+		try {
+			properties.load(new FileInputStream("config.properties"));
+		} catch (IOException e) {
+			System.out.print(e.getMessage());
+		}
+		String xKey = properties.getProperty("xKey");
+		String baseUrl = properties.getProperty("url");
+		String url = baseUrl + "/V1/segments/";
+
 		if (segmentId != null)
 		{
-			url = "http://v8.mailperformance.com/segments/" + segmentId;
+			url += segmentId;
 		}
 		
 		//Creation du Json du message
@@ -43,61 +61,22 @@ public class createSegmentDynamic
 		System.out.print(jsonData + "\n\n");
 		
 		//Lancement de la connexion
-		HttpURLconnection con = null;
-		if (segmentId != null)
-		{
-			con = connection(url, xKey, jsonData, "PUT");
+		Map<String, String> resp;
+		if (segmentId != null) {
+			resp = Request.connection(url, xKey, jsonData, "PUT");
 		}
-		else
-		{
-			con = connection(url, xKey, jsonData, "POST");
+		else {
+			resp = Request.connection(url, xKey, jsonData, "POST");
 		}
 		
 		//Verification des reponses
-		int responseCode = con.getResponseCode();
-		if (responseCode != 200)
-		{
-			//Affichage de l'erreur
-			System.out.print("Error : " + responseCode + " " + con.getResponseMessage());
-		}
-		else
-		{
+		if (resp.get("code").equals("200")) {
 			//Le segment a bien ete modifie
-			System.out.print("The segment dynamic  : " + name + " is update.");
+			System.out.print("The segment dynamic  : " + name + " has been updated.");
 		}
-		con.disconnect();
-	}
-
-	
-	//Fonctions ----
-
-	
-	//Ouverture de la connexion
-	public static HttpURLconnection openConn(String url, String xKey) throws MalformedURLException, IOException
-	{
-		//Lancement de la connexion
-		HttpURLconnection con = (HttpURLconnection)new URL(url).openconnection();
-		
-		//Mise en place du xKey et des options
-		con.setRequestProperty("X-Key", xKey);
-		con.setRequestProperty("Content-Type", "application/json");
-		return (con);
-	}
-	
-	//Fonction de connexion et envoi des informations
-	public static HttpURLconnection connection(String url, String xKey, JSONObject jsonMessage, String method) throws IOException
-	{
-		//Lancement de la connexion pour remplir la requete
-		HttpURLconnection con = openConn(url, xKey);
-		con.setRequestProperty("Content-Length", Integer.toString(jsonMessage.length()));
-		con.setRequestMethod(method);
-		con.setDoOutput(true);
-				        
-		//Envoi des informations dans la connexion
-		OutputStreamWriter sendMessage = new OutputStreamWriter(con.getOutputStream());
-		sendMessage.write(jsonMessage.toString());
-		sendMessage.flush();
-		sendMessage.close();
-		return (con);
+		else {
+			//Affichage de l'erreur
+			System.out.print("Error : " + resp.get("code") + " " + resp.get("reply"));
+		}
 	}
 }

@@ -1,35 +1,48 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+package Segments;
+
+import java.io.*;
+import java.util.Map;
+import java.util.Properties;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import Utils.Request;
+
 
 public class createSegmentStatic 
 {
 	public static void main(String[] args) throws IOException, JSONException, InterruptedException
 	{
-		//Ici, renseignez la xKey et les parametres personnalises
-		String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		String segmentId = "0123";	//Id du segment a modifier ('null' si le segment doit etre cree)
-		String unicity = "test@test.com"; //L'adresse mail de la cible a mettre dans le segment ('null' pour ne rien ajouter au segment)
-		
-		String type = "static";	//Code pour creer un segment Statique
-		String name = "SegmentStatic (java)";	//Nom du segment
-		String description = "SegmentStatic (java)";	//Description du segment
-		String expiration = "2016-01-08T12:11:00Z";	//Date d'expiration du segment
-		Boolean isTest = true;	//Segment de test : oui = 'true' / non = 'false'
+		/*
+		** Renseignez ici les paramètres que vous souhaitez
+		** @var segmentId 			=> ID du segment à modifier (renseignez null pour le créer)
+		** @var type 				=> Type du segment ('static' ou 'dynamic')
+		** @var name	 			=> Nom du segment
+		** @var description			=> Description du segment
+		** @var expiration  		=> Date d'expiration du segment
+		** @var isTest				=> Definit si le segment est un segment de test ou non (true: segment de test // false: n'est pas segment de test)
+		** @var parentId			=> ID du segment parent (renseignez null s'il n'en a pas)
+		*/
+		String segmentId 	= null;
+		String type 		= "static";
+		String name 		= "SegmentStatic (java)";
+		String description 	= "SegmentStatic (java)";
+		String expiration 	= "2026-01-08T12:11:00Z";
+		Boolean isTest 		= true;
 
 
-		//On trouve l'adresse pour la requete
-		String url = "http://v8.mailperformance.com/segments/";
-		if (segmentId != null)
-		{
-			url = "http://v8.mailperformance.com/segments/" + segmentId;
+		Properties properties = new Properties();
+		try {
+			properties.load(new FileInputStream("config.properties"));
+		} catch (IOException e) {
+			System.out.print(e.getMessage());
+		}
+		String xKey = properties.getProperty("xKey");
+		String baseUrl = properties.getProperty("url");
+		String url = baseUrl + "/V1/segments/";
+		if (segmentId != null) {
+			url += segmentId;
 		}
 		
 		//Creation du Json du message
@@ -44,118 +57,22 @@ public class createSegmentStatic
 		System.out.print(jsonData + "\n");
 		
 		//Lancement de la connexion
-		HttpURLConnection con = null;
-		if (segmentId != null)
-		{
-			con = connection(url, xKey, jsonData, "PUT");
+		Map<String, String> resp;
+		if (segmentId != null) {
+			resp = Request.connection(url, xKey, jsonData, "PUT");
 		}
-		else
-		{
-			con = connection(url, xKey, jsonData, "POST");
+		else {
+			resp = Request.connection(url, xKey, jsonData, "POST");
 		}
 		
 		//Verification des reponses
-		int responseCode = con.getResponseCode();
-		if (responseCode != 200)
-		{
-			//Affichage de l'erreur
-			System.out.print("Error : " + responseCode + " " + con.getResponseMessage());
-		}
-		else
-		{
+		if (resp.get("code").equals("200")) {
 			//Le segment a bien ete cree
 			System.out.print("The segment static  : " + name + " is created / update.\n\n");
-			
-			if (unicity != null && segmentId != null)
-			{
-				//Nouvelle url
-				url = "http://v8.mailperformance.com/targets?unicity=" + unicity;
-				
-				//Connexion
-				con = openConn(url, xKey);
-				con.setRequestMethod("GET");
-				
-				//Verification des reponses
-				responseCode = con.getResponseCode();
-				if (responseCode != 200)
-				{
-					//Affichage de l'erreur
-					System.out.print("Error : " + responseCode + " " + con.getResponseMessage());
-				}
-				else
-				{
-					//Lecture des donnees ligne par ligne
-					BufferedReader buffRead = new BufferedReader(new InputStreamReader(con.getInputStream()));
-					String reply = buffRead.readLine();
-					con.disconnect();
-					buffRead.close();
-				
-					//On recupere l'id de l'action
-					JSONObject jObject  = new JSONObject(reply);
-					String idTarget = jObject.getString("id");
-					
-
-					//Nouvelle url
-					url = "http://v8.mailperformance.com/targets/" + idTarget + "/segments/" + segmentId;
-					
-					//Connexion
-					con = openConn(url, xKey);
-					con.setRequestMethod("POST");
-					con.setRequestProperty("Content-Length", "0");
-					con.setDoOutput(true);
-			        
-					//Envoi des informations dans la connection
-					OutputStreamWriter sendMessage = new OutputStreamWriter(con.getOutputStream());
-					sendMessage.flush();
-					sendMessage.close();
-					
-					//Verification des reponses
-					responseCode = con.getResponseCode();
-					if (responseCode != 204)
-					{
-						//Affichage de l'erreur
-						System.out.print("Error : " + responseCode + " " + con.getResponseMessage());
-					}
-					else
-					{
-						System.out.print("The target : " + unicity + " is add to the segment : " + name);
-					}
-				}
-			}
 		}
-		con.disconnect();
-	}
-	
-	
-	//Fonctions ----
-
-	
-	//Ouverture de la connexion
-	public static HttpURLConnection openConn(String url, String xKey) throws MalformedURLException, IOException
-	{
-		//Lancement de la connexion
-		HttpURLConnection con = (HttpURLConnection)new URL(url).openConnection();
-		
-		//Mise en place du xKey et des options
-		con.setRequestProperty("X-Key", xKey);
-		con.setRequestProperty("Content-Type", "application/json");
-		return (con);
-	}
-	
-	//Fonction de connexion et envoi des informations
-	public static HttpURLConnection connection(String url, String xKey, JSONObject jsonMessage, String method) throws IOException
-	{
-		//Lancement de la connexion pour remplir la requete
-		HttpURLConnection con = openConn(url, xKey);
-		con.setRequestProperty("Content-Length", Integer.toString(jsonMessage.length()));
-		con.setRequestMethod(method);
-		con.setDoOutput(true);
-				        
-		//Envoi des informations dans la connexion
-		OutputStreamWriter sendMessage = new OutputStreamWriter(con.getOutputStream());
-		sendMessage.write(jsonMessage.toString());
-		sendMessage.flush();
-		sendMessage.close();
-		return (con);
+		else {
+			//Affichage de l'erreur
+			System.out.print("Error : " + resp.get("code") + " " + resp.get("reply"));
+		}
 	}
 }
