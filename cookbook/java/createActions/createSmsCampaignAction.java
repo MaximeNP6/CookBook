@@ -1,9 +1,12 @@
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+package createActions;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import java.util.Map;
+import java.util.Properties;
+
+import Utils.Request;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,20 +14,26 @@ public class createSmsCampaignAction
 {
 	public static void main(String[] args) throws IOException, JSONException
 	{
-		//Ici, renseignez la xKey
-		String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Properties properties = new Properties();
+        try {
+            properties.load(new FileInputStream("config.properties"));
+        } catch (IOException e) {
+            System.out.print(e.getMessage());
+        }
+        String xKey = properties.getProperty("xKey");
+        String baseUrl = properties.getProperty("url");
 		
 		String type = "smsCampaign";	//Code pour envoyer une campagne de SMS
 		String name = "SMSCampaignFromApi (java)";	//Nom de l'action
 		String description = "SMSCampaignFromApi (java)";	//Description de l'action
 
-		int informationFolder = 0123;	//Id du dossier dans lequel vous voulez mettre l'action ('null' pour aucun dossier)
-		int informationCategory = 0123;	//Id de la categorie de campagne (Infos compte > Parametrage > Categories de campagnes)
+		Integer informationFolder = 0123;	//Id du dossier dans lequel vous voulez mettre l'action ('null' pour aucun dossier)
+		Integer informationCategory = 0123;	//Id de la categorie de campagne (Infos compte > Parametrage > Categories de campagnes)
 
 		String textContent = "Text message";	//Message texte
 		
 		//On trouve l'adresse pour la requete
-		String url = "http://v8.mailperformance.com/actions";
+		String url = baseUrl + "actions";
 		
 		//Creation du Json du message
 		JSONObject informations = new JSONObject();
@@ -48,46 +57,18 @@ public class createSmsCampaignAction
 		
 		//On affiche le message
 		System.out.print(jsonMessage + "\n");
-		
-		//Lancement de la connexion pour remplir la requete
-		HttpURLConnection con = openConn(url, xKey);
-		con.setRequestProperty("Content-Length", Integer.toString(jsonMessage.length()));
-		con.setRequestMethod("POST");
-		con.setDoOutput(true);
-		        
-		// Envoi des informations dans la connection
-		OutputStreamWriter sendMessage = new OutputStreamWriter(con.getOutputStream());
-		sendMessage.write(jsonMessage.toString());
-		sendMessage.flush();
-		sendMessage.close();
-		
-		//Verification des reponses
-		int responseCode = con.getResponseCode();
-		if (responseCode != 200)
-		{
-			//Affichage de l'erreur
-			System.out.print("Error : " + responseCode + " " + con.getResponseMessage());
-		}
-		else
-		{
-			System.out.print("Action : " + name + " created.\n\n"
-					+ "Don\'t forget to normalize your phone numbers with your country.");
-		}
-		con.disconnect();
-	}
-	
-	
-	//Fonctions ----
 
-	
-	public static HttpURLConnection openConn(String url, String xKey) throws MalformedURLException, IOException
-	{
-		//Lancement de la connexion
-		HttpURLConnection con = (HttpURLConnection)new URL(url).openConnection();
-		
-		//Mise en place du xKey et des options
-		con.setRequestProperty("X-Key", xKey);
-		con.setRequestProperty("Content-Type", "application/json");
-		return (con);
+        //On affiche le message
+        System.out.print(jsonMessage + "\n");
+
+        Map<String, String> resp = Request.connection(url, xKey, jsonMessage, "POST");
+
+        if (resp.get("mess").equals("OK")) {
+            //Lecture des donnees
+            System.out.print("Action : " + name + " created.\n\n"
+                    + "Don\'t forget to normalize your phone numbers with your country.");
+        } else {
+            System.out.print("Error " + resp.get("code") + ": " + resp.get("mess") + "\n");
+        }
 	}
 }
