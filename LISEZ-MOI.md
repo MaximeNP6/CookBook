@@ -1,29 +1,18 @@
-MailPerformance
-==
-
 CookBook
---
+==
+Dans chaque dossier vous trouverez des exemples de codes d'utilisation des APIs de MailPerformance, allant de la creation d'une cible jusqu'à la duplication d'une action.
 
-Ce dossier contient des exemples de code dans differents langages. Ces exemples sont dans des sous-dossiers pour chaque langage. Vous avez juste a telecharger les fichiers et a les essayer.
+Disponible en :
 
-Vous devez remplacer les xKey des exemples par votre xKey.
+* C#
+* PHP
+* Java.
 
-Prestashop
---
-
-Ce dossier contient le module Prestashop pour appeler les APIs v8 de MailPerformance.
-
-WordPress
---
-
-Ce dossier contient le module WordPress pour appeler les APIs v8 de MailPerformance.
 
 Version
 --
-
-Ceci est la premiere version des drivers. Beaucoup de ces APIs ne sont pas dans leurs versions finales.
+1.0
 
 Contact
 --
-
 Contactez-nous sur : http://www.np6.fr/demande-de-contact/
