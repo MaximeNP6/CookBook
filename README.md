@@ -7,7 +7,8 @@ Available in :
 
 * C#
 * PHP
-* Java.
+* Java
+* Python
 
 Version
 --
