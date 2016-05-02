@@ -1,0 +1,24 @@
+{
+	"name": "Manual Import",
+	"features": [{
+		"type": "segmentation",
+		"segmentId": 12345,
+		"emptyExisitingSegment": false
+	}, {
+		"type": "duplicate",
+		"rules": {
+			"ignore": true
+		}
+	}, {
+		"type": "report",
+		"sendFinalReport": true,
+		"sendErrorReport": true,
+		"contactGuids": [],
+		"groupIds": []
+	}, {
+		"type": "database",
+		"updateExisting": true,
+		"crushData": false
+	}],
+	"binding": 1234
+}
