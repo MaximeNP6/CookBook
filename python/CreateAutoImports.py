@@ -57,13 +57,13 @@ def create_auto_import(config):
 
     data_json = json.JSONEncoder().encode(data)
 
-    print("Creation of the auto import.")
+    print("Creation of auto import.")
     url = config['API']['url'] + 'imports/'
     headers = Utils.create_headers(config['API']['xKey'], len(data_json))
     req = requests.post(url, data=data_json, headers=headers)
     req.raise_for_status()
 
-    print("The auto import has been Created.")
+    print("Auto import has been Created.")
 
 def main():
     config = Utils.load_config()

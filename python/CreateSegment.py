@@ -26,13 +26,14 @@ def create_segment(config):
 
     data_json = json.JSONEncoder().encode(data)
 
-    print("Creation of the segment.")
+    print('Creation of the segment.')
     url = config['API']['url'] + 'V1/segments/'
     headers = Utils.create_headers(config['API']['xKey'], len(data_json))
     req = requests.post(url, data=data_json, headers=headers)
     req.raise_for_status()
 
-    print("The segment has been Created.")
+    print('The segment has been Created.')
+    return json.loads(req.text)
 
 def main():
     config = Utils.load_config()
