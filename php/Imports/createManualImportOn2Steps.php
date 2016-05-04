@@ -19,7 +19,7 @@ $configs = parse_ini_file(__DIR__. '/../config.ini');
  *
  * @var int
  */
-$idBinding = 8330;
+$idBinding = 1234;
 
 // Fonctions
 
@@ -33,10 +33,10 @@ $idBinding = 8330;
 function createImportJson($idBinding) {
 
   // TODO
-  $importName = "2Steps4"; //Nom de l'import
+  $importName = "Manual Import (PHP)"; //Nom de l'import
 
   $segmentId = 14098; // Id du segment
-  $contactsId = array("044EAE5A"); // Id des utilisateurs : Administration -> Utilisateurs -> Idenfitifant
+  $contactsId = array("XXXXXXX"); // Id des utilisateurs : Administration -> Utilisateurs -> Idenfitifant
   $groupsContactsId = array(); // Id des groupes : Administration -> Groupes -> Idenfitifant
 
   $importData = array(
@@ -84,7 +84,7 @@ function createImportJson($idBinding) {
 function getExecutionImportJson() {
   // Remplissez les informations obligatoires
   $fromFile = "C:\\votre\\chemin\\vers\\le\\fichier\\";
-  $nameFile = "nomDeVotreFichier.extension";
+  $nameFile = "import.csv";
 
   $sourceImportData = array(
     "data" => file_get_contents($fromFile . $nameFile),
