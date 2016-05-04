@@ -34,7 +34,7 @@ def create_import(config, segment_json, binding_json):
         data_json = json.load(data_file)
 
     data_json['features'][0]['segmentId'] = segment_json['id']
-    data_json['binding'] = binding_json['id']
+    data_json['binding'] = binding_json['identifier']['guid']
     data = json.JSONEncoder().encode(data_json)
 
     print('Creation of import.')
