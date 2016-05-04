@@ -7,6 +7,7 @@ import requests
 import Utils
 
 from CreateSegment import create_segment
+from CreateBinding import create_binding
 
 def get_import_file():
     """
@@ -25,7 +26,7 @@ def get_import_file():
 
     return import_json
 
-def create_import(config, segment_json):
+def create_import(config, segment_json, binding_json):
     """
     Créer un Import et l'exécute directement.
     """
@@ -33,6 +34,7 @@ def create_import(config, segment_json):
         data_json = json.load(data_file)
 
     data_json['features'][0]['segmentId'] = segment_json['id']
+    data_json['binding'] = binding_json['id']
     data = json.JSONEncoder().encode(data_json)
 
     print('Creation of import.')
@@ -60,7 +62,8 @@ def create_import(config, segment_json):
 def main():
     config = Utils.load_config()
     segment_json = create_segment(config)
-    create_import(config, segment_json)
+    binding_json = create_binding(config)
+    create_import(config, segment_json, binding_json)
 
 if __name__ == '__main__':
     main()

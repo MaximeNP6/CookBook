@@ -1,0 +1,16 @@
+{
+  "name": "Binding Python",
+  "separator": 59,
+  "startAt": 1,
+  "binds": [
+    {
+      "columnIndex": 0,
+      "fieldId": -10
+    },
+    {
+      "columnIndex": 1,
+      "fieldId": 1234
+    }
+  ],
+  "savedImportFormat": false
+}
