@@ -33,11 +33,11 @@ $idBinding = 1234;
 function createImportJson($idBinding) {
 
   // TODO
-  $importName = "Manual Import (PHP)"; //Nom de l'import
+  $importName = "Manual Import PHP"; //Nom de l'import
 
-  $segmentId = 14098; // Id du segment
-  $contactsId = array("XXXXXXX"); // Id des utilisateurs : Administration -> Utilisateurs -> Idenfitifant
-  $groupsContactsId = array(); // Id des groupes : Administration -> Groupes -> Idenfitifant
+  $segmentId = 12345; // Id du segment
+  $contactsId = ["XXXXXXX"]; // Id des utilisateurs : Administration -> Utilisateurs -> Idenfitifant
+  $groupsContactsId = []; // Id des groupes : Administration -> Groupes -> Idenfitifant
 
   $importData = array(
     "name"                  => $importName,
@@ -83,18 +83,51 @@ function createImportJson($idBinding) {
  */
 function getExecutionImportJson() {
   // Remplissez les informations obligatoires
-  $fromFile = "C:\\votre\\chemin\\vers\\le\\fichier\\";
+  $fromFile = "./";
   $nameFile = "import.csv";
+  $filePath = $fromFile . $nameFile;
+  $valid = false;
+  $validExt = [
+      'txt',
+      'csv',
+      'zip',
+      'tar.gz',
+      'tgz',
+      'gz'
+  ];
+  $validExtLength = count($validExt);
 
-  $sourceImportData = array(
-    "data" => file_get_contents($fromFile . $nameFile),
-    "name" => $nameFile
-  );
-  $sourceImportJson = json_encode($sourceImportData);
+  $fileParts = pathinfo($filePath);
 
-  echo "json :\n" . $sourceImportJson . "\n";
+  if (!$fileParts || !isset($fileParts['extension']))
+  {
+      throw new Exception('There was a problem with your file');
+  }
 
-  return ($sourceImportData);
+  for ($i = 0; $i < $validExtLength; $i++)
+  {
+      if ($validExt[$i] == $fileParts['extension'])
+      {
+          $valid = true;
+      }
+  }
+
+  if (!$valid)
+  {
+      throw new Exception('Wrong type of file');
+  }
+
+  $finfo = finfo_open(FILEINFO_MIME_TYPE);
+
+  $contentType = finfo_file($finfo, $filePath);
+
+  finfo_close($finfo);
+
+  $cfile = curl_file_create($filePath, $contentType, $fileParts['basename']);
+
+  $data = ['data' => $cfile];
+
+  return $data;
 }
 
 // On cree l'import de base
@@ -120,7 +153,6 @@ if ($con['result'] == false) {
   echo "Error : " . $con['info']['http_code'] . "\n" . $con['result'];
   return;
 }
-echo "Error : " . $con['info']['http_code'] . "\n";
 
 echo "Result : " . $con['result'] . ":\n";
 
