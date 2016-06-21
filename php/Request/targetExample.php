@@ -8,7 +8,7 @@
 
 $targetId = '000ABCDE';
 $segmentId = 0123;
-$url = 'http://v8.mailperformance.com/targets/' . $targetId . '/segments/' . $segmentId;
+$url = 'https://backoffice.mailperformance.com/targets/' . $targetId . '/segments/' . $segmentId;
 
 echo $url . "\n";
 
@@ -52,7 +52,7 @@ echo $message . "\n";
 */
 
 $id = '000ABCDE';
-$url = 'http://v8.mailperformance.com/targets/' . $id;
+$url = 'https://backoffice.mailperformance.com/targets/' . $id;
 
 echo $url . "\n";
 
@@ -65,7 +65,7 @@ echo $url . "\n";
 
 $targetId = '000ABCDE';
 $segmentId = 0123;
-$url = 'http://v8.mailperformance.com/targets/' . $targetId . '/segments/' . $segmentId;
+$url = 'https://backoffice.mailperformance.com/targets/' . $targetId . '/segments/' . $segmentId;
 
 echo $url . "\n";
 
@@ -77,7 +77,7 @@ echo $url . "\n";
 */
 
 $id = '000ABCDE';
-$url = 'http://v8.mailperformance.com/targets/' . $id;
+$url = 'https://backoffice.mailperformance.com/targets/' . $id;
 
 echo $url . "\n";
 
@@ -89,7 +89,7 @@ echo $url . "\n";
 */
 
 $id = '000ABCDE';
-$url = 'http://v8.mailperformance.com/targets/' . $id . '/segments';
+$url = 'https://backoffice.mailperformance.com/targets/' . $id . '/segments';
 
 echo $url . "\n";
 
@@ -100,7 +100,7 @@ echo $url . "\n";
 ** =====================================================================================================
 */
 
-$url = 'http://v8.mailperformance.com/targets/count';
+$url = 'https://backoffice.mailperformance.com/targets/count';
 
 echo $url . "\n";
 

@@ -117,7 +117,7 @@ namespace createManualImportOn2Steps
             HttpWebResponse httpResponse = null;
 
             //Url de base
-            String urlBase = "http://v8.mailperformance.com/";
+            String urlBase = "https://backoffice.mailperformance.com/";
             //X-Key
             String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             int idBinding = 1234; //Bindings cree par les APIs : importFormats.

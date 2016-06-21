@@ -78,7 +78,7 @@ echo $message . "\n";
 */
 
 $id = '000123';
-$url = 'http://v8.mailperformance.com/actions/' . $id;
+$url = 'https://backoffice.mailperformance.com/actions/' . $id;
 
 echo $url . "\n";
 
@@ -137,7 +137,7 @@ echo $message . "\n";
 */
 
 $id = '000123';
-$url = 'http://v8.mailperformance.com/actions/' . $id . '/export/recipients';
+$url = 'https://backoffice.mailperformance.com/actions/' . $id . '/export/recipients';
 
 echo $url . "\n";
 
@@ -149,7 +149,7 @@ echo $url . "\n";
 */
 
 $id = '000123';
-$url = 'http://v8.mailperformance.com/actions/' . $id . '/export/feedback/bounces';
+$url = 'https://backoffice.mailperformance.com/actions/' . $id . '/export/feedback/bounces';
 
 echo $url . "\n";
 
@@ -161,7 +161,7 @@ echo $url . "\n";
 */
 
 $id = '000123';
-$url = 'http://v8.mailperformance.com/actions/' . $id . '/export/feedback/complaints';
+$url = 'https://backoffice.mailperformance.com/actions/' . $id . '/export/feedback/complaints';
 
 echo $url . "\n";
 
@@ -173,7 +173,7 @@ echo $url . "\n";
 */
 
 $id = '000123';
-$url = 'http://v8.mailperformance.com/actions/' . $id . '/export/tracking/clicks';
+$url = 'https://backoffice.mailperformance.com/actions/' . $id . '/export/tracking/clicks';
 
 echo $url . "\n";
 
@@ -185,7 +185,7 @@ echo $url . "\n";
 */
 
 $id = '000123';
-$url = 'http://v8.mailperformance.com/actions/' . $id . '/export/tracking/opens';
+$url = 'https://backoffice.mailperformance.com/actions/' . $id . '/export/tracking/opens';
 
 echo $url . "\n";
 
@@ -197,7 +197,7 @@ echo $url . "\n";
 */
 
 $id = '000123';
-$url = 'http://v8.mailperformance.com/actions/' . $id . '/export/feedback/unsubscribes';
+$url = 'https://backoffice.mailperformance.com/actions/' . $id . '/export/feedback/unsubscribes';
 
 echo $url . "\n";
 
@@ -208,7 +208,7 @@ echo $url . "\n";
 ** =====================================================================================================
 */
 
-$url = 'http://v8.mailperformance.com/actions/';
+$url = 'https://backoffice.mailperformance.com/actions/';
 
 echo $url . "\n";
 
@@ -220,7 +220,7 @@ echo $url . "\n";
 */
 
 $id = '000123';
-$url = 'http://v8.mailperformance.com/actions/' . $id;
+$url = 'https://backoffice.mailperformance.com/actions/' . $id;
 
 echo $url . "\n";
 
@@ -232,7 +232,7 @@ echo $url . "\n";
 */
 
 $id = '000123';
-$url = 'http://v8.mailperformance.com/actions/' . $id . '/recipients/count';
+$url = 'https://backoffice.mailperformance.com/actions/' . $id . '/recipients/count';
 
 echo $url . "\n";
 
@@ -274,7 +274,7 @@ echo $message . "\n";
 */
 
 $id = '000123';
-$url = 'http://v8.mailperformance.com/actions/' . $id . '/validation';
+$url = 'https://backoffice.mailperformance.com/actions/' . $id . '/validation';
 
 echo $url . "\n";
 

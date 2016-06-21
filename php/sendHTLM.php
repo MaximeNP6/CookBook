@@ -28,7 +28,7 @@ $unicity = 'test@test.com';
 $idMessage = 'XXXXX';
 /**
  * Creation du JSON contenant les informations
- * (plus de détails : http://v8.mailperformance.com/doc/#api-Action-SendMessage)
+ * (plus de détails : https://backoffice.mailperformance.com/doc/#api-Action-SendMessage)
  *
  * @var array
  */

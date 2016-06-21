@@ -29,7 +29,7 @@ echo $message . "\n";
 */
 
 $id = 0123;
-$url = 'http://v8.mailperformance.com/groups/' . $id;
+$url = 'https://backoffice.mailperformance.com/groups/' . $id;
 
 echo $url . "\n";
 
@@ -41,7 +41,7 @@ echo $url . "\n";
 */
 
 $id = 0123;
-$url = 'http://v8.mailperformance.com/groups/' . $id;
+$url = 'https://backoffice.mailperformance.com/groups/' . $id;
 
 echo $url . "\n";
 
@@ -52,7 +52,7 @@ echo $url . "\n";
 ** =====================================================================================================
 */
 
-$url = 'http://v8.mailperformance.com/groups/';
+$url = 'https://backoffice.mailperformance.com/groups/';
 
 echo $url . "\n";
 
@@ -64,7 +64,7 @@ echo $url . "\n";
 */
 
 $id = 0123;
-$url = 'http://v8.mailperformance.com/groups/' . $id . '/contacts';
+$url = 'https://backoffice.mailperformance.com/groups/' . $id . '/contacts';
 
 echo $url . "\n";
 

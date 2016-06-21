@@ -7,7 +7,7 @@
 */
 
 $id = 01;
-$url = 'http://v8.mailperformance.com/common/timezones/' . $id;
+$url = 'https://backoffice.mailperformance.com/common/timezones/' . $id;
 
 echo $url . "\n";
 
@@ -18,7 +18,7 @@ echo $url . "\n";
 ** =====================================================================================================
 */
 
-$url = 'http://v8.mailperformance.com/common/timezones';
+$url = 'https://backoffice.mailperformance.com/common/timezones';
 
 echo $url . "\n";
 

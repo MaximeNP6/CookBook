@@ -22,7 +22,7 @@ $configs = parse_ini_file("config.ini");
 $fieldId = null;
 /**
  * Type du champ à créer/modifier
- * (pour le détail des différents types : http://v8.mailperformance.com/doc/#api-Field)
+ * (pour le détail des différents types : https://backoffice.mailperformance.com/doc/#api-Field)
  *
  * @var string
  */
@@ -67,7 +67,7 @@ $valueListId = null;
 
 /**
  * Creation du JSON contenant les informations
- * (pour plus de détails : http://v8.mailperformance.com/doc/#api-Field)
+ * (pour plus de détails : https://backoffice.mailperformance.com/doc/#api-Field)
  *
  * @var array
  */

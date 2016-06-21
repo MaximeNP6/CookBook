@@ -36,7 +36,7 @@ $description = 'Category (php)';
 
 /**
  * Creation du JSON contenant les informations
- * (pour plus de détails : http://v8.mailperformance.com/doc/#api-Category)
+ * (pour plus de détails : https://backoffice.mailperformance.com/doc/#api-Category)
  *
  * @var array
  */

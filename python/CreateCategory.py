@@ -10,7 +10,7 @@ def create_category(config):
     """
     Création d'une Catégorie
 
-    Pour plus d'informations : http://v8.mailperformance.com/doc/#api-Category-CreateCategory
+    Pour plus d'informations : https://backoffice.mailperformance.com/doc/#api-Category-CreateCategory
 
     Description du fichier createCategory.json
 

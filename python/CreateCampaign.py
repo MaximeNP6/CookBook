@@ -10,7 +10,7 @@ def create_campaign(config):
     """
     Création de la campagne
 
-    Pour plus d'informations : http://v8.mailperformance.com/doc/#api-Action-CreateAsync
+    Pour plus d'informations : https://backoffice.mailperformance.com/doc/#api-Action-CreateAsync
 
     Description du fichier createCampaign.json
 

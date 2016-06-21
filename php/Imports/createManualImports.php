@@ -1,7 +1,7 @@
 <?php
 
 //Url de base
-$urlBase = 'http://v8.mailperformance.com/';
+$urlBase = 'https://backoffice.mailperformance.com/';
 
 //X-Key
 $xKey = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

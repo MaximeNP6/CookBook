@@ -28,10 +28,10 @@ namespace createValueList
 
 
             //On trouve l'adresse pour la requete
-            String url = "http://v8.mailperformance.com/valueLists/";
+            String url = "https://backoffice.mailperformance.com/valueLists/";
             if (valueListsId != null)
             {
-                url = "http://v8.mailperformance.com/valueLists/" + valueListsId;
+                url = "https://backoffice.mailperformance.com/valueLists/" + valueListsId;
             }
             //Creation du Json du message
             JObject jsonData = new JObject();

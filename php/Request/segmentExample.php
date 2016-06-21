@@ -33,7 +33,7 @@ echo $message . "\n";
 */
 
 $id = 0123;
-$url = 'http://v8.mailperformance.com/segments/' . $id;
+$url = 'https://backoffice.mailperformance.com/segments/' . $id;
 
 echo $url . "\n";
 
@@ -44,7 +44,7 @@ echo $url . "\n";
 ** =====================================================================================================
 */
 
-$url = 'http://v8.mailperformance.com/segments/';
+$url = 'https://backoffice.mailperformance.com/segments/';
 
 echo $url . "\n";
 
@@ -55,7 +55,7 @@ echo $url . "\n";
 ** =====================================================================================================
 */
 
-$url = 'http://v8.mailperformance.com/segments/informations';
+$url = 'https://backoffice.mailperformance.com/segments/informations';
 
 echo $url . "\n";
 

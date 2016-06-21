@@ -35,7 +35,7 @@ $idTestSegment = array(01234);
 $idSelectSegment = array(01234);
 /**
  * Creation du JSON contenant les informations
- * (pour plus de détails : http://v8.mailperformance.com/doc/#api-Action-ValidateAsync)
+ * (pour plus de détails : https://backoffice.mailperformance.com/doc/#api-Action-ValidateAsync)
  *
  * @var array
  */

@@ -15,7 +15,7 @@ public class createField {
             Renseignez ici les paramètres que vous souhaitez
             @var fieldId			=> ID du champ à créer/modifier ('null' si le champ doit être créée)
             @var type				=> Type du champ à créer/modifier
-                                       pour le détail des différents types : http://v8.mailperformance.com/doc/#api-Field)
+                                       pour le détail des différents types : https://backoffice.mailperformance.com/doc/#api-Field)
             @var name				=> Nom du champ
             @var isUnicity			=> Défini si le champ doit être un critère d'unicité ou non
             @var isMandatory		=> Défini si le champ doit être oubligatoire ou non

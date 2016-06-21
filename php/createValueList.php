@@ -16,7 +16,7 @@ $values = array(	//Valeurs de la liste
 			);
 
 //On trouve l'adresse pour la requete
-$url = 'http://v8.mailperformance.com/valueLists/' . $valueListsId;
+$url = 'https://backoffice.mailperformance.com/valueLists/' . $valueListsId;
 
 //Creation du Json du message
 

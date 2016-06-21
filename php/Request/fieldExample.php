@@ -64,7 +64,7 @@ echo $message . "\n";
 */
 
 $id = 0123;
-$url = 'http://v8.mailperformance.com/fields/' . $id;
+$url = 'https://backoffice.mailperformance.com/fields/' . $id;
 
 echo $url . "\n";
 
@@ -76,7 +76,7 @@ echo $url . "\n";
 */
 
 $id = 0123;
-$url = 'http://v8.mailperformance.com/fields/' . $id;
+$url = 'https://backoffice.mailperformance.com/fields/' . $id;
 
 echo $url . "\n";
 
@@ -87,7 +87,7 @@ echo $url . "\n";
 ** =====================================================================================================
 */
 
-$url = 'http://v8.mailperformance.com/fields/';
+$url = 'https://backoffice.mailperformance.com/fields/';
 
 echo $url . "\n";
 

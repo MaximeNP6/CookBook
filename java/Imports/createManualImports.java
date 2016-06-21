@@ -177,7 +177,7 @@ public class createManualImports
 
 
         //Url de base
-        String urlBase = "http://v8.mailperformance.com/";
+        String urlBase = "https://backoffice.mailperformance.com/";
         //X-Key
         String xKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 

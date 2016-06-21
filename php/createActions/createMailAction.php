@@ -135,7 +135,7 @@ if ($con['info']['http_code'] == 200) {
 
   /**
    * Creation du Json pour la phase de test
-   * (détail : http://v8.mailperformance.com/doc/#api-Action-ValidateAsync)
+   * (détail : https://backoffice.mailperformance.com/doc/#api-Action-ValidateAsync)
    *
    * @var array
    */

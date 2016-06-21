@@ -10,7 +10,7 @@ def create_target(config):
     """
     Création d'une cible
 
-    Pour plus d'informations : http://v8.mailperformance.com/doc/#api-Target-CreateTarget
+    Pour plus d'informations : https://backoffice.mailperformance.com/doc/#api-Target-CreateTarget
 
     Remplacez les ID des champs avec les valeur corréspondant au ID de vos propres champs
     """

@@ -12,7 +12,7 @@ def send_BAT_and_validate_campaign(config, action_id):
     """
     Création de la phase de test puis de la phase de validation
 
-    Pour plus d'informations : http://v8.mailperformance.com/doc/#api-Action-ValidateAsync
+    Pour plus d'informations : https://backoffice.mailperformance.com/doc/#api-Action-ValidateAsync
 
     Description du fichier validation.json
 

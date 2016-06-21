@@ -37,7 +37,7 @@ echo $message . "\n";
 */
 
 $id = '012';
-$url = 'http://v8.mailperformance.com/valueLists/' . $id;
+$url = 'https://backoffice.mailperformance.com/valueLists/' . $id;
 
 echo $url . "\n";
 
@@ -48,7 +48,7 @@ echo $url . "\n";
 ** =====================================================================================================
 */
 
-$url = 'http://v8.mailperformance.com/valueLists/';
+$url = 'https://backoffice.mailperformance.com/valueLists/';
 
 echo $url . "\n";
 

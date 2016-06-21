@@ -10,7 +10,7 @@ def create_segment(config):
     """
     Création du Segment
 
-    Pour plus d'informations : http://v8.mailperformance.com/doc/#api-Segment-CreateSegmentAsync
+    Pour plus d'informations : https://backoffice.mailperformance.com/doc/#api-Segment-CreateSegmentAsync
 
     Description du fichier createSegment.json
 
