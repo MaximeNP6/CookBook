@@ -14,10 +14,10 @@
  * @return resource
  */
 function startCurl($url) {
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	return ($ch);
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    return ($ch);
 }
 
 /**
@@ -40,23 +40,27 @@ function stopCurl($ch) {
  * @return array
  */
 function connect($url, $xKey, $dataJson, $method) {
-	$ch = startCurl($url);
-	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-	'X-Key: ' . $xKey,
-	'Content-Type: application/json',
-	'Content-Length: ' . strlen($dataJson)));
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $dataJson);
+    $ch = startCurl($url);
 
-	// Execution de la requete
-	$result = curl_exec($ch);
+    $header = [
+        "X-Key: " . $xKey,
+        "Content-Type: application/json",
+        "Content-Length: " . strlen($dataJson)
+    ];
 
-	// Verification des reponses
-	$info = curl_getinfo($ch);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $dataJson);
 
-	stopCurl($ch);
+    // Execution de la requete
+    $result = curl_exec($ch);
 
-	return (array('result' => $result, 'info' => $info));
+    // Verification des reponses
+    $info = curl_getinfo($ch);
+
+    stopCurl($ch);
+
+    return (["result" => $result, "info" => $info]);
 }
 
 /**
@@ -77,14 +81,14 @@ function waitForState($idAction, $baseUrl, $xKey) {
     echo "Wait 20sec...\n";
     sleep(20);
 
-    $url = $baseUrl . 'actions/' . $idAction;
+    $url = $baseUrl . "actions/" . $idAction;
 
-		$con = connect($url, $xKey, null, 'GET');
+    $con = connect($url, $xKey, null, "GET");
 
-    $tab = json_decode($con['result'], TRUE);
-		$actionState = $tab['informations']['state'];
+    $tab = json_decode($con["result"], TRUE);
+    $actionState = $tab["informations"]["state"];
 
-	}
+    }
   return ($actionState);
 }
 
@@ -98,26 +102,29 @@ function waitForState($idAction, $baseUrl, $xKey) {
  *
  * @return array
  */
-function sendFile($url, $xKey, $dataJson, $method = 'PUT') {
-	$ch = startCurl($url);
-	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $dataJson["data"]);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-					'X-Key: ' . $xKey,
-					'Accept: application/vnd.mperf.v8.import.v1+json',
-					'Content-Type: application/octet-stream',
-					'Content-Disposition: form-data; filename=' . $dataJson["name"]
-	));
+function sendFile($url, $xKey, $dataJson, $method = "PUT") {
+    $ch = startCurl($url);
 
-	// Execution de la requete
-	$result = curl_exec($ch);
+    $header = [
+        "X-Key: " . $xKey,
+        "Accept: application/vnd.mperf.v8.import.v1+json",
+        "Content-Type: application/octet-stream",
+        "Content-Disposition: form-data; filename=" . $dataJson["name"]
+    ];
 
-	// Verification des reponses
-	$info = curl_getinfo($ch);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $dataJson["data"]);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 
-	stopCurl($ch);
+    // Execution de la requete
+    $result = curl_exec($ch);
 
-	return (array('result' => $result, 'info' => $info));
+    // Verification des reponses
+    $info = curl_getinfo($ch);
+
+    stopCurl($ch);
+
+    return (["result" => $result, "info" => $info]);
 }
 
 ?>
